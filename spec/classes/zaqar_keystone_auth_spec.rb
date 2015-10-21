@@ -19,7 +19,6 @@ describe 'zaqar::keystone::auth' do
     it { is_expected.to contain_keystone_user('zaqar').with(
       :ensure   => 'present',
       :password => 'zaqar_password',
-      :tenant   => 'foobar'
     ) }
 
     it { is_expected.to contain_keystone_user_role('zaqar@foobar').with(

@@ -1,7 +1,7 @@
 # The zaqar::db::mysql class implements mysql backend for zaqar
 #
 # This class can be used to create tables, users and grant
-# privelege for a mysql zaqar database.
+# privileges for a mysql zaqar database.
 #
 # == parameters
 #

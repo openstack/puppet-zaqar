@@ -14,7 +14,7 @@ zaqar
 Overview
 --------
 
-The zaqar module is a part of [OpenStack](https://github.com/openstack), an effort by the Openstack infrastructure team to provide continuous integration testing and code review for Openstack and Openstack community projects not part of the core software.  The module its self is used to flexibly configure and manage the FIXME service for Openstack.
+The zaqar module is a part of [OpenStack](https://github.com/openstack), an effort by the OpenStack infrastructure team to provide continuous integration testing and code review for OpenStack and OpenStack community projects not part of the core software.  The module its self is used to flexibly configure and manage the FIXME service for OpenStack.
 
 Module Description
 ------------------
@@ -26,7 +26,7 @@ Setup
 
 **What the zaqar module affects**
 
-[Zaqar](https://wiki.openstack.org/wiki/Zaqar), the queue service for Openstack.
+[Zaqar](https://wiki.openstack.org/wiki/Zaqar), the queue service for OpenStack.
 
 ### Installing zaqar
     zaqar is not currently in Puppet Forge, but is anticipated to be added soon.  Once that happens, you'll be able to install zaqar with:

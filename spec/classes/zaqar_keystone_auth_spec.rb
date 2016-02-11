@@ -26,16 +26,16 @@ describe 'zaqar::keystone::auth' do
       :roles   => ['admin']
     )}
 
-    it { is_expected.to contain_keystone_service('zaqar::queue').with(
+    it { is_expected.to contain_keystone_service('zaqar::messaging').with(
       :ensure      => 'present',
-      :description => 'zaqar queue service'
+      :description => 'Openstack messaging Service'
     ) }
 
-    it { is_expected.to contain_keystone_endpoint('RegionOne/zaqar::queue').with(
+    it { is_expected.to contain_keystone_endpoint('RegionOne/zaqar::messaging').with(
       :ensure       => 'present',
-      :public_url   => "http://127.0.0.1:8888/",
-      :admin_url    => "http://127.0.0.1:8888/",
-      :internal_url => "http://127.0.0.1:8888/"
+      :public_url   => "http://127.0.0.1:8888",
+      :admin_url    => "http://127.0.0.1:8888",
+      :internal_url => "http://127.0.0.1:8888"
     ) }
   end
 
@@ -48,11 +48,11 @@ describe 'zaqar::keystone::auth' do
       }
     end
 
-    it { is_expected.to contain_keystone_endpoint('RegionOne/zaqar::queue').with(
+    it { is_expected.to contain_keystone_endpoint('RegionOne/zaqar::messaging').with(
       :ensure       => 'present',
-      :public_url   => "https://10.10.10.10:8080/",
-      :internal_url => "http://10.10.10.10:8080/",
-      :admin_url    => "http://10.10.10.10:8080/"
+      :public_url   => "https://10.10.10.10:8080",
+      :internal_url => "http://10.10.10.10:8080",
+      :admin_url    => "http://10.10.10.10:8080"
     ) }
   end
 
@@ -64,8 +64,8 @@ describe 'zaqar::keystone::auth' do
 
     it { is_expected.to contain_keystone_user('zaqary') }
     it { is_expected.to contain_keystone_user_role('zaqary@services') }
-    it { is_expected.to contain_keystone_service('zaqary::queue') }
-    it { is_expected.to contain_keystone_endpoint('RegionOne/zaqary::queue') }
+    it { is_expected.to contain_keystone_service('zaqary::messaging') }
+    it { is_expected.to contain_keystone_endpoint('RegionOne/zaqary::messaging') }
   end
 
   describe 'when overriding service name' do
@@ -77,8 +77,8 @@ describe 'zaqar::keystone::auth' do
 
     it { is_expected.to contain_keystone_user('zaqar') }
     it { is_expected.to contain_keystone_user_role('zaqar@services') }
-    it { is_expected.to contain_keystone_service('zaqar_service::queue') }
-    it { is_expected.to contain_keystone_endpoint('RegionOne/zaqar_service::queue') }
+    it { is_expected.to contain_keystone_service('zaqar_service::messaging') }
+    it { is_expected.to contain_keystone_endpoint('RegionOne/zaqar_service::messaging') }
   end
 
   describe 'when disabling user configuration' do
@@ -92,9 +92,9 @@ describe 'zaqar::keystone::auth' do
 
     it { is_expected.not_to contain_keystone_user('zaqar') }
     it { is_expected.to contain_keystone_user_role('zaqar@services') }
-    it { is_expected.to contain_keystone_service('zaqar::queue').with(
+    it { is_expected.to contain_keystone_service('zaqar::messaging').with(
       :ensure      => 'present',
-      :description => 'zaqar queue service'
+      :description => 'Openstack messaging Service'
     ) }
 
   end
@@ -111,9 +111,9 @@ describe 'zaqar::keystone::auth' do
 
     it { is_expected.not_to contain_keystone_user('zaqar') }
     it { is_expected.not_to contain_keystone_user_role('zaqar@services') }
-    it { is_expected.to contain_keystone_service('zaqar::queue').with(
+    it { is_expected.to contain_keystone_service('zaqar::messaging').with(
       :ensure      => 'present',
-      :description => 'zaqar queue service'
+      :description => 'Openstack messaging Service'
     ) }
 
   end

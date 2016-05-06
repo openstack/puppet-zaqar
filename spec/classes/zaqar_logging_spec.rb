@@ -83,7 +83,7 @@ describe 'zaqar::logging' do
      :default_log_levels, :fatal_deprecations,
      :instance_format, :instance_uuid_format,
      :log_date_format, ].each { |param|
-        it { is_expected.to contain_zaqar_config("DEFAULT/#{param}").with_ensure('absent') }
+        it { is_expected.to contain_zaqar_config("DEFAULT/#{param}").with(:value => '<SERVICE DEFAULT>') }
       }
   end
 

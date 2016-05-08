@@ -35,6 +35,30 @@
 #   the catalogue/control plane data is kept. (boolean value)
 #   Default false
 #
+# [*queue_pipeline*]
+#   Pipeline to use for processing queue operations.
+#   This pipeline will be consumed before calling the storage driver's
+#   controller methods.
+#   Defaults to $::os_service_default.
+#
+# [*message_pipeline*]
+#   Pipeline to use for processing message operations.
+#   This pipeline will be consumed before calling the storage driver's
+#   controller methods.
+#   Defaults to $::os_service_default.
+#
+# [*claim_pipeline*]
+#   Pipeline to use for processing claim operations. This
+#   pipeline will be consumed before calling the storage driver's controller
+#   methods.
+#   Defaults to $::os_service_default.
+#
+# [*subscription_pipeline*]
+#   Pipeline to use for processing subscription
+#   operations. This pipeline will be consumed before calling the storage
+#   driver's controller methods.
+#   Defaults to $::os_service_default.
+#
 # [*unreliable*]
 #   Disable all reliability constraints. (boolean value)
 #   Default false
@@ -49,15 +73,19 @@
 #
 class zaqar(
   $admin_password,
-  $auth_uri          = 'http://localhost:5000/',
-  $identity_uri      = 'http://localhost:35357/',
-  $admin_user        = 'zaqar',
-  $admin_tenant_name = 'services',
-  $auth_strategy     = 'keystone',
-  $admin_mode        = $::os_service_default,
-  $unreliable        = $::os_service_default,
-  $pooling           = $::os_service_default,
-  $package_name      = $::zaqar::params::package_name,
+  $auth_uri                 = 'http://localhost:5000/',
+  $identity_uri             = 'http://localhost:35357/',
+  $admin_user               = 'zaqar',
+  $admin_tenant_name        = 'services',
+  $auth_strategy            = 'keystone',
+  $admin_mode               = $::os_service_default,
+  $unreliable               = $::os_service_default,
+  $pooling                  = $::os_service_default,
+  $queue_pipeline           = $::os_service_default,
+  $message_pipeline         = $::os_service_default,
+  $claim_pipeline           = $::os_service_default,
+  $subscription_pipeline    = $::os_service_default,
+  $package_name             = $::zaqar::params::package_name,
   $package_ensure    = 'present',
 ) inherits zaqar::params {
 
@@ -77,6 +105,10 @@ class zaqar(
     'DEFAULT/admin_mode'                   : value  => $admin_mode;
     'DEFAULT/unreliable'                   : value  => $unreliable;
     'DEFAULT/pooling'                      : value  => $pooling;
+    'storage/queue_pipeline'               : value  => $queue_pipeline;
+    'storage/message_pipeline'             : value  => $message_pipeline;
+    'storage/claim_pipeline'               : value  => $claim_pipeline;
+    'storage/subscription_pipeline'        : value  => $subscription_pipeline;
   }
 
 }

@@ -48,7 +48,11 @@ describe 'zaqar' do
         req_params.merge!({
           :admin_mode  => true,
           :unreliable  => true,
-          :pooling  => true
+          :pooling  => true,
+          :queue_pipeline => 'zaqar_pipeline1',
+          :message_pipeline => 'zaqar_pipeline2',
+          :claim_pipeline => 'zaqar_pipeline3',
+          :subscription_pipeline => 'zaqar_pipeline4',
         })
       end
 
@@ -56,6 +60,10 @@ describe 'zaqar' do
         is_expected.to contain_zaqar_config('DEFAULT/admin_mode').with_value(true)
         is_expected.to contain_zaqar_config('DEFAULT/unreliable').with_value(true)
         is_expected.to contain_zaqar_config('DEFAULT/pooling').with_value(true)
+        is_expected.to contain_zaqar_config('storage/queue_pipeline').with_value('zaqar_pipeline1')
+        is_expected.to contain_zaqar_config('storage/message_pipeline').with_value('zaqar_pipeline2')
+        is_expected.to contain_zaqar_config('storage/claim_pipeline').with_value('zaqar_pipeline3')
+        is_expected.to contain_zaqar_config('storage/subscription_pipeline').with_value('zaqar_pipeline4')
       end
     end
   end

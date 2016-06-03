@@ -29,7 +29,7 @@ Setup
 [Zaqar](https://wiki.openstack.org/wiki/Zaqar), the queue service for OpenStack.
 
 ### Installing zaqar
-    zaqar is not currently in Puppet Forge, but is anticipated to be added soon.  Once that happens, you'll be able to install zaqar with:
+
     puppet module install openstack/zaqar
 
 ### Beginning with zaqar
@@ -97,7 +97,7 @@ Development
 
 Developer documentation for the entire puppet-openstack project.
 
-* https://wiki.openstack.org/wiki/Puppet-openstack#Developer_documentation
+* http://docs.openstack.org/developer/puppet-openstack-guide/
 
 Contributors
 ------------

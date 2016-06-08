@@ -62,8 +62,8 @@ describe 'zaqar::keystone::auth' do
 
       it { is_expected.to contain_keystone_user('zaqary') }
       it { is_expected.to contain_keystone_user_role('zaqary@services') }
-      it { is_expected.to contain_keystone_service('zaqary::messaging') }
-      it { is_expected.to contain_keystone_endpoint('RegionOne/zaqary::messaging') }
+      it { is_expected.to contain_keystone_service('zaqar::messaging') }
+      it { is_expected.to contain_keystone_endpoint('RegionOne/zaqar::messaging') }
     end
 
     describe 'when overriding service name' do

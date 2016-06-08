@@ -43,7 +43,7 @@
 #
 # [*service_name*]
 #   (optional) Name of the service.
-#   Defaults to the value of auth_name.
+#   Defaults to 'zaqar'
 #
 # [*configure_service*]
 #   Should zaqar service be configured? Defaults to 'true'.
@@ -60,7 +60,7 @@ class zaqar::keystone::auth(
   $password,
   $email                  = 'zaqar@localhost',
   $auth_name              = 'zaqar',
-  $service_name           = undef,
+  $service_name           = 'zaqar',
   $service_type           = 'messaging',
   $public_url             = 'http://127.0.0.1:8888',
   $admin_url              = 'http://127.0.0.1:8888',
@@ -76,19 +76,14 @@ class zaqar::keystone::auth(
 
   validate_string($password)
 
-  if $service_name == undef {
-    $real_service_name = $auth_name
-  } else {
-    $real_service_name = $service_name
-  }
-
-  keystone::resource::service_identity { $auth_name:
+  keystone::resource::service_identity { 'zaqar':
     configure_user      => $configure_user,
     configure_user_role => $configure_user_role,
     configure_endpoint  => $configure_endpoint,
     service_type        => $service_type,
     service_description => $service_description,
-    service_name        => $real_service_name,
+    service_name        => $service_name,
+    auth_name           => $auth_name,
     region              => $region,
     password            => $password,
     email               => $email,

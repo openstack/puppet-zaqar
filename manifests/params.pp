@@ -3,6 +3,7 @@
 # Parameters for puppet-zaqar
 #
 class zaqar::params {
+  include ::openstacklib::defaults
   $client_package            = 'python-zaqarclient'
   case $::osfamily {
     'RedHat': {

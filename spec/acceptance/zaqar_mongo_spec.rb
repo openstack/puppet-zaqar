@@ -15,6 +15,10 @@ describe 'basic zaqar' do
         password => 'a_big_secret',
       }
 
+      class { '::zaqar::keystone::auth_websocket':
+        password => 'a_big_secret',
+      }
+
       include ::mongodb::globals
       include ::mongodb::client
       class { '::mongodb::server':

@@ -1,0 +1,4 @@
+---
+features:
+  - Adds a new zaqar::keystone::auth_websocket class to help
+    create a 'messaging-websocket' Keystone endpoint.

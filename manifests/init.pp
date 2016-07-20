@@ -59,6 +59,10 @@
 #   driver's controller methods.
 #   Defaults to $::os_service_default.
 #
+# [*max_messages_post_size*]
+#   Defines the maximum size of message posts. (integer value)
+#   Defaults to $::os_service_default.
+#
 # [*unreliable*]
 #   Disable all reliability constraints. (boolean value)
 #   Default false
@@ -85,6 +89,7 @@ class zaqar(
   $message_pipeline         = $::os_service_default,
   $claim_pipeline           = $::os_service_default,
   $subscription_pipeline    = $::os_service_default,
+  $max_messages_post_size   = $::os_service_default,
   $package_name             = $::zaqar::params::package_name,
   $package_ensure    = 'present',
 ) inherits zaqar::params {
@@ -109,6 +114,7 @@ class zaqar(
     'storage/message_pipeline'             : value  => $message_pipeline;
     'storage/claim_pipeline'               : value  => $claim_pipeline;
     'storage/subscription_pipeline'        : value  => $subscription_pipeline;
+    'transport/max_messages_post_size'     : value  => $max_messages_post_size;
   }
 
 }

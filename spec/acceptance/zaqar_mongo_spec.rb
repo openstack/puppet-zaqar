@@ -40,8 +40,8 @@ describe 'basic zaqar' do
             uri => $zaqar_mongodb_conn_string
           }
           class {'::zaqar':
-            admin_password => 'a_big_secret',
-            unreliable     => true,
+            password   => 'a_big_secret',
+            unreliable => true,
           }
           include ::zaqar::server
           # run a second instance using websockets

@@ -39,8 +39,10 @@ describe 'basic zaqar' do
           class {'::zaqar::messaging::mongodb':
             uri => $zaqar_mongodb_conn_string
           }
+          class {'::zaqar::keystone::authtoken':
+            password => 'a_big_secret',
+          }
           class {'::zaqar':
-            password   => 'a_big_secret',
             unreliable => true,
           }
           include ::zaqar::server

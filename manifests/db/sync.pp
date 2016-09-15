@@ -7,7 +7,6 @@ class zaqar::db::sync {
     user        => 'zaqar',
     refreshonly => true,
     subscribe   => [Package['zaqar'], Zaqar_config['database/connection']],
-    require     => User['zaqar'],
   }
 
   Exec['zaqar-manage db_sync'] ~> Service<| title == 'zaqar' |>

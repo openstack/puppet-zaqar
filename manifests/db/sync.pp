@@ -6,6 +6,8 @@ class zaqar::db::sync {
     path        => '/usr/bin',
     user        => 'zaqar',
     refreshonly => true,
+    try_sleep   => 5,
+    tries       => 10,
     subscribe   => [Package['zaqar'], Zaqar_config['database/connection']],
   }
 

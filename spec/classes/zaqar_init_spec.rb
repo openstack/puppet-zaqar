@@ -9,7 +9,13 @@ describe 'zaqar' do
 
     describe 'with only required params' do
       let :params do
-        req_params
+        req_params.merge!(:purge_config => false)
+      end
+
+      it 'passes purge to resource' do
+        is_expected.to contain_resources('zaqar_config').with({
+          :purge => false
+        })
       end
 
       it { is_expected.to contain_package('zaqar-common').with(

@@ -58,6 +58,11 @@
 #   (Optional) Ensure state for package.
 #   Defaults to present.
 #
+# [*purge_config*]
+#   (optional) Whether to set only the specified config options
+#   in the zaqar config.
+#   Defaults to false.
+#
 # = DEPRECATED PARAMETERS
 #
 # [*identity_uri*]
@@ -81,25 +86,29 @@
 #   Defaults to undef
 #
 class zaqar(
-  $auth_strategy                  = 'keystone',
-  $admin_mode                     = $::os_service_default,
-  $unreliable                     = $::os_service_default,
-  $pooling                        = $::os_service_default,
-  $queue_pipeline                 = $::os_service_default,
-  $message_pipeline               = $::os_service_default,
-  $claim_pipeline                 = $::os_service_default,
-  $subscription_pipeline          = $::os_service_default,
-  $max_messages_post_size         = $::os_service_default,
-  $package_name                   = $::zaqar::params::package_name,
-  $package_ensure                 = 'present',
+  $auth_strategy          = 'keystone',
+  $admin_mode             = $::os_service_default,
+  $unreliable             = $::os_service_default,
+  $pooling                = $::os_service_default,
+  $queue_pipeline         = $::os_service_default,
+  $message_pipeline       = $::os_service_default,
+  $claim_pipeline         = $::os_service_default,
+  $subscription_pipeline  = $::os_service_default,
+  $max_messages_post_size = $::os_service_default,
+  $package_name           = $::zaqar::params::package_name,
+  $package_ensure         = 'present',
+  $purge_config           = false,
   # Deprecated
-  $identity_uri                   = undef,
-  $auth_uri                       = undef,
-  $admin_user                     = undef,
-  $admin_password                 = undef,
-  $admin_tenant_name              = undef,
+  $identity_uri           = undef,
+  $auth_uri               = undef,
+  $admin_user             = undef,
+  $admin_password         = undef,
+  $admin_tenant_name      = undef,
 ) inherits zaqar::params {
 
+  resources { 'zaqar_config':
+    purge  => $purge_config,
+  }
 
   if $identity_uri {
     warning('zaqar::identity_uri is deprecated, use zaqar::keystone::authtoken::auth_url instead')

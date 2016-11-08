@@ -1,0 +1,7 @@
+---
+other:
+  - removed deprecated zaqar::admin_user
+  - removed deprecated zaqar::admin_password
+  - removed deprecated zaqar::admin_tenant_name
+  - removed deprecated zaqar::identity_uri
+  - removed deprecated zaqar::auth_uri

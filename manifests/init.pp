@@ -63,28 +63,6 @@
 #   in the zaqar config.
 #   Defaults to false.
 #
-# = DEPRECATED PARAMETERS
-#
-# [*identity_uri*]
-#   (Optional) DEPRECATED. Use zaqar::keystone::authtoken::auth_url instead.
-#   Defaults to undef
-#
-# [*auth_uri*]
-#   (Optional) DEPRECATED. Use zaqar::keystone::authtoken::auth_uri instead.
-#   Defaults to undef
-#
-# [*admin_user*]
-#   (Optional) DEPRECATED. Use zaqar::keystone::authtoken::username instead.
-#   Defaults to undef
-#
-# [*admin_tenant_name*]
-#   (Optional) DEPRECATED. Use zaqar::keystone::authtoken::project_name instead.
-#   Defaults to undef
-#
-# [*admin_password*]
-#   (Optional) DEPRECATED. Use zaqar::keystone::authtoken::password instead.
-#   Defaults to undef
-#
 class zaqar(
   $auth_strategy          = 'keystone',
   $admin_mode             = $::os_service_default,
@@ -98,38 +76,11 @@ class zaqar(
   $package_name           = $::zaqar::params::package_name,
   $package_ensure         = 'present',
   $purge_config           = false,
-  # Deprecated
-  $identity_uri           = undef,
-  $auth_uri               = undef,
-  $admin_user             = undef,
-  $admin_password         = undef,
-  $admin_tenant_name      = undef,
 ) inherits zaqar::params {
 
   resources { 'zaqar_config':
     purge  => $purge_config,
   }
-
-  if $identity_uri {
-    warning('zaqar::identity_uri is deprecated, use zaqar::keystone::authtoken::auth_url instead')
-  }
-
-  if $auth_uri {
-    warning('zaqar::auth_uri is deprecated, use zaqar::keystone::authtoken::auth_uri instead')
-  }
-
-  if $admin_user {
-    warning('zaqar::admin_user is deprecated, use zaqar::keystone::authtoken::username instead')
-  }
-
-  if $admin_password {
-    warning('zaqar::admin_password is deprecated, use zaqar::keystone::authtoken::password instead')
-  }
-
-  if $admin_tenant_name {
-    warning('zaqar::admin_tenant_name is deprecated, use zaqar::keystone::authtoken::project_name instead')
-  }
-
 
   if $auth_strategy == 'keystone' {
     include ::zaqar::keystone::authtoken

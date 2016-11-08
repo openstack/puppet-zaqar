@@ -4,7 +4,10 @@ describe 'zaqar::server' do
   shared_examples_for 'zaqar::server' do
     describe 'with a zaqar server enabled' do
       let :pre_condition do
-        "class {'::zaqar': admin_password => 'foo'}"
+        "class { '::zaqar::keystone::authtoken':
+           password =>'foo',
+         }
+         class {'::zaqar': }"
       end
 
       it { is_expected.to contain_service(platform_params[:zaqar_service_name]).with(

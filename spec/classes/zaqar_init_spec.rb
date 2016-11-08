@@ -1,10 +1,13 @@
 require 'spec_helper'
 describe 'zaqar' do
   shared_examples 'zaqar' do
+    let :pre_condition do
+      "class { '::zaqar::keystone::authtoken':
+         password =>'password',
+       }"
+    end
     let :req_params do
-      {
-        :admin_password => 'foo',
-      }
+      {}
     end
 
     describe 'with only required params' do
@@ -32,27 +35,6 @@ describe 'zaqar' do
         )
       end
 
-    end
-
-    describe 'with deprecated parameters set' do
-      let :params do
-        req_params.delete(:admin_password)
-        req_params.merge!({
-          'identity_uri'      => 'https://localhost:35357/deprecated',
-          'auth_uri'          => 'https://localhost:5000/deprecated',
-          'admin_user'        => 'dummy',
-          'admin_password'    => 'mypassword',
-          'admin_tenant_name' => 'mytenant',
-        })
-      end
-
-      it 'configures authtoken section' do
-        is_expected.to contain_zaqar_config('keystone_authtoken/auth_url').with(:value => 'https://localhost:35357/deprecated')
-        is_expected.to contain_zaqar_config('keystone_authtoken/auth_uri').with(:value => 'https://localhost:5000/deprecated')
-        is_expected.to contain_zaqar_config('keystone_authtoken/username').with(:value => 'dummy')
-        is_expected.to contain_zaqar_config('keystone_authtoken/password').with(:value => 'mypassword')
-        is_expected.to contain_zaqar_config('keystone_authtoken/project_name').with(:value => 'mytenant')
-      end
     end
 
     describe 'with custom values' do

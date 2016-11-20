@@ -39,7 +39,7 @@ describe 'zaqar::server_instance' do
       let(:platform_params) do
         case facts[:osfamily]
         when 'Debian'
-          { :zaqar_service_name => 'zaqar' }
+          { :zaqar_service_name => 'zaqar-server' }
         when 'RedHat'
           { :zaqar_service_name => 'openstack-zaqar' }
         end

@@ -24,32 +24,37 @@ describe 'basic zaqar' do
       class { '::mongodb::server':
         replset         => 'zaqar',
         replset_members => ['127.0.0.1:27017'],
+        dbpath_fix      => false,
       }
       $zaqar_mongodb_conn_string = 'mongodb://127.0.0.1:27017'
 
-      case $::osfamily {
-        'Debian': {
-          warning('Zaqar is not yet packaged on Ubuntu systems.')
+      Mongodb_replset['zaqar'] -> Package['zaqar-common']
+
+      # TODO(zhongshengping): temporarily added this package
+      if $::osfamily == 'Debian' {
+        package { 'python-pymongo':
+          ensure => present,
         }
-        'RedHat': {
-          Mongodb_replset['zaqar'] -> Package['zaqar-common']
-          class {'::zaqar::management::mongodb':
-            uri => $zaqar_mongodb_conn_string
-          }
-          class {'::zaqar::messaging::mongodb':
-            uri => $zaqar_mongodb_conn_string
-          }
-          class {'::zaqar::keystone::authtoken':
-            password => 'a_big_secret',
-          }
-          class {'::zaqar':
-            unreliable => true,
-          }
-          include ::zaqar::server
-          # run a second instance using websockets
-          zaqar::server_instance{ '1':
-            transport => 'websocket'
-          }
+      }
+
+      class {'::zaqar::management::mongodb':
+        uri => $zaqar_mongodb_conn_string
+      }
+      class {'::zaqar::messaging::mongodb':
+        uri => $zaqar_mongodb_conn_string
+      }
+      class {'::zaqar::keystone::authtoken':
+        password => 'a_big_secret',
+      }
+      class {'::zaqar':
+        unreliable => true,
+      }
+      include ::zaqar::server
+      # run a second instance using websockets, the Debian system does
+      # not support the use of services to run a second instance.
+      if $::osfamily == 'RedHat' {
+        zaqar::server_instance{ '1':
+          transport => 'websocket'
         }
       }
       EOS
@@ -60,10 +65,8 @@ describe 'basic zaqar' do
       apply_manifest(pp, :catch_changes => true)
     end
 
-    if os[:family].casecmp('RedHat') == 0
-      describe port(8888) do
-        it { is_expected.to be_listening.with('tcp') }
-      end
+    describe port(8888) do
+      it { is_expected.to be_listening.with('tcp') }
     end
 
   end

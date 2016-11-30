@@ -62,6 +62,7 @@
 #   to reduce writer lock %. DO NOT change this setting after initial
 #   deployment. It MUST remain static.
 #   Defaults to $::os_service_default.
+#
 class zaqar::messaging::mongodb(
   $uri,
   $ssl_keyfile            = $::os_service_default,
@@ -78,19 +79,19 @@ class zaqar::messaging::mongodb(
 ) {
 
   zaqar_config {
-    'drivers/message_store': value => 'mongodb';
-    'drivers:message_store:mongodb/uri': value => $uri, secret => true;
-    'drivers:message_store:mongodb/ssl_keyfile': value => $ssl_keyfile;
-    'drivers:message_store:mongodb/ssl_certfile': value => $ssl_certfile;
-    'drivers:message_store:mongodb/ssl_cert_reqs': value => $ssl_cert_reqs;
-    'drivers:message_store:mongodb/ssl_ca_certs': value => $ssl_ca_certs;
-    'drivers:message_store:mongodb/database': value => $database;
-    'drivers:message_store:mongodb/max_attempts': value => $max_attempts;
-    'drivers:message_store:mongodb/max_retry_sleep': value => $max_retry_sleep;
-    'drivers:message_store:mongodb/max_retry_jitter': value => $max_retry_jitter;
+    'drivers/message_store':                                value => 'mongodb';
+    'drivers:message_store:mongodb/uri':                    value => $uri, secret => true;
+    'drivers:message_store:mongodb/ssl_keyfile':            value => $ssl_keyfile;
+    'drivers:message_store:mongodb/ssl_certfile':           value => $ssl_certfile;
+    'drivers:message_store:mongodb/ssl_cert_reqs':          value => $ssl_cert_reqs;
+    'drivers:message_store:mongodb/ssl_ca_certs':           value => $ssl_ca_certs;
+    'drivers:message_store:mongodb/database':               value => $database;
+    'drivers:message_store:mongodb/max_attempts':           value => $max_attempts;
+    'drivers:message_store:mongodb/max_retry_sleep':        value => $max_retry_sleep;
+    'drivers:message_store:mongodb/max_retry_jitter':       value => $max_retry_jitter;
     'drivers:message_store:mongodb/max_reconnect_attempts': value => $max_reconnect_attempts;
-    'drivers:message_store:mongodb/reconnect_sleep': value => $reconnect_sleep;
-    'drivers:message_store:mongodb/partitions': value => $partitions;
+    'drivers:message_store:mongodb/reconnect_sleep':        value => $reconnect_sleep;
+    'drivers:message_store:mongodb/partitions':             value => $partitions;
   }
 
 }

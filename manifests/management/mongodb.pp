@@ -72,18 +72,18 @@ class zaqar::management::mongodb(
 ) {
 
   zaqar_config {
-    'drivers/management_store': value => 'mongodb';
-    'drivers:management_store:mongodb/uri': value => $uri, secret => true;
-    'drivers:management_store:mongodb/ssl_keyfile': value => $ssl_keyfile;
-    'drivers:management_store:mongodb/ssl_certfile': value => $ssl_certfile;
-    'drivers:management_store:mongodb/ssl_cert_reqs': value => $ssl_cert_reqs;
-    'drivers:management_store:mongodb/ssl_ca_certs': value => $ssl_ca_certs;
-    'drivers:management_store:mongodb/database': value => $database;
-    'drivers:management_store:mongodb/max_attempts': value => $max_attempts;
-    'drivers:management_store:mongodb/max_retry_sleep': value => $max_retry_sleep;
-    'drivers:management_store:mongodb/max_retry_jitter': value => $max_retry_jitter;
+    'drivers/management_store':                                value => 'mongodb';
+    'drivers:management_store:mongodb/uri':                    value => $uri, secret => true;
+    'drivers:management_store:mongodb/ssl_keyfile':            value => $ssl_keyfile;
+    'drivers:management_store:mongodb/ssl_certfile':           value => $ssl_certfile;
+    'drivers:management_store:mongodb/ssl_cert_reqs':          value => $ssl_cert_reqs;
+    'drivers:management_store:mongodb/ssl_ca_certs':           value => $ssl_ca_certs;
+    'drivers:management_store:mongodb/database':               value => $database;
+    'drivers:management_store:mongodb/max_attempts':           value => $max_attempts;
+    'drivers:management_store:mongodb/max_retry_sleep':        value => $max_retry_sleep;
+    'drivers:management_store:mongodb/max_retry_jitter':       value => $max_retry_jitter;
     'drivers:management_store:mongodb/max_reconnect_attempts': value => $max_reconnect_attempts;
-    'drivers:management_store:mongodb/reconnect_sleep': value => $reconnect_sleep;
+    'drivers:management_store:mongodb/reconnect_sleep':        value => $reconnect_sleep;
   }
 
 }

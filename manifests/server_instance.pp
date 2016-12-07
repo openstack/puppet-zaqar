@@ -16,6 +16,10 @@ define zaqar::server_instance(
   $enabled = true,
 ) {
 
+  include ::zaqar
+  include ::zaqar::deps
+  include ::zaqar::params
+
   if $enabled {
     $service_ensure = 'running'
   } else {
@@ -27,17 +31,13 @@ define zaqar::server_instance(
     content => template('zaqar/zaqar.conf.erb'),
   }
 
-  include ::zaqar
-  include ::zaqar::params
-
   service { "${::zaqar::params::service_name}@${name}":
     ensure => $service_ensure,
     enable => $enabled,
+    tag    => 'zaqar-service'
   }
 
-  Package['zaqar-common'] ~> Service["${::zaqar::params::service_name}@${name}"]
   Package['zaqar-common'] ~> File["/etc/zaqar/${name}.conf"]
   File["/etc/zaqar/${name}.conf"] ~> Service["${::zaqar::params::service_name}@${name}"]
-  Zaqar_config<||> ~> Service["${::zaqar::params::service_name}@${name}"]
 
 }

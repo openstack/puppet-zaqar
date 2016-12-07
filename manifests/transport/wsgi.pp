@@ -13,6 +13,8 @@ class zaqar::transport::wsgi(
   $port = $::os_service_default,
 ) {
 
+  include ::zaqar::deps
+
   zaqar_config {
     'drivers:transport:wsgi/bind': value => $bind;
     'drivers:transport:wsgi/port': value => $port;

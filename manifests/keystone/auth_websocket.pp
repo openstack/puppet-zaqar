@@ -74,6 +74,8 @@ class zaqar::keystone::auth_websocket(
   $service_description    = 'Openstack messaging websocket Service',
 ) {
 
+  include ::zaqar::deps
+
   validate_string($password)
 
   keystone::resource::service_identity { 'zaqar-websocket':

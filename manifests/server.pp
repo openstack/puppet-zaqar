@@ -16,6 +16,7 @@ class zaqar::server(
 ) {
 
   include ::zaqar
+  include ::zaqar::deps
   include ::zaqar::params
 
   if $manage_service {
@@ -30,8 +31,8 @@ class zaqar::server(
     service { $::zaqar::params::service_name:
       ensure => $service_ensure,
       enable => $enabled,
+      tag    => 'zaqar-service'
     }
-    Zaqar_config<||> ~> Service[$::zaqar::params::service_name]
   }
 
 }

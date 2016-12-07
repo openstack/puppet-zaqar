@@ -78,6 +78,8 @@ class zaqar::messaging::mongodb(
   $partitions             = $::os_service_default,
 ) {
 
+  include ::zaqar::deps
+
   zaqar_config {
     'drivers/message_store':                                value => 'mongodb';
     'drivers:message_store:mongodb/uri':                    value => $uri, secret => true;

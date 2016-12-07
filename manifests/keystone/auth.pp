@@ -74,6 +74,8 @@ class zaqar::keystone::auth(
   $service_description    = 'Openstack messaging Service',
 ) {
 
+  include ::zaqar::deps
+
   validate_string($password)
 
   keystone::resource::service_identity { 'zaqar':

@@ -18,6 +18,8 @@ class zaqar::transport::websocket(
   $external_port  = $::os_service_default,
 ) {
 
+  include ::zaqar::deps
+
   zaqar_config {
     'drivers:transport:websocket/bind': value => $bind;
     'drivers:transport:websocket/port': value => $port;

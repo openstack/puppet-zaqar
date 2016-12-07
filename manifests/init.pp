@@ -78,6 +78,8 @@ class zaqar(
   $purge_config           = false,
 ) inherits zaqar::params {
 
+  include ::zaqar::deps
+
   resources { 'zaqar_config':
     purge  => $purge_config,
   }

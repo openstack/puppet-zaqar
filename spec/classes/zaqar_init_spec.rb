@@ -27,6 +27,7 @@ describe 'zaqar' do
           :tag    => ['openstack', 'zaqar-package']
       )}
 
+      it { is_expected.to contain_class('zaqar::deps') }
       it { is_expected.to contain_class('zaqar::params') }
 
       it 'should contain default config' do

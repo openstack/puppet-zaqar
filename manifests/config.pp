@@ -24,6 +24,8 @@ class zaqar::config (
   $zaqar_config = {},
 ) {
 
+  include ::zaqar::deps
+
   validate_hash($zaqar_config)
 
   create_resources('zaqar_config', $zaqar_config)

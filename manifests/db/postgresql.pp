@@ -40,7 +40,7 @@ class zaqar::db::postgresql(
   $privileges = 'ALL',
 ) {
 
-  Class['zaqar::db::postgresql'] -> Service<| title == 'zaqar' |>
+  include ::zaqar::deps
 
   ::openstacklib::db::postgresql { 'zaqar':
     password_hash => postgresql_password($user, $password),
@@ -50,6 +50,8 @@ class zaqar::db::postgresql(
     privileges    => $privileges,
   }
 
-  ::Openstacklib::Db::Postgresql['zaqar'] ~> Exec<| title == 'zaqar-manage db_sync' |>
+  Anchor['zaqar::db::begin']
+  ~> Class['zaqar::db::postgresql']
+  ~> Anchor['zaqar::db::end']
 
 }

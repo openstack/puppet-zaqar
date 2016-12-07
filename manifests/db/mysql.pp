@@ -53,6 +53,8 @@ class zaqar::db::mysql(
   $allowed_hosts = undef
 ) {
 
+  include ::zaqar::deps
+
   validate_string($password)
 
   ::openstacklib::db::mysql { 'zaqar':
@@ -65,5 +67,8 @@ class zaqar::db::mysql(
     allowed_hosts => $allowed_hosts,
   }
 
-  ::Openstacklib::Db::Mysql['zaqar'] ~> Exec<| title == 'zaqar-manage db_sync' |>
+  Anchor['zaqar::db::begin']
+  ~> Class['zaqar::db::mysql']
+  ~> Anchor['zaqar::db::end']
+
 }

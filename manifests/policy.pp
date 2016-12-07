@@ -28,6 +28,8 @@ class zaqar::policy (
   $policy_path = '/etc/zaqar/policy.json',
 ) {
 
+  include ::zaqar::deps
+
   validate_hash($policies)
 
   Openstacklib::Policy::Base {

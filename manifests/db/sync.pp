@@ -5,7 +5,8 @@ class zaqar::db::sync {
 
   include ::zaqar::deps
 
-  exec { 'zaqar-manage db_sync':
+  exec { 'zaqar-db-sync':
+    command     => 'zaqar-manage db_sync',
     path        => '/usr/bin',
     user        => 'zaqar',
     refreshonly => true,

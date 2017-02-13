@@ -46,6 +46,14 @@
 #   Defines the maximum size of message posts. (integer value)
 #   Defaults to $::os_service_default.
 #
+# [*message_store*]
+#   Backend driver for message storage.
+#   Defaults to $::os_service_default.
+#
+# [*management_store*]
+#   Backend driver for management storage.
+#   Defaults to $::os_service_default.
+#
 # [*unreliable*]
 #   Disable all reliability constraints. (boolean value)
 #   Default false
@@ -73,6 +81,8 @@ class zaqar(
   $claim_pipeline         = $::os_service_default,
   $subscription_pipeline  = $::os_service_default,
   $max_messages_post_size = $::os_service_default,
+  $message_store          = 'mongodb',
+  $management_store       = 'mongodb',
   $package_name           = $::zaqar::params::package_name,
   $package_ensure         = 'present',
   $purge_config           = false,
@@ -104,6 +114,8 @@ class zaqar(
     'storage/claim_pipeline':           value  => $claim_pipeline;
     'storage/subscription_pipeline':    value  => $subscription_pipeline;
     'transport/max_messages_post_size': value  => $max_messages_post_size;
+    'drivers/message_store':            value  => $message_store;
+    'drivers/management_store':         value  => $management_store;
   }
 
 }

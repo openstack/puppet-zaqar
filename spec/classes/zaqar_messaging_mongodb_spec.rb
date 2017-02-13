@@ -3,6 +3,14 @@ require 'spec_helper'
 describe 'zaqar::messaging::mongodb' do
 
   shared_examples_for 'zaqar::messaging::mongodb' do
+    let :pre_condition do
+      "class { '::zaqar::keystone::authtoken':
+         password =>'foo',
+       }
+       class { '::zaqar':
+       }"
+
+    end
     let :req_params do
       {
         :uri   => 'mongodb://127.0.0.1:27017',

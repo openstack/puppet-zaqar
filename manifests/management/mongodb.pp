@@ -74,7 +74,6 @@ class zaqar::management::mongodb(
   include ::zaqar::deps
 
   zaqar_config {
-    'drivers/management_store':                                value => 'mongodb';
     'drivers:management_store:mongodb/uri':                    value => $uri, secret => true;
     'drivers:management_store:mongodb/ssl_keyfile':            value => $ssl_keyfile;
     'drivers:management_store:mongodb/ssl_certfile':           value => $ssl_certfile;

@@ -81,7 +81,6 @@ class zaqar::messaging::mongodb(
   include ::zaqar::deps
 
   zaqar_config {
-    'drivers/message_store':                                value => 'mongodb';
     'drivers:message_store:mongodb/uri':                    value => $uri, secret => true;
     'drivers:message_store:mongodb/ssl_keyfile':            value => $ssl_keyfile;
     'drivers:message_store:mongodb/ssl_certfile':           value => $ssl_certfile;

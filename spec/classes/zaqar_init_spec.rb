@@ -49,6 +49,8 @@ describe 'zaqar' do
           :claim_pipeline                 => 'zaqar_pipeline3',
           :subscription_pipeline          => 'zaqar_pipeline4',
           :max_messages_post_size         => '1234',
+          :message_store                  => 'swift',
+          :management_store               => 'sqlalchemy',
         })
       end
 
@@ -61,6 +63,8 @@ describe 'zaqar' do
         is_expected.to contain_zaqar_config('storage/claim_pipeline').with_value('zaqar_pipeline3')
         is_expected.to contain_zaqar_config('storage/subscription_pipeline').with_value('zaqar_pipeline4')
         is_expected.to contain_zaqar_config('transport/max_messages_post_size').with_value('1234')
+        is_expected.to contain_zaqar_config('drivers/message_store').with_value('swift')
+        is_expected.to contain_zaqar_config('drivers/management_store').with_value('sqlalchemy')
       end
     end
   end

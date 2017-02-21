@@ -49,7 +49,13 @@ describe 'basic zaqar' do
       class {'::zaqar':
         unreliable => true,
       }
-      include ::zaqar::server
+      class {'::zaqar::server':
+        service_name => 'httpd',
+      }
+      include ::apache
+      class { '::zaqar::wsgi::apache':
+        ssl => false,
+      }
       # run a second instance using websockets, the Debian system does
       # not support the use of services to run a second instance.
       if $::osfamily == 'RedHat' {
@@ -66,7 +72,7 @@ describe 'basic zaqar' do
     end
 
     describe port(8888) do
-      it { is_expected.to be_listening.with('tcp') }
+      it { is_expected.to be_listening }
     end
 
   end

@@ -9,12 +9,16 @@ class zaqar::params {
 
   case $::osfamily {
     'RedHat': {
-      $package_name = 'openstack-zaqar'
-      $service_name = 'openstack-zaqar'
+      $package_name             = 'openstack-zaqar'
+      $service_name             = 'openstack-zaqar'
+      $zaqar_wsgi_script_source = '/usr/lib/python2.7/site-packages/zaqar/transport/wsgi/app.py'
+      $zaqar_wsgi_script_path   = '/var/www/cgi-bin/zaqar'
     }
     'Debian': {
-      $package_name = 'zaqar-server'
-      $service_name = 'zaqar-server'
+      $package_name             = 'zaqar-server'
+      $service_name             = 'zaqar-server'
+      $zaqar_wsgi_script_source = '/usr/lib/python2.7/dist-packages/zaqar/transport/wsgi/app.py'
+      $zaqar_wsgi_script_path   = '/usr/lib/cgi-bin/zaqar'
     }
     default: {
       fail("Unsupported osfamily: ${::osfamily} operatingsystem: \

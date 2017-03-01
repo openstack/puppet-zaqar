@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    Allow configuration of Zaqar keystone roles, to be able to use as a Swift
+    user when the backend is configured.

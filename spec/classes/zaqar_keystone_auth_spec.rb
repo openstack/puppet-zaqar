@@ -115,6 +115,18 @@ describe 'zaqar::keystone::auth' do
       ) }
 
     end
+
+    describe 'when setting roles' do
+      let :params do
+        { :password => 'zaqar_password',
+          :roles     => ['admin', 'ResellerAdmin'] }
+      end
+
+      it { is_expected.to contain_keystone_user_role('zaqar@services').with(
+        :ensure  => 'present',
+        :roles   => ['admin', 'ResellerAdmin']
+      )}
+    end
   end
 
   on_supported_os({

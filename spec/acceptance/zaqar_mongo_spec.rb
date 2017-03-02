@@ -30,13 +30,6 @@ describe 'basic zaqar' do
 
       Mongodb_replset['zaqar'] -> Package['zaqar-common']
 
-      # TODO(zhongshengping): temporarily added this package
-      if $::osfamily == 'Debian' {
-        package { 'python-pymongo':
-          ensure => present,
-        }
-      }
-
       class {'::zaqar::management::mongodb':
         uri => $zaqar_mongodb_conn_string
       }

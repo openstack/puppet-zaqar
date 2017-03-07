@@ -8,7 +8,7 @@ describe 'zaqar::db::sync' do
 
     it 'runs zaqar-db-sync' do
       is_expected.to contain_exec('zaqar-db-sync').with(
-        :command     => 'zaqar-manage db_sync',
+        :command     => 'zaqar-sql-db-manage upgrade head',
         :path        => '/usr/bin',
         :refreshonly => 'true',
         :user        => 'zaqar',

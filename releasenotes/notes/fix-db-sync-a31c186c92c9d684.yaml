@@ -1,0 +1,3 @@
+---
+fixes:
+  - Fix command used for db sync.

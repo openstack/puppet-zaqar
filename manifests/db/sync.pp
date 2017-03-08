@@ -1,12 +1,12 @@
 #
-# Class to execute "zaqar-manage db_sync
+# Class to execute "zaqar-sql-db-manage upgrade head"
 #
 class zaqar::db::sync {
 
   include ::zaqar::deps
 
   exec { 'zaqar-db-sync':
-    command     => 'zaqar-manage db_sync',
+    command     => 'zaqar-sql-db-manage upgrade head',
     path        => '/usr/bin',
     user        => 'zaqar',
     refreshonly => true,

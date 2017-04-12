@@ -23,6 +23,11 @@ describe 'zaqar::logging' do
      :instance_format => '[instance: %(uuid)s] ',
      :instance_uuid_format => '[instance: %(uuid)s] ',
      :log_date_format => '%Y-%m-%d %H:%M:%S',
+     :use_syslog => true,
+     :use_stderr => false,
+     :log_facility => 'LOG_FOO',
+     :log_dir => '/var/log',
+     :debug => true,
     }
   end
 
@@ -37,6 +42,29 @@ describe 'zaqar::logging' do
       it_configures 'logging params unset'
     end
 
+  end
+
+  shared_examples 'basic default logging settings' do
+    it 'configures zaqar logging settings with default values' do
+      is_expected.to contain_oslo__log('zaqar_config').with(
+        :use_syslog => '<SERVICE DEFAULT>',
+        :use_stderr => '<SERVICE DEFAULT>',
+        :log_dir    => '/var/log/zaqar',
+        :debug      => '<SERVICE DEFAULT>',
+      )
+    end
+  end
+
+  shared_examples 'basic non-default logging settings' do
+    it 'configures zaqar logging settings with non-default values' do
+      is_expected.to contain_oslo__log('zaqar_config').with(
+        :use_syslog          => true,
+        :use_stderr          => false,
+        :syslog_log_facility => 'LOG_FOO',
+        :log_dir             => '/var/log',
+        :debug               => true,
+      )
+    end
   end
 
   shared_examples_for 'logging params set' do

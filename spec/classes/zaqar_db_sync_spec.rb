@@ -14,6 +14,7 @@ describe 'zaqar::db::sync' do
         :user        => 'zaqar',
         :try_sleep   => 5,
         :tries       => 10,
+        :logoutput   => 'on_failure',
         :subscribe   => ['Anchor[zaqar::install::end]',
                          'Anchor[zaqar::config::end]',
                          'Anchor[zaqar::dbsync::begin]'],

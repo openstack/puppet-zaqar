@@ -24,6 +24,10 @@ class zaqar::deps {
   ~> Service<| tag == 'zaqar-service' |>
   ~> anchor { 'zaqar::service::end': }
 
+  # all db settings should be applied and all packages should be installed
+  # before dbsync starts
+  Oslo::Db<||> -> Anchor['zaqar::dbsync::begin']
+
   # policy config should occur in the config block also.
   Anchor['zaqar::config::begin']
   -> Openstacklib::Policy::Base<||>

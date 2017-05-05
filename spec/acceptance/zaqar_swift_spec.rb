@@ -33,6 +33,9 @@ describe 'swift zaqar' do
       class {'::zaqar::keystone::authtoken':
         password => 'a_big_secret',
       }
+      class {'::zaqar::logging':
+        debug => true,
+      }
       class {'::zaqar':
         unreliable => true,
       }

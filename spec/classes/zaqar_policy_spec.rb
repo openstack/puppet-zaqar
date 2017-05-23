@@ -20,7 +20,9 @@ describe 'zaqar::policy' do
         :key   => 'context_is_admin',
         :value => 'foo:bar'
       })
-      is_expected.to contain_zaqar_config('oslo_policy/policy_file').with_value('/etc/zaqar/policy.json')
+      is_expected.to contain_oslo__policy('zaqar_config').with(
+        :policy_file => '/etc/zaqar/policy.json',
+      )
     end
   end
 

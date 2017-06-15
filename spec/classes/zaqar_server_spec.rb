@@ -14,6 +14,7 @@ describe 'zaqar::server' do
           :ensure => 'running',
           :enable => true
       )}
+      it { is_expected.to contain_class('zaqar::policy') }
 
     end
   end

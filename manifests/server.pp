@@ -29,6 +29,7 @@ class zaqar::server(
   include ::zaqar
   include ::zaqar::deps
   include ::zaqar::params
+  include ::zaqar::policy
 
   if $enabled {
     if $manage_service {

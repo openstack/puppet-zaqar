@@ -12,10 +12,20 @@
 #   Port on which the service is provided to the user.
 #   Defaults to $::os_service_default.
 #
+# [*notification_bind*]
+#   Address on which the notification server will listen.
+#   Defaults to $::os_service_default.
+#
+# [*notification_port*]
+#   Port on which the notification server will listen.
+#   Defaults to $::os_service_default.
+#
 class zaqar::transport::websocket(
-  $bind           = $::os_service_default,
-  $port           = $::os_service_default,
-  $external_port  = $::os_service_default,
+  $bind               = $::os_service_default,
+  $port               = $::os_service_default,
+  $external_port      = $::os_service_default,
+  $notification_bind  = $::os_service_default,
+  $notification_port  = $::os_service_default,
 ) {
 
   include ::zaqar::deps
@@ -24,6 +34,8 @@ class zaqar::transport::websocket(
     'drivers:transport:websocket/bind': value => $bind;
     'drivers:transport:websocket/port': value => $port;
     'drivers:transport:websocket/external-port': value => $external_port;
+    'drivers:transport:websocket/notification-bind': value => $notification_bind;
+    'drivers:transport:websocket/notification-port': value => $notification_port;
   }
 
 }

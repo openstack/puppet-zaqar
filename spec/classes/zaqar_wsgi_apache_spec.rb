@@ -3,56 +3,29 @@ require 'spec_helper'
 describe 'zaqar::wsgi::apache' do
 
   shared_examples_for 'apache serving zaqar with mod_wsgi' do
-    it { is_expected.to contain_service('httpd').with_name(platform_params[:httpd_service_name]) }
-    it { is_expected.to contain_class('zaqar::params') }
-    it { is_expected.to contain_class('apache') }
-    it { is_expected.to contain_class('apache::mod::wsgi') }
-
-    describe 'with default parameters' do
-
-      it { is_expected.to contain_file("#{platform_params[:wsgi_script_path]}").with(
-        'ensure'  => 'directory',
-        'owner'   => 'zaqar',
-        'group'   => 'zaqar',
-        'require' => 'Package[httpd]'
+    context 'with default parameters' do
+      it { is_expected.to contain_class('zaqar::params') }
+      it { is_expected.to contain_class('apache') }
+      it { is_expected.to contain_class('apache::mod::wsgi') }
+      it { is_expected.to contain_class('apache::mod::ssl') }
+      it { is_expected.to contain_openstacklib__wsgi__apache('zaqar_wsgi').with(
+        :bind_port           => 8888,
+        :group               => 'zaqar',
+        :path                => '/',
+        :servername          => facts[:fqdn],
+        :ssl                 => true,
+        :threads             => facts[:os_workers],
+        :user                => 'zaqar',
+        :workers             => 1,
+        :wsgi_daemon_process => 'zaqar-server',
+        :wsgi_process_group  => 'zaqar-server',
+        :wsgi_script_dir     => platform_params[:wsgi_script_path],
+        :wsgi_script_file    => 'zaqar-server',
+        :wsgi_script_source  => platform_params[:wsgi_script_source],
       )}
-
-
-      it { is_expected.to contain_file('zaqar_wsgi').with(
-        'ensure'  => 'file',
-        'path'    => "#{platform_params[:wsgi_script_path]}/zaqar-server",
-        'source'  => platform_params[:wsgi_script_source],
-        'owner'   => 'zaqar',
-        'group'   => 'zaqar',
-        'mode'    => '0644'
-      )}
-      it { is_expected.to contain_file('zaqar_wsgi').that_requires("File[#{platform_params[:wsgi_script_path]}]") }
-
-      it { is_expected.to contain_apache__vhost('zaqar_wsgi').with(
-        'servername'                  => 'some.host.tld',
-        'ip'                          => nil,
-        'port'                        => '8888',
-        'docroot'                     => "#{platform_params[:wsgi_script_path]}",
-        'docroot_owner'               => 'zaqar',
-        'docroot_group'               => 'zaqar',
-        'ssl'                         => 'true',
-        'wsgi_daemon_process'         => 'zaqar-server',
-        'wsgi_daemon_process_options' => {
-          'user'         => 'zaqar',
-          'group'        => 'zaqar',
-          'processes'    => 1,
-          'threads'      => '42',
-          'display-name' => 'zaqar_wsgi',
-        },
-        'wsgi_process_group'          => 'zaqar-server',
-        'wsgi_script_aliases'         => { '/' => "#{platform_params[:wsgi_script_path]}/zaqar-server" },
-        'require'                     => 'File[zaqar_wsgi]',
-        'custom_fragment'             => 'WSGICallableObject app'
-      )}
-      it { is_expected.to contain_concat("#{platform_params[:httpd_ports_file]}") }
     end
 
-    describe 'when overriding parameters using different ports' do
+    context 'when overriding parameters using different ports' do
       let :params do
         {
           :servername                => 'dummy.host',
@@ -63,30 +36,27 @@ describe 'zaqar::wsgi::apache' do
           :workers                   => 37,
         }
       end
-
-      it { is_expected.to contain_apache__vhost('zaqar_wsgi').with(
-        'servername'                  => 'dummy.host',
-        'ip'                          => '10.42.51.1',
-        'port'                        => '12345',
-        'docroot'                     => "#{platform_params[:wsgi_script_path]}",
-        'docroot_owner'               => 'zaqar',
-        'docroot_group'               => 'zaqar',
-        'ssl'                         => 'false',
-        'wsgi_daemon_process'         => 'zaqar-server',
-        'wsgi_daemon_process_options' => {
-            'user'         => 'zaqar',
-            'group'        => 'zaqar',
-            'processes'    => '37',
-            'threads'      => '42',
-            'display-name' => 'zaqar-server',
-        },
-        'wsgi_process_group'          => 'zaqar-server',
-        'wsgi_script_aliases'         => { '/' => "#{platform_params[:wsgi_script_path]}/zaqar-server" },
-        'require'                     => 'File[zaqar_wsgi]',
-        'custom_fragment'             => 'WSGICallableObject app'
+      it { is_expected.to contain_class('zaqar::params') }
+      it { is_expected.to contain_class('apache') }
+      it { is_expected.to contain_class('apache::mod::wsgi') }
+      it { is_expected.to_not contain_class('apache::mod::ssl') }
+      it { is_expected.to contain_openstacklib__wsgi__apache('zaqar_wsgi').with(
+        :bind_host                 => '10.42.51.1',
+        :bind_port                 => 12345,
+        :group                     => 'zaqar',
+        :path                      => '/',
+        :servername                => 'dummy.host',
+        :ssl                       => false,
+        :threads                   => facts[:os_workers],
+        :user                      => 'zaqar',
+        :workers                   => 37,
+        :wsgi_daemon_process       => 'zaqar-server',
+        :wsgi_process_display_name => 'zaqar-server',
+        :wsgi_process_group        => 'zaqar-server',
+        :wsgi_script_dir           => platform_params[:wsgi_script_path],
+        :wsgi_script_file          => 'zaqar-server',
+        :wsgi_script_source        => platform_params[:wsgi_script_source],
       )}
-
-      it { is_expected.to contain_concat("#{platform_params[:httpd_ports_file]}") }
     end
   end
 

@@ -96,6 +96,7 @@ class zaqar(
 
   if $auth_strategy == 'keystone' {
     include ::zaqar::keystone::authtoken
+    include ::zaqar::keystone::trust
   }
 
   package { 'zaqar-common':

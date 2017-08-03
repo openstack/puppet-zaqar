@@ -5,7 +5,7 @@
 class zaqar::params {
   include ::openstacklib::defaults
 
-  $client_package = 'python-zaqarclient'
+  $client_package_name = 'python-zaqarclient'
 
   case $::osfamily {
     'RedHat': {

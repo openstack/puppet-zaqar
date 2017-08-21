@@ -69,5 +69,5 @@
     ],
     "source": "git://github.com/openstack/puppet-zaqar.git",
     "summary": "Puppet module for OpenStack Zaqar",
-    "version": "11.3.0-dev"
+    "version": "11.3.0"
 }

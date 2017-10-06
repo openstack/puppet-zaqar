@@ -66,6 +66,18 @@
 #     apache::vhost ssl parameters.
 #     Optional. Default to apache::vhost 'ssl_*' defaults.
 #
+#   [*access_log_file*]
+#     The log file name for the virtualhost.
+#     Optional. Defaults to false.
+#
+#   [*access_log_format*]
+#     The log format for the virtualhost.
+#     Optional. Defaults to false.
+#
+#   [*error_log_file*]
+#     The error log file name for the virtualhost.
+#     Optional. Defaults to undef.
+#
 # == Dependencies
 #
 #   requires Class['apache'] & Class['zaqar']
@@ -93,6 +105,9 @@ class zaqar::wsgi::apache (
   $wsgi_process_display_name  = undef,
   $threads                    = $::os_workers,
   $priority                   = '10',
+  $access_log_file            = false,
+  $access_log_format          = false,
+  $error_log_file             = undef,
 ) {
 
   include ::zaqar::deps
@@ -129,5 +144,8 @@ class zaqar::wsgi::apache (
     wsgi_script_source        => $::zaqar::params::zaqar_wsgi_script_source,
     require                   => Anchor['zaqar::install::end'],
     vhost_custom_fragment     => 'WSGICallableObject app',
+    access_log_file           => $access_log_file,
+    access_log_format         => $access_log_format,
+    error_log_file            => $error_log_file,
   }
 }

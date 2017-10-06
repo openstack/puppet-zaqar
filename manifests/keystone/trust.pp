@@ -18,7 +18,7 @@
 #
 # [*user_domain_name*]
 #   (Optional) Name of domain for $username
-#   Defaults to $::os_service_default
+#   Defaults to 'Default'
 #
 # [*auth_section*]
 #   (Optional) Config Section from which to load plugin specific options
@@ -32,7 +32,7 @@ class zaqar::keystone::trust(
   $username                       = 'zaqar',
   $password                       = $::os_service_default,
   $auth_url                       = 'http://localhost:35357',
-  $user_domain_name               = $::os_service_default,
+  $user_domain_name               = 'Default',
   $auth_section                   = $::os_service_default,
   $auth_type                      = 'password',
 ) {

@@ -33,9 +33,9 @@ class zaqar::transport::websocket(
   zaqar_config {
     'drivers:transport:websocket/bind': value => $bind;
     'drivers:transport:websocket/port': value => $port;
-    'drivers:transport:websocket/external-port': value => $external_port;
-    'drivers:transport:websocket/notification-bind': value => $notification_bind;
-    'drivers:transport:websocket/notification-port': value => $notification_port;
+    'drivers:transport:websocket/external_port': value => $external_port;
+    'drivers:transport:websocket/notification_bind': value => $notification_bind;
+    'drivers:transport:websocket/notification_port': value => $notification_port;
   }
 
 }

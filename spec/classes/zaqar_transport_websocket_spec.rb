@@ -17,9 +17,9 @@ describe 'zaqar::transport::websocket' do
       it 'configures custom values' do
         is_expected.to contain_zaqar_config('drivers:transport:websocket/bind').with_value('1')
         is_expected.to contain_zaqar_config('drivers:transport:websocket/port').with_value('2')
-        is_expected.to contain_zaqar_config('drivers:transport:websocket/external-port').with_value('3')
-        is_expected.to contain_zaqar_config('drivers:transport:websocket/notification-bind').with_value('4')
-        is_expected.to contain_zaqar_config('drivers:transport:websocket/notification-port').with_value('5')
+        is_expected.to contain_zaqar_config('drivers:transport:websocket/external_port').with_value('3')
+        is_expected.to contain_zaqar_config('drivers:transport:websocket/notification_bind').with_value('4')
+        is_expected.to contain_zaqar_config('drivers:transport:websocket/notification_port').with_value('5')
       end
     end
   end

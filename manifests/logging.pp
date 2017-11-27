@@ -12,6 +12,10 @@
 #    (Optional) Use syslog for logging.
 #    Defaults to $::os_service_default.
 #
+#  [*use_json*]
+#    (Optional) Use json for logging.
+#    Defaults to $::os_service_default.
+#
 #  [*use_stderr*]
 #    (optional) Use stderr for logging.
 #    Defaults to $::os_service_default.
@@ -91,6 +95,7 @@
 
 class zaqar::logging(
   $use_syslog                    = $::os_service_default,
+  $use_json                      = $::os_service_default,
   $use_stderr                    = $::os_service_default,
   $log_facility                  = $::os_service_default,
   $log_dir                       = '/var/log/zaqar',
@@ -123,6 +128,7 @@ class zaqar::logging(
     instance_uuid_format          => $instance_uuid_format,
     log_date_format               => $log_date_format,
     use_syslog                    => $use_syslog,
+    use_json                      => $use_json,
     use_stderr                    => $use_stderr,
     syslog_log_facility           => $log_facility,
     log_dir                       => $log_dir,

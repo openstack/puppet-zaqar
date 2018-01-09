@@ -20,7 +20,7 @@
 #   Defaults to empty hash.
 #
 # [*policy_path*]
-#   (optional) Path to the nova policy.json file
+#   (optional) Path to the zaqar policy.json file
 #   Defaults to /etc/zaqar/policy.json
 #
 class zaqar::policy (
@@ -29,11 +29,14 @@ class zaqar::policy (
 ) {
 
   include ::zaqar::deps
+  include ::zaqar::params
 
   validate_hash($policies)
 
   Openstacklib::Policy::Base {
-    file_path => $policy_path,
+    file_path  => $policy_path,
+    file_user  => 'root',
+    file_group => $::zaqar::params::group,
   }
 
   create_resources('openstacklib::policy::base', $policies)

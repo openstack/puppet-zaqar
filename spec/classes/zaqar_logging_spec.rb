@@ -25,6 +25,7 @@ describe 'zaqar::logging' do
      :log_date_format => '%Y-%m-%d %H:%M:%S',
      :use_syslog => true,
      :use_json => true,
+     :use_journal => true,
      :use_stderr => false,
      :log_facility => 'LOG_FOO',
      :log_dir => '/var/log',
@@ -48,11 +49,12 @@ describe 'zaqar::logging' do
   shared_examples 'basic default logging settings' do
     it 'configures zaqar logging settings with default values' do
       is_expected.to contain_oslo__log('zaqar_config').with(
-        :use_syslog => '<SERVICE DEFAULT>',
-        :use_json   => '<SERVICE DEFAULT>',
-        :use_stderr => '<SERVICE DEFAULT>',
-        :log_dir    => '/var/log/zaqar',
-        :debug      => '<SERVICE DEFAULT>',
+        :use_syslog  => '<SERVICE DEFAULT>',
+        :use_json    => '<SERVICE DEFAULT>',
+        :use_journal => '<SERVICE DEFAULT>',
+        :use_stderr  => '<SERVICE DEFAULT>',
+        :log_dir     => '/var/log/zaqar',
+        :debug       => '<SERVICE DEFAULT>',
       )
     end
   end
@@ -62,6 +64,7 @@ describe 'zaqar::logging' do
       is_expected.to contain_oslo__log('zaqar_config').with(
         :use_syslog          => true,
         :use_json            => true,
+        :use_journal         => true,
         :use_stderr          => false,
         :syslog_log_facility => 'LOG_FOO',
         :log_dir             => '/var/log',

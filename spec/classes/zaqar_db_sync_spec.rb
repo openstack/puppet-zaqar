@@ -19,6 +19,7 @@ describe 'zaqar::db::sync' do
                          'Anchor[zaqar::config::end]',
                          'Anchor[zaqar::dbsync::begin]'],
         :notify      => 'Anchor[zaqar::dbsync::end]',
+        :tag         => 'openstack-db',
       )
     end
 

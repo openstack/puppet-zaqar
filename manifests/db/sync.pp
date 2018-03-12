@@ -19,6 +19,7 @@ class zaqar::db::sync {
       Anchor['zaqar::dbsync::begin']
     ],
     notify      => Anchor['zaqar::dbsync::end'],
+    tag         => 'openstack-db',
   }
 
 }

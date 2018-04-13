@@ -5,7 +5,13 @@
 class zaqar::params {
   include ::openstacklib::defaults
 
-  $client_package_name = 'python-zaqarclient'
+  if ($::os_package_type == 'debian') {
+    $pyvers = '3'
+  } else {
+    $pyvers = ''
+  }
+
+  $client_package_name = "python${pyvers}-zaqarclient"
   $group               = 'zaqar'
 
   case $::osfamily {

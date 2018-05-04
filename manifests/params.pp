@@ -7,8 +7,10 @@ class zaqar::params {
 
   if ($::os_package_type == 'debian') {
     $pyvers = '3'
+    $pyver3 = '3'
   } else {
     $pyvers = ''
+    $pyver3 = '2.7'
   }
 
   $client_package_name = "python${pyvers}-zaqarclient"
@@ -24,7 +26,7 @@ class zaqar::params {
     'Debian': {
       $package_name             = 'zaqar-server'
       $service_name             = 'zaqar-server'
-      $zaqar_wsgi_script_source = '/usr/lib/python2.7/dist-packages/zaqar/transport/wsgi/app.py'
+      $zaqar_wsgi_script_source = "/usr/lib/python${pyver3}/dist-packages/zaqar/transport/wsgi/app.py"
       $zaqar_wsgi_script_path   = '/usr/lib/cgi-bin/zaqar'
     }
     default: {

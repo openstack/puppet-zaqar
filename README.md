@@ -110,3 +110,8 @@ Contributors
 ------------
 
 * https://github.com/openstack/puppet-zaqar/graphs/contributors
+
+Release Notes
+-------------
+
+* https://docs.openstack.org/releasenotes/puppet-zaqar

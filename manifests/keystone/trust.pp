@@ -14,7 +14,7 @@
 #
 # [*auth_url*]
 #   (Optional) The URL to use for authentication.
-#   Defaults to 'http://localhost:35357'
+#   Defaults to 'http://localhost:5000'
 #
 # [*user_domain_name*]
 #   (Optional) Name of domain for $username
@@ -31,7 +31,7 @@
 class zaqar::keystone::trust(
   $username                       = 'zaqar',
   $password                       = $::os_service_default,
-  $auth_url                       = 'http://localhost:35357',
+  $auth_url                       = 'http://localhost:5000',
   $user_domain_name               = 'Default',
   $auth_section                   = $::os_service_default,
   $auth_type                      = 'password',

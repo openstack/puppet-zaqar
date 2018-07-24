@@ -79,7 +79,7 @@ Whether to hide the value from Puppet logs. Defaults to `false`.
 If value is equal to ensure_absent_val then the resource will behave as if `ensure => absent` was specified. Defaults to `<SERVICE DEFAULT>`
 
 Limitations
-------------
+-----------
 
 * All the zaqar types use the CLI tools and so need to be ran on the zaqar node.
 
@@ -117,6 +117,6 @@ Release Notes
 * https://docs.openstack.org/releasenotes/puppet-zaqar
 
 Repository
--------------
+----------
 
 * https://git.openstack.org/cgit/openstack/puppet-zaqar

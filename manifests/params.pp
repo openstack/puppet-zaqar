@@ -8,6 +8,10 @@ class zaqar::params {
   if ($::os_package_type == 'debian') {
     $pyvers = '3'
     $pyver3 = '3'
+  } elsif ($::os['name'] == 'Fedora') or
+          ($::os['family'] == 'RedHat' and Integer.new($::os['release']['major']) > 7) {
+    $pyvers = '3'
+    $pyver3 = '3.6'
   } else {
     $pyvers = ''
     $pyver3 = '2.7'
@@ -20,7 +24,7 @@ class zaqar::params {
     'RedHat': {
       $package_name             = 'openstack-zaqar'
       $service_name             = 'openstack-zaqar'
-      $zaqar_wsgi_script_source = '/usr/lib/python2.7/site-packages/zaqar/transport/wsgi/app.py'
+      $zaqar_wsgi_script_source = "/usr/lib/python${pyver3}/site-packages/zaqar/transport/wsgi/app.py"
       $zaqar_wsgi_script_path   = '/var/www/cgi-bin/zaqar'
     }
     'Debian': {

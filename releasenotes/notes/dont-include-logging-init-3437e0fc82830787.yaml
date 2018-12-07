@@ -1,0 +1,4 @@
+---
+upgrade:
+  - |
+    zaqar::logging is now not included in init class by default.

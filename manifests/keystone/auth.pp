@@ -5,59 +5,66 @@
 # === Parameters
 #
 # [*password*]
-#   (required) Password for zaqar user.
+#   (Required) Password for zaqar user.
 #
 # [*auth_name*]
-#   Username for zaqar service. Defaults to 'zaqar'.
+#   (Optional) Username for zaqar service.
+#   Defaults to 'zaqar'.
 #
 # [*email*]
-#   Email for zaqar user. Defaults to 'zaqar@localhost'.
+#   (Optional) Email for zaqar user.
+#   Defaults to 'zaqar@localhost'.
 #
 # [*tenant*]
-#   Tenant for zaqar user. Defaults to 'services'.
+#   (Optional) Tenant for zaqar user.
+#   Defaults to 'services'.
 #
 # [*configure_endpoint*]
-#   Should zaqar endpoint be configured? Defaults to 'true'.
+#   (Optional) Should zaqar endpoint be configured?
+#   Defaults to true.
 #
 # [*configure_user*]
 #   (Optional) Should the service user be configured?
-#   Defaults to 'true'.
+#   Defaults to true.
 #
 # [*service_type*]
-#   Type of service. Defaults to 'messaging'.
+#   (Optional) Type of service.
+#   Defaults to 'messaging'.
 #
 # [*public_url*]
-#   (optional) The endpoint's public url.
+#   (Optional) The endpoint's public url.
 #   (Defaults to 'http://127.0.0.1:8888')
 #
 # [*internal_url*]
-#   (optional) The endpoint's internal url.
+#   (Optional) The endpoint's internal url.
 #   (Defaults to 'http://127.0.0.1:8888')
 #
 # [*admin_url*]
-#   (optional) The endpoint's admin url.
+#   (Optional) The endpoint's admin url.
 #   (Defaults to 'http://127.0.0.1:8888')
 #
 # [*region*]
-#   Region for endpoint. Defaults to 'RegionOne'.
+#   (Optional) Region for endpoint.
+#   Defaults to 'RegionOne'.
 #
 # [*service_name*]
-#   (optional) Name of the service.
+#   (Optional) Name of the service.
 #   Defaults to 'zaqar'
 #
 # [*configure_service*]
-#   Should zaqar service be configured? Defaults to 'true'.
+#   (Optional) Should zaqar service be configured?
+#   Defaults to true.
 #
 # [*service_description*]
-#   (optional) Description for keystone service.
+#   (Optional) Description for keystone service.
 #   Defaults to 'Openstack workflow Service'.
 #
 # [*configure_user_role*]
-#   (optional) Whether to configure the admin role for the service user.
+#   (Optional) Whether to configure the admin role for the service user.
 #   Defaults to true
 #
 # [*roles*]
-#   (optional) Roles to give the service user.
+#   (Optional) Roles to give the service user.
 #   Defaults to undef
 #
 class zaqar::keystone::auth(

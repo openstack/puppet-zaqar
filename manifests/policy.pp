@@ -5,7 +5,7 @@
 # === Parameters
 #
 # [*policies*]
-#   (optional) Set of policies to configure for zaqar
+#   (Optional) Set of policies to configure for zaqar
 #   Example :
 #     {
 #       'zaqar-context_is_admin' => {
@@ -20,7 +20,7 @@
 #   Defaults to empty hash.
 #
 # [*policy_path*]
-#   (optional) Path to the zaqar policy.json file
+#   (Optional) Path to the zaqar policy.json file
 #   Defaults to /etc/zaqar/policy.json
 #
 class zaqar::policy (

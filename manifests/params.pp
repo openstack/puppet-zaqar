@@ -5,17 +5,8 @@
 class zaqar::params {
   include ::openstacklib::defaults
 
-  if ($::os_package_type == 'debian') {
-    $pyvers = '3'
-    $pyver3 = '3'
-  } elsif ($::os['name'] == 'Fedora') or
-          ($::os['family'] == 'RedHat' and Integer.new($::os['release']['major']) > 7) {
-    $pyvers = '3'
-    $pyver3 = '3.6'
-  } else {
-    $pyvers = ''
-    $pyver3 = '2.7'
-  }
+  $pyvers = $::openstacklib::defaults::pyvers
+  $pyver3 = $::openstacklib::defaults::pyver3
 
   $client_package_name = "python${pyvers}-zaqarclient"
   $group               = 'zaqar'

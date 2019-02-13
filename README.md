@@ -33,7 +33,7 @@ Setup
 
 **What the zaqar module affects**
 
-[Zaqar](https://wiki.openstack.org/wiki/Zaqar), the queue service for OpenStack.
+[Zaqar](https://docs.openstack.org/zaqar/latest/), the queue service for OpenStack.
 
 ### Installing zaqar
 

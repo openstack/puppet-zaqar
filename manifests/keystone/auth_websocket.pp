@@ -76,7 +76,7 @@ class zaqar::keystone::auth_websocket(
 
   include ::zaqar::deps
 
-  validate_string($password)
+  validate_legacy(String, 'validate_string', $password)
 
   keystone::resource::service_identity { 'zaqar-websocket':
     configure_user      => $configure_user,

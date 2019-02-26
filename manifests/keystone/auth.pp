@@ -88,7 +88,7 @@ class zaqar::keystone::auth(
 
   include ::zaqar::deps
 
-  validate_string($password)
+  validate_legacy(String, 'validate_string', $password)
 
   keystone::resource::service_identity { 'zaqar':
     configure_user      => $configure_user,

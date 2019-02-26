@@ -31,7 +31,7 @@ class zaqar::policy (
   include ::zaqar::deps
   include ::zaqar::params
 
-  validate_hash($policies)
+  validate_legacy(Hash, 'validate_hash', $policies)
 
   Openstacklib::Policy::Base {
     file_path  => $policy_path,
@@ -42,5 +42,4 @@ class zaqar::policy (
   create_resources('openstacklib::policy::base', $policies)
 
   oslo::policy { 'zaqar_config': policy_file => $policy_path }
-
 }

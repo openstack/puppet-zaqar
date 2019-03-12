@@ -29,6 +29,7 @@ describe 'zaqar::logging' do
      :use_stderr                     => false,
      :log_facility                   => 'LOG_FOO',
      :log_dir                        => '/var/log',
+     :log_file                       => '/var/log/zaqar.log',
      :debug                          => true,
     }
   end
@@ -54,6 +55,7 @@ describe 'zaqar::logging' do
         :use_journal => '<SERVICE DEFAULT>',
         :use_stderr  => '<SERVICE DEFAULT>',
         :log_dir     => '/var/log/zaqar',
+        :log_file    => '<SERVICE DEFAULT>',
         :debug       => '<SERVICE DEFAULT>',
       )
     end
@@ -68,6 +70,7 @@ describe 'zaqar::logging' do
         :use_stderr          => false,
         :syslog_log_facility => 'LOG_FOO',
         :log_dir             => '/var/log',
+        :log_file            => '/var/log/zaqar.log',
         :debug               => true,
       )
     end

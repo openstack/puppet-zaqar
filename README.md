@@ -120,4 +120,4 @@ Release Notes
 Repository
 ----------
 
-* https://git.openstack.org/cgit/openstack/puppet-zaqar
+* https://opendev.org/openstack/puppet-zaqar

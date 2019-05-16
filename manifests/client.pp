@@ -21,4 +21,6 @@ class zaqar::client (
     tag    => 'openstack',
   }
 
+  include '::openstacklib::openstackclient'
+
 }

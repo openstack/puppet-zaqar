@@ -123,7 +123,7 @@ class zaqar::logging(
   $log_date_format               = $::os_service_default,
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   oslo::log { 'zaqar_config':
     logging_context_format_string => $logging_context_format_string,

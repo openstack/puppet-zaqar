@@ -11,7 +11,7 @@ class zaqar::messaging::swift(
   $auth_url = $::os_service_default,
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   zaqar_config {
     'drivers:message_store:swift/uri':      value => $uri, secret => true;

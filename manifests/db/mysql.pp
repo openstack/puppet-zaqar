@@ -43,7 +43,7 @@ class zaqar::db::mysql(
   $allowed_hosts = undef
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   validate_legacy(String, 'validate_string', $password)
 

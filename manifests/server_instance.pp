@@ -16,9 +16,9 @@ define zaqar::server_instance(
   $enabled = true,
 ) {
 
-  include ::zaqar
-  include ::zaqar::deps
-  include ::zaqar::params
+  include zaqar
+  include zaqar::deps
+  include zaqar::params
 
   if $enabled {
     $service_ensure = 'running'

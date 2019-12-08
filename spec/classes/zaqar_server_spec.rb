@@ -4,7 +4,7 @@ describe 'zaqar::server' do
   shared_examples_for 'zaqar::server' do
     describe 'with a zaqar server enabled' do
       let :pre_condition do
-        "class { '::zaqar::keystone::authtoken':
+        "class { 'zaqar::keystone::authtoken':
            password =>'foo',
          }
          class {'::zaqar': }"

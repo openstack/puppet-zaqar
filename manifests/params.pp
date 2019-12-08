@@ -3,7 +3,7 @@
 # Parameters for puppet-zaqar
 #
 class zaqar::params {
-  include ::openstacklib::defaults
+  include openstacklib::defaults
 
   $pyvers = $::openstacklib::defaults::pyvers
   $pyver3 = $::openstacklib::defaults::pyver3

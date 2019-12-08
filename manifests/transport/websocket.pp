@@ -28,7 +28,7 @@ class zaqar::transport::websocket(
   $notification_port  = $::os_service_default,
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   zaqar_config {
     'drivers:transport:websocket/bind': value => $bind;

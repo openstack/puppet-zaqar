@@ -2,7 +2,7 @@ require 'spec_helper'
 describe 'zaqar' do
   shared_examples 'zaqar' do
     let :pre_condition do
-      "class { '::zaqar::keystone::authtoken':
+      "class { 'zaqar::keystone::authtoken':
          password =>'password',
        }"
     end

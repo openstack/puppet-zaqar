@@ -24,7 +24,7 @@ class zaqar::config (
   $zaqar_config = {},
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   validate_legacy(Hash, 'validate_hash', $zaqar_config)
 

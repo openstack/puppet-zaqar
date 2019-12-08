@@ -12,8 +12,8 @@ class zaqar::client (
   $ensure = 'present'
 ) {
 
-  include ::zaqar::deps
-  include ::zaqar::params
+  include zaqar::deps
+  include zaqar::params
 
   package { 'python-zaqarclient':
     ensure => $ensure,

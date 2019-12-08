@@ -6,13 +6,13 @@ describe 'swift zaqar' do
 
     it 'zaqar with swift should work with no errors' do
       pp= <<-EOS
-      include ::openstack_integration
-      include ::openstack_integration::repos
-      include ::openstack_integration::mysql
-      include ::openstack_integration::keystone
-      include ::openstack_integration::swift
-      include ::openstack_integration::memcached
-      include ::openstack_integration::zaqar
+      include openstack_integration
+      include openstack_integration::repos
+      include openstack_integration::mysql
+      include openstack_integration::keystone
+      include openstack_integration::swift
+      include openstack_integration::memcached
+      include openstack_integration::zaqar
       EOS
 
 

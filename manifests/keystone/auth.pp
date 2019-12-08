@@ -86,7 +86,7 @@ class zaqar::keystone::auth(
   $roles                  = undef,
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   validate_legacy(String, 'validate_string', $password)
 

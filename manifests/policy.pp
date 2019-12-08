@@ -28,8 +28,8 @@ class zaqar::policy (
   $policy_path = '/etc/zaqar/policy.json',
 ) {
 
-  include ::zaqar::deps
-  include ::zaqar::params
+  include zaqar::deps
+  include zaqar::params
 
   validate_legacy(Hash, 'validate_hash', $policies)
 

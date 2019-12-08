@@ -74,7 +74,7 @@ class zaqar::keystone::auth_websocket(
   $service_description    = 'Openstack messaging websocket Service',
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   validate_legacy(String, 'validate_string', $password)
 

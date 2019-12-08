@@ -37,7 +37,7 @@ class zaqar::keystone::trust(
   $auth_type                      = 'password',
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   zaqar_config {
     'trustee/username': value => $username;

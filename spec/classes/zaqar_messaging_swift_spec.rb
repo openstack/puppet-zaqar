@@ -4,10 +4,10 @@ describe 'zaqar::messaging::swift' do
 
   shared_examples_for 'zaqar::messaging::swift' do
     let :pre_condition do
-      "class { '::zaqar::keystone::authtoken':
+      "class { 'zaqar::keystone::authtoken':
          password =>'foo',
        }
-       class { '::zaqar':
+       class { 'zaqar':
          message_store =>'swift',
        }"
     end

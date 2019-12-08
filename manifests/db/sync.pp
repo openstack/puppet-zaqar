@@ -3,7 +3,7 @@
 #
 class zaqar::db::sync {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   exec { 'zaqar-db-sync':
     command     => 'zaqar-sql-db-manage upgrade head',

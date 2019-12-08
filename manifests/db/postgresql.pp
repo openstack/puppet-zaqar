@@ -32,7 +32,7 @@ class zaqar::db::postgresql(
   $privileges = 'ALL',
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   ::openstacklib::db::postgresql { 'zaqar':
     password_hash => postgresql_password($user, $password),

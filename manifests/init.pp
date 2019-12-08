@@ -88,15 +88,15 @@ class zaqar(
   $purge_config           = false,
 ) inherits zaqar::params {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   resources { 'zaqar_config':
     purge  => $purge_config,
   }
 
   if $auth_strategy == 'keystone' {
-    include ::zaqar::keystone::authtoken
-    include ::zaqar::keystone::trust
+    include zaqar::keystone::authtoken
+    include zaqar::keystone::trust
   }
 
   package { 'zaqar-common':

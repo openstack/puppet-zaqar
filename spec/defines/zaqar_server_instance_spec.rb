@@ -5,7 +5,7 @@ describe 'zaqar::server_instance' do
     let(:title) { '1' }
 
     let :pre_condition do
-      "class { '::zaqar::keystone::authtoken':
+      "class { 'zaqar::keystone::authtoken':
          password =>'foo',
        }
        class {'::zaqar': }"

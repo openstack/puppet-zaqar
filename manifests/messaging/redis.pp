@@ -20,7 +20,7 @@ class zaqar::messaging::redis(
   $reconnect_sleep        = $::os_service_default,
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   zaqar_config {
     'drivers:message_store:redis/uri':                    value => $uri, secret => true;

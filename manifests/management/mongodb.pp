@@ -71,7 +71,7 @@ class zaqar::management::mongodb(
   $reconnect_sleep        = $::os_service_default,
 ) {
 
-  include ::zaqar::deps
+  include zaqar::deps
 
   zaqar_config {
     'drivers:management_store:mongodb/uri':                    value => $uri, secret => true;

@@ -119,12 +119,12 @@ class zaqar::wsgi::apache (
   $custom_wsgi_process_options = {},
 ) {
 
-  include ::zaqar::deps
-  include ::zaqar::params
-  include ::apache
-  include ::apache::mod::wsgi
+  include zaqar::deps
+  include zaqar::params
+  include apache
+  include apache::mod::wsgi
   if $ssl {
-    include ::apache::mod::ssl
+    include apache::mod::ssl
   }
 
   ::openstacklib::wsgi::apache { 'zaqar_wsgi':

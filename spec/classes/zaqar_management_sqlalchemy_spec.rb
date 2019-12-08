@@ -4,10 +4,10 @@ describe 'zaqar::management::sqlalchemy' do
 
   shared_examples_for 'zaqar::management::sqlalchemy' do
     let :pre_condition do
-      "class { '::zaqar::keystone::authtoken':
+      "class { 'zaqar::keystone::authtoken':
          password =>'foo',
        }
-       class { '::zaqar':
+       class { 'zaqar':
          management_store =>'sqlalchemy',
        }"
 

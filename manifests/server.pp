@@ -26,10 +26,10 @@ class zaqar::server(
   $service_name   = $::zaqar::params::service_name,
 ) inherits zaqar::params {
 
-  include ::zaqar
-  include ::zaqar::deps
-  include ::zaqar::params
-  include ::zaqar::policy
+  include zaqar
+  include zaqar::deps
+  include zaqar::params
+  include zaqar::policy
 
   if $enabled {
     if $manage_service {
@@ -51,7 +51,7 @@ class zaqar::server(
     }
 
   } elsif $service_name == 'httpd' {
-    include ::apache::params
+    include apache::params
     service { $::zaqar::params::service_name:
       ensure => 'stopped',
       name   => $::zaqar::params::service_name,

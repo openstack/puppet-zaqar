@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    The new zaqar::keystone::authtoken::service_token_roles parameter was
+    added to specify keystone roles assigned to the users, which require
+    service token feature.

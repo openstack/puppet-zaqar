@@ -46,8 +46,8 @@ Puppet::Type.newtype(:zaqar_config) do
     defaultto('<SERVICE DEFAULT>')
   end
 
-  autorequire(:package) do
-    'zaqar-common'
+  autorequire(:anchor) do
+    ['zaqar::install::end']
   end
 
 end

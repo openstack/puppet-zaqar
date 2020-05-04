@@ -49,4 +49,15 @@ describe 'Puppet::Type.type(:zaqar_config)' do
       @zaqar_config[:ensure] = :latest
     }.to raise_error(Puppet::Error, /Invalid value/)
   end
+
+  it 'should autorequire the package that install the file' do
+    catalog = Puppet::Resource::Catalog.new
+    anchor = Puppet::Type.type(:anchor).new(:name => 'zaqar::install::end')
+    catalog.add_resource anchor, @zaqar_config
+    dependency = @zaqar_config.autorequire
+    expect(dependency.size).to eq(1)
+    expect(dependency[0].target).to eq(@zaqar_config)
+    expect(dependency[0].source).to eq(anchor)
+  end
+
 end

@@ -12,18 +12,18 @@ describe 'zaqar::db::mysql' do
 
     let :params do
       {
-        'password'      => 'fooboozoo_default_password',
+        'password'  => 'zaqarpass',
       }
     end
 
     describe 'with only required params' do
       it { is_expected.to contain_openstacklib__db__mysql('zaqar').with(
-        'user'          => 'zaqar',
-        'password_hash' => '*3DDF34A86854A312A8E2C65B506E21C91800D206',
-        'dbname'        => 'zaqar',
-        'host'          => '127.0.0.1',
-        'charset'       => 'utf8',
-        :collate        => 'utf8_general_ci',
+        'user'     => 'zaqar',
+        'password' => 'zaqarpass',
+        'dbname'   => 'zaqar',
+        'host'     => '127.0.0.1',
+        'charset'  => 'utf8',
+        :collate   => 'utf8_general_ci',
       )}
     end
 

@@ -4,7 +4,7 @@ describe 'zaqar::db::postgresql' do
 
   shared_examples_for 'zaqar::db::postgresql' do
     let :req_params do
-      { :password => 'pw' }
+      { :password => 'zaqarpass' }
     end
 
     let :pre_condition do
@@ -16,9 +16,12 @@ describe 'zaqar::db::postgresql' do
         req_params
       end
 
-      it { is_expected.to contain_postgresql__server__db('zaqar').with(
-        :user     => 'zaqar',
-        :password => 'md52e9c9a1a01bb2fef7463b70dd24d4b25'
+      it { is_expected.to contain_openstacklib__db__postgresql('zaqar').with(
+        :user       => 'zaqar',
+        :password   => 'zaqarpass',
+        :dbname     => 'zaqar',
+        :encoding   => nil,
+        :privileges => 'ALL',
       )}
     end
 

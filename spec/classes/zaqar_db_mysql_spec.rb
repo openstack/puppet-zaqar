@@ -16,6 +16,8 @@ describe 'zaqar::db::mysql' do
       }
     end
 
+    it { should contain_class('zaqar::deps') }
+
     describe 'with only required params' do
       it { is_expected.to contain_openstacklib__db__mysql('zaqar').with(
         'user'     => 'zaqar',

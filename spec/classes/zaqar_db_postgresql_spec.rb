@@ -16,6 +16,8 @@ describe 'zaqar::db::postgresql' do
         req_params
       end
 
+      it { is_expected.to contain_class('zaqar::deps') }
+
       it { is_expected.to contain_openstacklib__db__postgresql('zaqar').with(
         :user       => 'zaqar',
         :password   => 'zaqarpass',

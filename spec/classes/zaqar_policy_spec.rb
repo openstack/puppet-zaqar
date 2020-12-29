@@ -5,7 +5,7 @@ describe 'zaqar::policy' do
   shared_examples_for 'zaqar policies' do
     let :params do
       {
-        :policy_path => '/etc/zaqar/policy.json',
+        :policy_path => '/etc/zaqar/policy.yaml',
         :policies    => {
           'context_is_admin' => {
             'key'   => 'context_is_admin',
@@ -17,13 +17,14 @@ describe 'zaqar::policy' do
 
     it 'set up the policies' do
       is_expected.to contain_openstacklib__policy__base('context_is_admin').with({
-        :key        => 'context_is_admin',
-        :value      => 'foo:bar',
-        :file_user  => 'root',
-        :file_group => 'zaqar',
+        :key         => 'context_is_admin',
+        :value       => 'foo:bar',
+        :file_user   => 'root',
+        :file_group  => 'zaqar',
+        :file_format => 'yaml',
       })
       is_expected.to contain_oslo__policy('zaqar_config').with(
-        :policy_file => '/etc/zaqar/policy.json',
+        :policy_file => '/etc/zaqar/policy.yaml',
       )
     end
   end

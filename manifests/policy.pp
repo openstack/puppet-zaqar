@@ -4,6 +4,10 @@
 #
 # === Parameters
 #
+# [*enforce_scope*]
+#  (Optional) Whether or not to enforce scope when evaluating policies.
+#  Defaults to $::os_service_default.
+#
 # [*policies*]
 #   (Optional) Set of policies to configure for zaqar
 #   Example :
@@ -24,8 +28,9 @@
 #   Defaults to /etc/zaqar/policy.yaml
 #
 class zaqar::policy (
-  $policies    = {},
-  $policy_path = '/etc/zaqar/policy.yaml',
+  $enforce_scope = $::os_service_default,
+  $policies      = {},
+  $policy_path   = '/etc/zaqar/policy.yaml',
 ) {
 
   include zaqar::deps
@@ -42,5 +47,9 @@ class zaqar::policy (
 
   create_resources('openstacklib::policy::base', $policies)
 
-  oslo::policy { 'zaqar_config': policy_file => $policy_path }
+  oslo::policy { 'zaqar_config':
+    enforce_scope => $enforce_scope,
+    policy_file   => $policy_path
+  }
+
 }

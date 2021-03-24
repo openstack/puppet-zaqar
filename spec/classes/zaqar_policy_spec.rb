@@ -4,9 +4,10 @@ describe 'zaqar::policy' do
   shared_examples 'zaqar::policy' do
     let :params do
       {
-        :enforce_scope => false,
-        :policy_path   => '/etc/zaqar/policy.yaml',
-        :policies      => {
+        :enforce_scope        => false,
+        :enforce_new_defaults => false,
+        :policy_path          => '/etc/zaqar/policy.yaml',
+        :policies             => {
           'context_is_admin' => {
             'key'   => 'context_is_admin',
             'value' => 'foo:bar'
@@ -24,8 +25,9 @@ describe 'zaqar::policy' do
         :file_format => 'yaml',
       })
       is_expected.to contain_oslo__policy('zaqar_config').with(
-        :enforce_scope => false,
-        :policy_file   => '/etc/zaqar/policy.yaml',
+        :enforce_scope        => false,
+        :enforce_new_defaults => false,
+        :policy_file          => '/etc/zaqar/policy.yaml',
       )
     end
   end

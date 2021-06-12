@@ -97,30 +97,12 @@ describe 'zaqar::wsgi::apache' do
             :wsgi_script_source => '/usr/lib/python3/dist-packages/zaqar/transport/wsgi/app.py'
           }
         when 'RedHat'
-          if facts[:operatingsystem] == 'Fedora'
-            {
-              :httpd_service_name => 'httpd',
-              :httpd_ports_file   => '/etc/httpd/conf/ports.conf',
-              :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
-              :wsgi_script_source => '/usr/lib/python3.6/site-packages/zaqar/transport/wsgi/app.py'
-            }
-          else
-            if facts[:operatingsystemmajrelease] > '7'
-              {
-                :httpd_service_name => 'httpd',
-                :httpd_ports_file   => '/etc/httpd/conf/ports.conf',
-                :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
-                :wsgi_script_source => '/usr/lib/python3.6/site-packages/zaqar/transport/wsgi/app.py'
-              }
-            else
-              {
-                :httpd_service_name => 'httpd',
-                :httpd_ports_file   => '/etc/httpd/conf/ports.conf',
-                :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
-                :wsgi_script_source => '/usr/lib/python2.7/site-packages/zaqar/transport/wsgi/app.py'
-              }
-            end
-          end
+          {
+            :httpd_service_name => 'httpd',
+            :httpd_ports_file   => '/etc/httpd/conf/ports.conf',
+            :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
+            :wsgi_script_source => '/usr/lib/python3.6/site-packages/zaqar/transport/wsgi/app.py'
+          }
         end
       end
 

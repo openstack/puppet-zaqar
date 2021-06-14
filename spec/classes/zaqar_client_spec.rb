@@ -31,15 +31,7 @@ describe 'zaqar::client' do
         when 'Debian'
           { :client_package_name => 'python3-zaqarclient' }
         when 'RedHat'
-          if facts[:operatingsystem] == 'Fedora'
-            { :client_package_name => 'python3-zaqarclient' }
-          else
-            if facts[:operatingsystemmajrelease] > '7'
-              { :client_package_name => 'python3-zaqarclient' }
-            else
-              { :client_package_name => 'python-zaqarclient' }
-            end
-          end
+          { :client_package_name => 'python3-zaqarclient' }
         end
       end
 

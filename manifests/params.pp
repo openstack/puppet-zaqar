@@ -20,7 +20,7 @@ class zaqar::params {
     'Debian': {
       $package_name             = 'zaqar-server'
       $service_name             = 'zaqar-server'
-      $zaqar_wsgi_script_source = "/usr/lib/python${pyver3}/dist-packages/zaqar/transport/wsgi/app.py"
+      $zaqar_wsgi_script_source = '/usr/lib/python3/dist-packages/zaqar/transport/wsgi/app.py'
       $zaqar_wsgi_script_path   = '/usr/lib/cgi-bin/zaqar'
     }
     default: {

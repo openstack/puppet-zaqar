@@ -11,15 +11,15 @@
         },
         {
             "name": "openstack/keystone",
-            "version_requirement": ">=19.1.0 <20.0.0"
+            "version_requirement": ">=19.2.0 <20.0.0"
         },
         {
             "name": "openstack/openstacklib",
-            "version_requirement": ">=19.1.0 <20.0.0"
+            "version_requirement": ">=19.2.0 <20.0.0"
         },
         {
             "name": "openstack/oslo",
-            "version_requirement": ">=19.1.0 <20.0.0"
+            "version_requirement": ">=19.2.0 <20.0.0"
         },
         {
             "name": "puppetlabs/apache",
@@ -71,5 +71,5 @@
     ],
     "source": "https://opendev.org/openstack/puppet-zaqar.git",
     "summary": "Puppet module for OpenStack Zaqar",
-    "version": "19.1.0"
+    "version": "19.2.0"
 }

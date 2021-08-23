@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    The new ``zaqar::cache`` class has been added.

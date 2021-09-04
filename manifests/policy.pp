@@ -32,11 +32,22 @@
 #   (Optional) Path to the zaqar policy.yaml file
 #   Defaults to /etc/zaqar/policy.yaml
 #
+# [*policy_dirs*]
+#   (Optional) Path to the zaqar policy folder
+#   Defaults to $::os_service_default
+#
+# [*purge_config*]
+#   (optional) Whether to set only the specified policy rules in the policy
+#    file.
+#    Defaults to false.
+#
 class zaqar::policy (
   $enforce_scope        = $::os_service_default,
   $enforce_new_defaults = $::os_service_default,
   $policies             = {},
   $policy_path          = '/etc/zaqar/policy.yaml',
+  $policy_dirs          = $::os_service_default,
+  $purge_config         = false,
 ) {
 
   include zaqar::deps
@@ -44,19 +55,22 @@ class zaqar::policy (
 
   validate_legacy(Hash, 'validate_hash', $policies)
 
-  Openstacklib::Policy::Base {
-    file_path   => $policy_path,
-    file_user   => 'root',
-    file_group  => $::zaqar::params::group,
-    file_format => 'yaml',
+  $policy_parameters = {
+    policies     => $policies,
+    policy_path  => $policy_path,
+    file_user    => 'root',
+    file_group   => $::zaqar::params::group,
+    file_format  => 'yaml',
+    purge_config => $purge_config,
   }
 
-  create_resources('openstacklib::policy::base', $policies)
+  create_resources('openstacklib::policy', { $policy_path => $policy_parameters })
 
   oslo::policy { 'zaqar_config':
     enforce_scope        => $enforce_scope,
     enforce_new_defaults => $enforce_new_defaults,
-    policy_file          => $policy_path
+    policy_file          => $policy_path,
+    policy_dirs          => $policy_dirs,
   }
 
 }

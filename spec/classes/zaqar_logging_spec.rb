@@ -30,6 +30,7 @@ describe 'zaqar::logging' do
      :log_facility                   => 'LOG_FOO',
      :log_dir                        => '/var/log',
      :log_file                       => '/var/log/zaqar.log',
+     :watch_log_file                 => true,
      :debug                          => true,
     }
   end
@@ -50,13 +51,14 @@ describe 'zaqar::logging' do
   shared_examples 'basic default logging settings' do
     it 'configures zaqar logging settings with default values' do
       is_expected.to contain_oslo__log('zaqar_config').with(
-        :use_syslog  => '<SERVICE DEFAULT>',
-        :use_json    => '<SERVICE DEFAULT>',
-        :use_journal => '<SERVICE DEFAULT>',
-        :use_stderr  => '<SERVICE DEFAULT>',
-        :log_dir     => '/var/log/zaqar',
-        :log_file    => '<SERVICE DEFAULT>',
-        :debug       => '<SERVICE DEFAULT>',
+        :use_syslog     => '<SERVICE DEFAULT>',
+        :use_json       => '<SERVICE DEFAULT>',
+        :use_journal    => '<SERVICE DEFAULT>',
+        :use_stderr     => '<SERVICE DEFAULT>',
+        :log_dir        => '/var/log/zaqar',
+        :log_file       => '<SERVICE DEFAULT>',
+        :watch_log_file => '<SERVICE DEFAULT>',
+        :debug          => '<SERVICE DEFAULT>',
       )
     end
   end
@@ -71,6 +73,7 @@ describe 'zaqar::logging' do
         :syslog_log_facility => 'LOG_FOO',
         :log_dir             => '/var/log',
         :log_file            => '/var/log/zaqar.log',
+        :watch_log_file      => true,
         :debug               => true,
       )
     end

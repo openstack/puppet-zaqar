@@ -50,7 +50,7 @@
 #
 # [*service_description*]
 #   (optional) Description for keystone service.
-#   Defaults to 'Openstack messaging websocket Service'.
+#   Defaults to 'OpenStack Messaging Websocket Service'.
 
 # [*configure_user_role*]
 #   (optional) Whether to configure the admin role for the service user.
@@ -71,7 +71,7 @@ class zaqar::keystone::auth_websocket(
   $configure_service      = true,
   $configure_user         = true,
   $configure_user_role    = true,
-  $service_description    = 'Openstack messaging websocket Service',
+  $service_description    = 'OpenStack Messaging Websocket Service',
 ) {
 
   include zaqar::deps

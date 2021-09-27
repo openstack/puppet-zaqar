@@ -57,7 +57,7 @@
 #
 # [*service_description*]
 #   (Optional) Description for keystone service.
-#   Defaults to 'Openstack workflow Service'.
+#   Defaults to 'Openstack Messaging Service'.
 #
 # [*configure_user_role*]
 #   (Optional) Whether to configure the admin role for the service user.
@@ -82,7 +82,7 @@ class zaqar::keystone::auth(
   $configure_service      = true,
   $configure_user         = true,
   $configure_user_role    = true,
-  $service_description    = 'Openstack messaging Service',
+  $service_description    = 'OpenStack Messaging Service',
   $roles                  = undef,
 ) {
 

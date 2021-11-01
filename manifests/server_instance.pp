@@ -16,6 +16,10 @@ define zaqar::server_instance(
   $enabled = true,
 ) {
 
+  if $name == 'zaqar' {
+    fail('The name should not be \'zaqar\'. Please use a different name')
+  }
+
   include zaqar
   include zaqar::deps
   include zaqar::params

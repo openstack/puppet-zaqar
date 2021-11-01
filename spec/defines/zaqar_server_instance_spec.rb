@@ -2,29 +2,39 @@ require 'spec_helper'
 describe 'zaqar::server_instance' do
 
   shared_examples_for 'zaqar::server_instance' do
-    let(:title) { '1' }
+    describe 'zaqar::server_instance' do
+      let :title do
+        '1'
+      end
 
-    let :pre_condition do
-      "class { 'zaqar::keystone::authtoken':
-         password =>'foo',
-       }
-       class {'::zaqar': }"
-    end
+      let :pre_condition do
+        "class { 'zaqar::keystone::authtoken':
+           password =>'foo',
+         }
+         class {'::zaqar': }"
+      end
 
-    let :params do
-      {
-        :transport => 'websocket'
-      }
-    end
+      let :params do
+        {
+          :transport => 'websocket'
+        }
+      end
 
-    describe 'with a websocket server instance 1' do
+      context 'with a websocket server instance 1' do
+        it { is_expected.to contain_service("#{platform_params[:zaqar_service_name]}@1").with(
+            :ensure => 'running',
+            :enable => true
+        )}
+        it { is_expected.to contain_file('/etc/zaqar/1.conf') }
+      end
 
-      it { is_expected.to contain_service("#{platform_params[:zaqar_service_name]}@1").with(
-          :ensure => 'running',
-          :enable => true
-      )}
-      it { is_expected.to contain_file('/etc/zaqar/1.conf') }
+      context 'with the name not allowed' do
+        let :title do
+          'zaqar'
+        end
 
+        it { is_expected.to raise_error(Puppet::Error) }
+      end
     end
   end
 

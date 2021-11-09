@@ -1,0 +1,5 @@
+---
+features:
+  - |
+    The new ``zaqar::management::redis`` class has been added. This class can
+    be used to manage parameters to use the redis management store driver.

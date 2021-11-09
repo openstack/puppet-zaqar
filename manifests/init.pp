@@ -110,10 +110,10 @@ class zaqar(
     'DEFAULT/admin_mode':               value  => $admin_mode;
     'DEFAULT/unreliable':               value  => $unreliable;
     'DEFAULT/pooling':                  value  => $pooling;
-    'storage/queue_pipeline':           value  => $queue_pipeline;
-    'storage/message_pipeline':         value  => $message_pipeline;
-    'storage/claim_pipeline':           value  => $claim_pipeline;
-    'storage/subscription_pipeline':    value  => $subscription_pipeline;
+    'storage/queue_pipeline':           value  => join(any2array($queue_pipeline), ',');
+    'storage/message_pipeline':         value  => join(any2array($message_pipeline), ',');
+    'storage/claim_pipeline':           value  => join(any2array($claim_pipeline), ',');
+    'storage/subscription_pipeline':    value  => join(any2array($subscription_pipeline), ',');
     'transport/max_messages_post_size': value  => $max_messages_post_size;
     'drivers/message_store':            value  => $message_store;
     'drivers/management_store':         value  => $management_store;

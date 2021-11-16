@@ -42,6 +42,11 @@
 #   driver's controller methods.
 #   Defaults to $::os_service_default.
 #
+# [*topic_pipeline*]
+#   Pipeline to use for processing topic operations. This pipeline will be
+#   consumed before calling the strage driver's controller methods.
+#   Defaults to $::os_service_default.
+#
 # [*max_messages_post_size*]
 #   Defines the maximum size of message posts. (integer value)
 #   Defaults to $::os_service_default.
@@ -80,6 +85,7 @@ class zaqar(
   $message_pipeline       = $::os_service_default,
   $claim_pipeline         = $::os_service_default,
   $subscription_pipeline  = $::os_service_default,
+  $topic_pipeline         = $::os_service_default,
   $max_messages_post_size = $::os_service_default,
   $message_store          = 'mongodb',
   $management_store       = 'mongodb',
@@ -114,6 +120,7 @@ class zaqar(
     'storage/message_pipeline':         value  => join(any2array($message_pipeline), ',');
     'storage/claim_pipeline':           value  => join(any2array($claim_pipeline), ',');
     'storage/subscription_pipeline':    value  => join(any2array($subscription_pipeline), ',');
+    'storage/topic_pipeline':           value  => join(any2array($topic_pipeline), ',');
     'transport/max_messages_post_size': value  => $max_messages_post_size;
     'drivers/message_store':            value  => $message_store;
     'drivers/management_store':         value  => $management_store;

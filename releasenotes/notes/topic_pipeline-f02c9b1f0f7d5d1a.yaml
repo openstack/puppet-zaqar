@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    The new ``zaqar::topic_pipeline`` parameter has been added.

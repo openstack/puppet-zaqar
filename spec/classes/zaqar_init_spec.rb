@@ -34,6 +34,11 @@ describe 'zaqar' do
         is_expected.to contain_zaqar_config('DEFAULT/auth_strategy').with(
          :value => 'keystone'
         )
+        is_expected.to contain_zaqar_config('storage/queue_pipeline').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('storage/message_pipeline').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('storage/claim_pipeline').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('storage/subscription_pipeline').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('storage/topic_pipeline').with_value('<SERVICE DEFAULT>')
       end
 
     end
@@ -48,6 +53,7 @@ describe 'zaqar' do
           :message_pipeline               => 'zaqar_pipeline2',
           :claim_pipeline                 => 'zaqar_pipeline3',
           :subscription_pipeline          => 'zaqar_pipeline4',
+          :topic_pipeline                 => 'zaqar_pipeline5',
           :max_messages_post_size         => '1234',
           :message_store                  => 'swift',
           :management_store               => 'sqlalchemy',
@@ -62,6 +68,7 @@ describe 'zaqar' do
         is_expected.to contain_zaqar_config('storage/message_pipeline').with_value('zaqar_pipeline2')
         is_expected.to contain_zaqar_config('storage/claim_pipeline').with_value('zaqar_pipeline3')
         is_expected.to contain_zaqar_config('storage/subscription_pipeline').with_value('zaqar_pipeline4')
+        is_expected.to contain_zaqar_config('storage/topic_pipeline').with_value('zaqar_pipeline5')
         is_expected.to contain_zaqar_config('transport/max_messages_post_size').with_value('1234')
         is_expected.to contain_zaqar_config('drivers/message_store').with_value('swift')
         is_expected.to contain_zaqar_config('drivers/management_store').with_value('sqlalchemy')

@@ -6,18 +6,18 @@ describe 'zaqar::keystone::trust' do
     describe 'with custom values' do
       let :params do
         {
-          :username  => 'user',
-          :password  => 'secret',
-          :auth_url  => 'http://there',
-          :user_domain_name  => 'domain',
-          :auth_section  => 'keystone',
-          :auth_type  => 'token',
+          :username         => 'user',
+          :password         => 'secret',
+          :auth_url         => 'http://there',
+          :user_domain_name => 'domain',
+          :auth_section     => 'keystone',
+          :auth_type        => 'token',
         }
       end
 
       it 'configures custom values' do
         is_expected.to contain_zaqar_config('trustee/username').with_value('user')
-        is_expected.to contain_zaqar_config('trustee/password').with_value('secret')
+        is_expected.to contain_zaqar_config('trustee/password').with_value('secret').with_secret(true)
         is_expected.to contain_zaqar_config('trustee/auth_url').with_value('http://there')
         is_expected.to contain_zaqar_config('trustee/user_domain_name').with_value('domain')
         is_expected.to contain_zaqar_config('trustee/auth_section').with_value('keystone')

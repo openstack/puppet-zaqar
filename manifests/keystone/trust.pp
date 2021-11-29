@@ -40,12 +40,12 @@ class zaqar::keystone::trust(
   include zaqar::deps
 
   zaqar_config {
-    'trustee/username': value => $username;
-    'trustee/password': value => $password;
+    'trustee/username':         value => $username;
+    'trustee/password':         value => $password, secret =>true;
     'trustee/user_domain_name': value => $user_domain_name;
-    'trustee/auth_url': value => $auth_url;
-    'trustee/auth_section': value => $auth_section;
-    'trustee/auth_type': value => $auth_type;
+    'trustee/auth_url':         value => $auth_url;
+    'trustee/auth_section':     value => $auth_section;
+    'trustee/auth_type':        value => $auth_type;
   }
 
 }

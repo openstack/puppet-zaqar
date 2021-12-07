@@ -24,6 +24,10 @@ class zaqar::deps {
   ~> Service<| tag == 'zaqar-service' |>
   ~> anchor { 'zaqar::service::end': }
 
+  # all cache settings should be applied and all packages should be installed
+  # before service startup
+  Oslo::Cache<||> -> Anchor['zaqar::service::begin']
+
   # all db settings should be applied and all packages should be installed
   # before dbsync starts
   Oslo::Db<||> -> Anchor['zaqar::dbsync::begin']

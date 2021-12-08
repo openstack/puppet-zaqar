@@ -51,7 +51,6 @@ class zaqar::server(
     }
 
   } elsif $service_name == 'httpd' {
-    include apache::params
     service { $::zaqar::params::service_name:
       ensure => 'stopped',
       name   => $::zaqar::params::service_name,

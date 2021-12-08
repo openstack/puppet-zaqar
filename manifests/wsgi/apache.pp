@@ -126,11 +126,6 @@ class zaqar::wsgi::apache (
 
   include zaqar::deps
   include zaqar::params
-  include apache
-  include apache::mod::wsgi
-  if $ssl_real {
-    include apache::mod::ssl
-  }
 
   ::openstacklib::wsgi::apache { 'zaqar_wsgi':
     bind_host                   => $bind_host,

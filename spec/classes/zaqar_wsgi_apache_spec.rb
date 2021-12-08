@@ -5,9 +5,6 @@ describe 'zaqar::wsgi::apache' do
   shared_examples_for 'apache serving zaqar with mod_wsgi' do
     context 'with default parameters' do
       it { is_expected.to contain_class('zaqar::params') }
-      it { is_expected.to contain_class('apache') }
-      it { is_expected.to contain_class('apache::mod::wsgi') }
-      it { is_expected.to contain_class('apache::mod::ssl') }
       it { is_expected.to contain_openstacklib__wsgi__apache('zaqar_wsgi').with(
         :bind_port                   => 8888,
         :group                       => 'zaqar',
@@ -46,9 +43,6 @@ describe 'zaqar::wsgi::apache' do
         }
       end
       it { is_expected.to contain_class('zaqar::params') }
-      it { is_expected.to contain_class('apache') }
-      it { is_expected.to contain_class('apache::mod::wsgi') }
-      it { is_expected.to_not contain_class('apache::mod::ssl') }
       it { is_expected.to contain_openstacklib__wsgi__apache('zaqar_wsgi').with(
         :bind_host                   => '10.42.51.1',
         :bind_port                   => 12345,

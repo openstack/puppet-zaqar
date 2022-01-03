@@ -12,17 +12,13 @@ describe 'zaqar::keystone::auth_websocket' do
       end
 
       it { is_expected.to contain_keystone__resource__service_identity('zaqar-websocket').with(
-        :configure_user      => true,
-        :configure_user_role => true,
+        :configure_user      => false,
+        :configure_user_role => false,
         :configure_endpoint  => true,
         :service_name        => 'zaqar-websocket',
         :service_type        => 'messaging-websocket',
         :service_description => 'OpenStack Messaging Websocket Service',
         :region              => 'RegionOne',
-        :auth_name           => 'zaqar-websocket',
-        :password            => 'zaqar-websocket_password',
-        :email               => 'zaqar-websocket@localhost',
-        :tenant              => 'services',
         :public_url          => 'ws://127.0.0.1:9000',
         :internal_url        => 'ws://127.0.0.1:9000',
         :admin_url           => 'ws://127.0.0.1:9000',
@@ -31,13 +27,7 @@ describe 'zaqar::keystone::auth_websocket' do
 
     context 'when overriding parameters' do
       let :params do
-        { :password            => 'zaqar-websocket_password',
-          :auth_name           => 'alt_zaqar-websocket',
-          :email               => 'alt_zaqar-websocket@alt_localhost',
-          :tenant              => 'alt_service',
-          :configure_endpoint  => false,
-          :configure_user      => false,
-          :configure_user_role => false,
+        { :configure_endpoint  => false,
           :service_description => 'Alternative OpenStack Messaging Websocket Service',
           :service_name        => 'alt_service',
           :service_type        => 'alt_messaging-websocket',
@@ -55,10 +45,6 @@ describe 'zaqar::keystone::auth_websocket' do
         :service_type        => 'alt_messaging-websocket',
         :service_description => 'Alternative OpenStack Messaging Websocket Service',
         :region              => 'RegionTwo',
-        :auth_name           => 'alt_zaqar-websocket',
-        :password            => 'zaqar-websocket_password',
-        :email               => 'alt_zaqar-websocket@alt_localhost',
-        :tenant              => 'alt_service',
         :public_url          => 'wss://10.10.10.10:80',
         :internal_url        => 'ws://10.10.10.11:81',
         :admin_url           => 'ws://10.10.10.12:81',

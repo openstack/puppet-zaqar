@@ -1,0 +1,18 @@
+---
+upgrade:
+  - |
+    The ``zaqar::keystone::auth_websocket`` class no longer creates
+    the ``zaqar-websocket`` service user because it has been unused.
+    The service user should be deleted manually during upgrade.
+
+deprecations:
+  - |
+    The following parameters of the ``zaqar::keystone::auth_websocket`` class
+    have been deprecated and have no effect now.
+
+    - ``configure_user``
+    - ``configure_user_role``
+    - ``auth_name``
+    - ``password``
+    - ``email``
+    - ``tenant``

@@ -4,62 +4,65 @@
 #
 # === Parameters
 #
-# [*password*]
-#   (required) Password for zaqar websocket user.
-#
-# [*auth_name*]
-#   Username for zaqar service. Defaults to 'zaqar-websocket'.
-#
-# [*email*]
-#   Email for zaqar websocket user. Defaults to 'zaqar-websocket@localhost'.
-#
-# [*tenant*]
-#   Tenant for zaqar websocket user. Defaults to 'services'.
-#
 # [*configure_endpoint*]
-#   Should zaqar websocket endpoint be configured? Defaults to 'true'.
-#
-# [*configure_user*]
-#   (Optional) Should the service user be configured?
+#   (Optional) Should zaqar websocket endpoint be configured?
 #   Defaults to 'true'.
 #
 # [*service_type*]
-#   Type of service. Defaults to 'messaging'.
+#   (Optional) Type of service.
+#   Defaults to 'messaging-websocket'.
 #
 # [*public_url*]
-#   (optional) The endpoint's public url.
-#   (Defaults to 'ws://127.0.0.1:9000')
+#   (Optional) The endpoint's public url.
+#   Defaults to 'ws://127.0.0.1:9000'
 #
 # [*internal_url*]
-#   (optional) The endpoint's internal url.
-#   (Defaults to 'ws://127.0.0.1:9000')
+#   (Optional) The endpoint's internal url.
+#   Defaults to 'ws://127.0.0.1:9000'
 #
 # [*admin_url*]
-#   (optional) The endpoint's admin url.
-#   (Defaults to 'ws://127.0.0.1:9000')
+#   (Optional) The endpoint's admin url.
+#   Defaults to 'ws://127.0.0.1:9000'
 #
 # [*region*]
-#   Region for endpoint. Defaults to 'RegionOne'.
+#   (Optional) Region for endpoint.
+#   Defaults to 'RegionOne'.
 #
 # [*service_name*]
-#   (optional) Name of the service.
+#   (Optional) Name of the service.
 #   Defaults to 'zaqar-websocket'
 #
 # [*configure_service*]
-#   Should zaqar websocket service be configured? Defaults to 'true'.
+#   (Optional) Should zaqar websocket service be configured?
+#   Defaults to 'true'.
 #
 # [*service_description*]
-#   (optional) Description for keystone service.
+#   (Optional) Description for keystone service.
 #   Defaults to 'OpenStack Messaging Websocket Service'.
-
+#
+# DEPRECATED PARAMETERS
+#
+# [*password*]
+#   (Optional) Password for zaqar websocket user. Defaults to undef.
+#
+# [*auth_name*]
+#   (Optional) Username for zaqar service. Defaults to undef.
+#
+# [*email*]
+#   (Optional) Email for zaqar websocket user. Defaults to undef.
+#
+# [*tenant*]
+#   (Optional) Tenant for zaqar websocket user. Defaults to undef.
+#
+# [*configure_user*]
+#   (Optional) Should the service user be configured?
+#   Defaults to undef
+#
 # [*configure_user_role*]
-#   (optional) Whether to configure the admin role for the service user.
-#   Defaults to true
+#   (Optional) Whether to configure the admin role for the service user.
+#   Defaults to undef
 #
 class zaqar::keystone::auth_websocket(
-  $password,
-  $email                  = 'zaqar-websocket@localhost',
-  $auth_name              = 'zaqar-websocket',
   $service_name           = 'zaqar-websocket',
   $service_type           = 'messaging-websocket',
   $public_url             = 'ws://127.0.0.1:9000',
@@ -69,27 +72,39 @@ class zaqar::keystone::auth_websocket(
   $tenant                 = 'services',
   $configure_endpoint     = true,
   $configure_service      = true,
-  $configure_user         = true,
-  $configure_user_role    = true,
   $service_description    = 'OpenStack Messaging Websocket Service',
+  # DEPRECATED PARAMETERS
+  $auth_name              = undef,
+  $password               = undef,
+  $email                  = undef,
+  $configure_user         = undef,
+  $configure_user_role    = undef,
 ) {
 
   include zaqar::deps
 
   validate_legacy(String, 'validate_string', $password)
 
+  [
+    'auth_name',
+    'password',
+    'email',
+    'configure_user',
+    'configure_user_role'
+  ].each |String $param| {
+    if getvar($param) != undef {
+      warning("The zaqar::keystone::auth_websocket::${param} parameter is deprecated and has no effect")
+    }
+  }
+
   keystone::resource::service_identity { 'zaqar-websocket':
-    configure_user      => $configure_user,
-    configure_user_role => $configure_user_role,
+    configure_user      => false,
+    configure_user_role => false,
     configure_endpoint  => $configure_endpoint,
     service_type        => $service_type,
     service_description => $service_description,
     service_name        => $service_name,
-    auth_name           => $auth_name,
     region              => $region,
-    password            => $password,
-    email               => $email,
-    tenant              => $tenant,
     public_url          => $public_url,
     admin_url           => $admin_url,
     internal_url        => $internal_url,

@@ -23,6 +23,9 @@ describe 'zaqar::keystone::auth' do
         :password            => 'zaqar_password',
         :email               => 'zaqar@localhost',
         :tenant              => 'services',
+        :roles               => ['admin'],
+        :system_scope        => 'all',
+        :system_roles        => [],
         :public_url          => 'http://127.0.0.1:8888',
         :internal_url        => 'http://127.0.0.1:8888',
         :admin_url           => 'http://127.0.0.1:8888',
@@ -35,6 +38,9 @@ describe 'zaqar::keystone::auth' do
           :auth_name           => 'alt_zaqar',
           :email               => 'alt_zaqar@alt_localhost',
           :tenant              => 'alt_service',
+          :roles               => ['admin', 'service'],
+          :system_scope        => 'alt_all',
+          :system_roles        => ['admin', 'member', 'reader'],
           :configure_endpoint  => false,
           :configure_user      => false,
           :configure_user_role => false,
@@ -44,8 +50,7 @@ describe 'zaqar::keystone::auth' do
           :region              => 'RegionTwo',
           :public_url          => 'https://10.10.10.10:80',
           :internal_url        => 'http://10.10.10.11:81',
-          :admin_url           => 'http://10.10.10.12:81',
-          :roles               => ['admin', 'ResellerAdmin'] }
+          :admin_url           => 'http://10.10.10.12:81' }
       end
 
       it { is_expected.to contain_keystone__resource__service_identity('zaqar').with(
@@ -60,10 +65,12 @@ describe 'zaqar::keystone::auth' do
         :password            => 'zaqar_password',
         :email               => 'alt_zaqar@alt_localhost',
         :tenant              => 'alt_service',
+        :roles               => ['admin', 'service'],
+        :system_scope        => 'alt_all',
+        :system_roles        => ['admin', 'member', 'reader'],
         :public_url          => 'https://10.10.10.10:80',
         :internal_url        => 'http://10.10.10.11:81',
         :admin_url           => 'http://10.10.10.12:81',
-        :roles               => ['admin', 'ResellerAdmin'],
       ) }
     end
   end

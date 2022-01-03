@@ -19,6 +19,18 @@
 #   (Optional) Tenant for zaqar user.
 #   Defaults to 'services'.
 #
+# [*roles*]
+#   (Optional) List of roles assigned to neutron user.
+#   Defaults to ['admin']
+#
+# [*system_scope*]
+#   (Optional) Scope for system operations.
+#   Defaults to 'all'
+#
+# [*system_roles*]
+#   (Optional) List of system roles assigned to neutron user.
+#   Defaults to []
+#
 # [*configure_endpoint*]
 #   (Optional) Should zaqar endpoint be configured?
 #   Defaults to true.
@@ -63,10 +75,6 @@
 #   (Optional) Whether to configure the admin role for the service user.
 #   Defaults to true
 #
-# [*roles*]
-#   (Optional) Roles to give the service user.
-#   Defaults to undef
-#
 class zaqar::keystone::auth(
   $password,
   $email                  = 'zaqar@localhost',
@@ -78,12 +86,14 @@ class zaqar::keystone::auth(
   $internal_url           = 'http://127.0.0.1:8888',
   $region                 = 'RegionOne',
   $tenant                 = 'services',
+  $roles                  = ['admin'],
+  $system_scope           = 'all',
+  $system_roles           = [],
   $configure_endpoint     = true,
   $configure_service      = true,
   $configure_user         = true,
   $configure_user_role    = true,
   $service_description    = 'OpenStack Messaging Service',
-  $roles                  = undef,
 ) {
 
   include zaqar::deps
@@ -102,9 +112,11 @@ class zaqar::keystone::auth(
     password            => $password,
     email               => $email,
     tenant              => $tenant,
+    roles               => $roles,
+    system_scope        => $system_scope,
+    system_roles        => $system_roles,
     public_url          => $public_url,
     admin_url           => $admin_url,
     internal_url        => $internal_url,
-    roles               => $roles,
   }
 }

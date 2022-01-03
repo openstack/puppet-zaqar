@@ -1,0 +1,9 @@
+---
+features:
+  - |
+    The ``system_scope`` parameter has been added to
+    the ``zaqar::keystone::authtoken`` class.
+
+  - |
+    The ``zaqar::keystone::auth`` class now supports defining assignmet of
+    system-scoped roles to the zaqar service user.

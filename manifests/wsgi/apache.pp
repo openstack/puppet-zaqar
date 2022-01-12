@@ -127,6 +127,8 @@ class zaqar::wsgi::apache (
   include zaqar::deps
   include zaqar::params
 
+  Anchor['zaqar::install::end'] -> Class['apache']
+
   ::openstacklib::wsgi::apache { 'zaqar_wsgi':
     bind_host                   => $bind_host,
     bind_port                   => $port,
@@ -151,7 +153,6 @@ class zaqar::wsgi::apache (
     wsgi_script_dir             => $::zaqar::params::zaqar_wsgi_script_path,
     wsgi_script_file            => 'zaqar-server',
     wsgi_script_source          => $::zaqar::params::zaqar_wsgi_script_source,
-    require                     => Anchor['zaqar::install::end'],
     vhost_custom_fragment       => 'WSGICallableObject app',
     access_log_file             => $access_log_file,
     access_log_format           => $access_log_format,

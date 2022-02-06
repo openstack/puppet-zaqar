@@ -97,6 +97,8 @@ class zaqar::keystone::auth_websocket(
     }
   }
 
+  Keystone::Resource::Service_identity['zaqar-websocket'] -> Anchor['zaqar::service::end']
+
   keystone::resource::service_identity { 'zaqar-websocket':
     configure_user      => false,
     configure_user_role => false,

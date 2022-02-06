@@ -100,6 +100,8 @@ class zaqar::keystone::auth(
 
   validate_legacy(String, 'validate_string', $password)
 
+  Keystone::Resource::Service_identity['zaqar'] -> Anchor['zaqar::service::end']
+
   keystone::resource::service_identity { 'zaqar':
     configure_user      => $configure_user,
     configure_user_role => $configure_user_role,

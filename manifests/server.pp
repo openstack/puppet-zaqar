@@ -60,6 +60,7 @@ class zaqar::server(
 
     # we need to make sure zaqar-server is stopped before trying to start apache
     Service[$::zaqar::params::service_name] -> Service[$service_name]
+    Service <| title == 'httpd' |> { tag +> 'zaqar-service' }
   } else {
     fail("Invalid service_name. Either zaqar-server/openstack-zaqar for \
 running as a standalone service, or httpd for being run by a httpd server")

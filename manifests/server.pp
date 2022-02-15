@@ -31,39 +31,36 @@ class zaqar::server(
   include zaqar::params
   include zaqar::policy
 
-  if $enabled {
-    if $manage_service {
+  if $manage_service {
+    if $enabled {
       $ensure = 'running'
-    }
-  } else {
-    if $manage_service {
+    } else {
       $ensure = 'stopped'
     }
-  }
 
-  if $service_name == $::zaqar::params::service_name {
-    service { $::zaqar::params::service_name:
-      ensure    => $ensure,
-      name      => $::zaqar::params::service_name,
-      enable    => $enabled,
-      hasstatus => true,
-      tag       => 'zaqar-service',
-    }
+    if $service_name == $::zaqar::params::service_name {
+      service { $::zaqar::params::service_name:
+        ensure    => $ensure,
+        name      => $::zaqar::params::service_name,
+        enable    => $enabled,
+        hasstatus => true,
+        tag       => 'zaqar-service',
+      }
 
-  } elsif $service_name == 'httpd' {
-    service { $::zaqar::params::service_name:
-      ensure => 'stopped',
-      name   => $::zaqar::params::service_name,
-      enable => false,
-      tag    => ['zaqar-service'],
-    }
+    } elsif $service_name == 'httpd' {
+      service { $::zaqar::params::service_name:
+        ensure => 'stopped',
+        name   => $::zaqar::params::service_name,
+        enable => false,
+        tag    => ['zaqar-service'],
+      }
 
-    # we need to make sure zaqar-server is stopped before trying to start apache
-    Service[$::zaqar::params::service_name] -> Service[$service_name]
-    Service <| title == 'httpd' |> { tag +> 'zaqar-service' }
-  } else {
-    fail("Invalid service_name. Either zaqar-server/openstack-zaqar for \
+      # we need to make sure zaqar-server is stopped before trying to start apache
+      Service[$::zaqar::params::service_name] -> Service[$service_name]
+      Service <| title == 'httpd' |> { tag +> 'zaqar-service' }
+    } else {
+      fail("Invalid service_name. Either zaqar-server/openstack-zaqar for \
 running as a standalone service, or httpd for being run by a httpd server")
+    }
   }
-
 }

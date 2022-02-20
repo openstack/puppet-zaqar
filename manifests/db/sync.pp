@@ -12,11 +12,12 @@ class zaqar::db::sync(
 ) {
 
   include zaqar::deps
+  include zaqar::params
 
   exec { 'zaqar-db-sync':
     command     => 'zaqar-sql-db-manage upgrade head',
     path        => '/usr/bin',
-    user        => 'zaqar',
+    user        => $::zaqar::params::user,
     refreshonly => true,
     try_sleep   => 5,
     tries       => 10,

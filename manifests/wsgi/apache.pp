@@ -132,7 +132,7 @@ class zaqar::wsgi::apache (
   ::openstacklib::wsgi::apache { 'zaqar_wsgi':
     bind_host                   => $bind_host,
     bind_port                   => $port,
-    group                       => 'zaqar',
+    group                       => $::zaqar::params::group,
     path                        => $path,
     priority                    => $priority,
     servername                  => $servername,
@@ -145,7 +145,7 @@ class zaqar::wsgi::apache (
     ssl_crl_path                => $ssl_crl_path,
     ssl_key                     => $ssl_key,
     threads                     => $threads,
-    user                        => 'zaqar',
+    user                        => $::zaqar::params::user,
     workers                     => $workers,
     wsgi_daemon_process         => 'zaqar-server',
     wsgi_process_display_name   => $wsgi_process_display_name,

@@ -8,6 +8,7 @@ class zaqar::params {
   $pyver3 = $::openstacklib::defaults::pyver3
 
   $client_package_name = 'python3-zaqarclient'
+  $user                = 'zaqar'
   $group               = 'zaqar'
 
   case $::osfamily {

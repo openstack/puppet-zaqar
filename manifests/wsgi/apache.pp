@@ -38,7 +38,7 @@
 #
 #   [*ssl*]
 #     Use ssl ? (boolean)
-#     Optional. Defaults to true
+#     Optional. Defaults to false
 #
 #   [*workers*]
 #     Number of WSGI workers to spawn.
@@ -101,7 +101,7 @@ class zaqar::wsgi::apache (
   $port                        = 8888,
   $bind_host                   = undef,
   $path                        = '/',
-  $ssl                         = undef,
+  $ssl                         = false,
   $workers                     = $::os_workers,
   $ssl_cert                    = undef,
   $ssl_key                     = undef,
@@ -119,11 +119,6 @@ class zaqar::wsgi::apache (
   $custom_wsgi_process_options = {},
 ) {
 
-  if $ssl == undef {
-    warning('Default of the ssl parameter will be changed in a future release')
-  }
-  $ssl_real = pick($ssl, true)
-
   include zaqar::deps
   include zaqar::params
 
@@ -136,7 +131,7 @@ class zaqar::wsgi::apache (
     path                        => $path,
     priority                    => $priority,
     servername                  => $servername,
-    ssl                         => $ssl_real,
+    ssl                         => $ssl,
     ssl_ca                      => $ssl_ca,
     ssl_cert                    => $ssl_cert,
     ssl_certs_dir               => $ssl_certs_dir,

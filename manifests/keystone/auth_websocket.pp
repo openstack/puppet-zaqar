@@ -69,7 +69,6 @@ class zaqar::keystone::auth_websocket(
   $admin_url              = 'ws://127.0.0.1:9000',
   $internal_url           = 'ws://127.0.0.1:9000',
   $region                 = 'RegionOne',
-  $tenant                 = 'services',
   $configure_endpoint     = true,
   $configure_service      = true,
   $service_description    = 'OpenStack Messaging Websocket Service',
@@ -77,18 +76,18 @@ class zaqar::keystone::auth_websocket(
   $auth_name              = undef,
   $password               = undef,
   $email                  = undef,
+  $tenant                 = undef,
   $configure_user         = undef,
   $configure_user_role    = undef,
 ) {
 
   include zaqar::deps
 
-  validate_legacy(String, 'validate_string', $password)
-
   [
     'auth_name',
     'password',
     'email',
+    'tenant',
     'configure_user',
     'configure_user_role'
   ].each |String $param| {

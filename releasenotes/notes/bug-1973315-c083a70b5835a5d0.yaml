@@ -1,0 +1,5 @@
+---
+fixes:
+  - |
+    Validation of the deprecated ``zaqar::keystone::auth_websocket::password``
+    parameter has been removed and the parameter is no longer required.

@@ -8,7 +8,7 @@ describe 'zaqar::keystone::auth_websocket' do
   shared_examples_for 'zaqar::keystone::auth_websocket' do
     context 'with default class parameters' do
       let :params do
-        { :password => 'zaqar-websocket_password' }
+        {}
       end
 
       it { is_expected.to contain_keystone__resource__service_identity('zaqar-websocket').with(

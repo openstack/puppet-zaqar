@@ -40,61 +40,19 @@
 #   (Optional) Description for keystone service.
 #   Defaults to 'OpenStack Messaging Websocket Service'.
 #
-# DEPRECATED PARAMETERS
-#
-# [*password*]
-#   (Optional) Password for zaqar websocket user. Defaults to undef.
-#
-# [*auth_name*]
-#   (Optional) Username for zaqar service. Defaults to undef.
-#
-# [*email*]
-#   (Optional) Email for zaqar websocket user. Defaults to undef.
-#
-# [*tenant*]
-#   (Optional) Tenant for zaqar websocket user. Defaults to undef.
-#
-# [*configure_user*]
-#   (Optional) Should the service user be configured?
-#   Defaults to undef
-#
-# [*configure_user_role*]
-#   (Optional) Whether to configure the admin role for the service user.
-#   Defaults to undef
-#
 class zaqar::keystone::auth_websocket(
-  $service_name           = 'zaqar-websocket',
-  $service_type           = 'messaging-websocket',
-  $public_url             = 'ws://127.0.0.1:9000',
-  $admin_url              = 'ws://127.0.0.1:9000',
-  $internal_url           = 'ws://127.0.0.1:9000',
-  $region                 = 'RegionOne',
-  $configure_endpoint     = true,
-  $configure_service      = true,
-  $service_description    = 'OpenStack Messaging Websocket Service',
-  # DEPRECATED PARAMETERS
-  $auth_name              = undef,
-  $password               = undef,
-  $email                  = undef,
-  $tenant                 = undef,
-  $configure_user         = undef,
-  $configure_user_role    = undef,
+  $service_name        = 'zaqar-websocket',
+  $service_type        = 'messaging-websocket',
+  $public_url          = 'ws://127.0.0.1:9000',
+  $admin_url           = 'ws://127.0.0.1:9000',
+  $internal_url        = 'ws://127.0.0.1:9000',
+  $region              = 'RegionOne',
+  $configure_endpoint  = true,
+  $configure_service   = true,
+  $service_description = 'OpenStack Messaging Websocket Service',
 ) {
 
   include zaqar::deps
-
-  [
-    'auth_name',
-    'password',
-    'email',
-    'tenant',
-    'configure_user',
-    'configure_user_role'
-  ].each |String $param| {
-    if getvar($param) != undef {
-      warning("The zaqar::keystone::auth_websocket::${param} parameter is deprecated and has no effect")
-    }
-  }
 
   Keystone::Resource::Service_identity['zaqar-websocket'] -> Anchor['zaqar::service::end']
 

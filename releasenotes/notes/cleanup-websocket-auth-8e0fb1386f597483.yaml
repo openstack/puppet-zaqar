@@ -1,0 +1,12 @@
+---
+upgrade:
+  - |
+    The following parameters of the ``zaqar::keystone::auth_websocket`` class
+    have been removed.
+
+    - ``configure_user``
+    - ``configure_user_role``
+    - ``auth_name``
+    - ``password``
+    - ``email``
+    - ``tenant``

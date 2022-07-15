@@ -32,7 +32,7 @@ describe 'Puppet::Type.type(:zaqar_config)' do
     expect(@zaqar_config[:value]).to eq(['bar'])
   end
 
-  it 'should not accept a value with whitespace' do
+  it 'should accept a value with whitespace' do
     @zaqar_config[:value] = 'b ar'
     expect(@zaqar_config[:value]).to eq(['b ar'])
   end

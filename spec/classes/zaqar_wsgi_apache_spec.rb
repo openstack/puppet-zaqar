@@ -9,6 +9,7 @@ describe 'zaqar::wsgi::apache' do
         :bind_port                   => 8888,
         :group                       => 'zaqar',
         :path                        => '/',
+        :priority                    => 10,
         :servername                  => facts[:fqdn],
         :ssl                         => false,
         :threads                     => 1,
@@ -19,8 +20,8 @@ describe 'zaqar::wsgi::apache' do
         :wsgi_script_dir             => platform_params[:wsgi_script_path],
         :wsgi_script_file            => 'zaqar-server',
         :wsgi_script_source          => platform_params[:wsgi_script_source],
-        :access_log_file             => false,
-        :access_log_format           => false,
+        :access_log_file             => nil,
+        :access_log_format           => nil,
         :custom_wsgi_process_options => {},
       )}
     end

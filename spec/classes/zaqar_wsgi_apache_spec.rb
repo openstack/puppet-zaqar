@@ -90,23 +90,17 @@ describe 'zaqar::wsgi::apache' do
         case facts[:osfamily]
         when 'Debian'
           {
-            :httpd_service_name => 'apache2',
-            :httpd_ports_file   => '/etc/apache2/ports.conf',
             :wsgi_script_path   => '/usr/lib/cgi-bin/zaqar',
             :wsgi_script_source => '/usr/lib/python3/dist-packages/zaqar/transport/wsgi/app.py'
           }
         when 'RedHat'
           if facts[:operatingsystemmajrelease].to_i > 8
             {
-              :httpd_service_name => 'httpd',
-              :httpd_ports_file   => '/etc/httpd/conf/ports.conf',
               :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
               :wsgi_script_source => '/usr/lib/python3.9/site-packages/zaqar/transport/wsgi/app.py'
             }
           else
             {
-              :httpd_service_name => 'httpd',
-              :httpd_ports_file   => '/etc/httpd/conf/ports.conf',
               :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
               :wsgi_script_source => '/usr/lib/python3.6/site-packages/zaqar/transport/wsgi/app.py'
             }

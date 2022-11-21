@@ -157,17 +157,10 @@ describe 'zaqar::wsgi::apache' do
             :wsgi_script_source => '/usr/lib/python3/dist-packages/zaqar/transport/wsgi/app.py'
           }
         when 'RedHat'
-          if facts[:operatingsystemmajrelease].to_i > 8
-            {
-              :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
-              :wsgi_script_source => '/usr/lib/python3.9/site-packages/zaqar/transport/wsgi/app.py'
-            }
-          else
-            {
-              :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
-              :wsgi_script_source => '/usr/lib/python3.6/site-packages/zaqar/transport/wsgi/app.py'
-            }
-          end
+          {
+            :wsgi_script_path   => '/var/www/cgi-bin/zaqar',
+            :wsgi_script_source => '/usr/lib/python3.9/site-packages/zaqar/transport/wsgi/app.py'
+          }
         end
       end
 

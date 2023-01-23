@@ -9,6 +9,7 @@ describe 'zaqar::policy' do
           :enforce_scope        => false,
           :enforce_new_defaults => false,
           :policy_path          => '/etc/zaqar/policy.yaml',
+          :policy_default_rule  => 'default',
           :policy_dirs          => '/etc/zaqar/policy.d',
           :policies             => {
             'context_is_admin' => {
@@ -37,6 +38,7 @@ describe 'zaqar::policy' do
           :enforce_scope        => false,
           :enforce_new_defaults => false,
           :policy_file          => '/etc/zaqar/policy.yaml',
+          :policy_default_rule  => 'default',
           :policy_dirs          => '/etc/zaqar/policy.d',
         )
       end

@@ -85,7 +85,7 @@ describe 'zaqar' do
       end
 
       let(:platform_params) do
-        case facts[:osfamily]
+        case facts[:os]['family']
         when 'Debian'
           { :zaqar_common_package => 'zaqar-server' }
         when 'RedHat'

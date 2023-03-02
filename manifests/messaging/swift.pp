@@ -4,11 +4,11 @@
 #   Swift Connection URI. Required.
 #
 # [*auth_url*]
-#   URL to the KeyStone service. Default $::os_service_default
+#   URL to the KeyStone service. Default $facts['os_service_default']
 #
 class zaqar::messaging::swift(
   $uri,
-  $auth_url = $::os_service_default,
+  $auth_url = $facts['os_service_default'],
 ) {
 
   include zaqar::deps

@@ -22,42 +22,42 @@
 #   Pipeline to use for processing queue operations.
 #   This pipeline will be consumed before calling the storage driver's
 #   controller methods.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*message_pipeline*]
 #   Pipeline to use for processing message operations.
 #   This pipeline will be consumed before calling the storage driver's
 #   controller methods.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*claim_pipeline*]
 #   Pipeline to use for processing claim operations. This
 #   pipeline will be consumed before calling the storage driver's controller
 #   methods.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*subscription_pipeline*]
 #   Pipeline to use for processing subscription
 #   operations. This pipeline will be consumed before calling the storage
 #   driver's controller methods.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*topic_pipeline*]
 #   Pipeline to use for processing topic operations. This pipeline will be
 #   consumed before calling the strage driver's controller methods.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*max_messages_post_size*]
 #   Defines the maximum size of message posts. (integer value)
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*message_store*]
 #   Backend driver for message storage.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*management_store*]
 #   Backend driver for management storage.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*unreliable*]
 #   Disable all reliability constraints. (boolean value)
@@ -78,15 +78,15 @@
 #
 class zaqar(
   $auth_strategy          = 'keystone',
-  $admin_mode             = $::os_service_default,
-  $unreliable             = $::os_service_default,
-  $pooling                = $::os_service_default,
-  $queue_pipeline         = $::os_service_default,
-  $message_pipeline       = $::os_service_default,
-  $claim_pipeline         = $::os_service_default,
-  $subscription_pipeline  = $::os_service_default,
-  $topic_pipeline         = $::os_service_default,
-  $max_messages_post_size = $::os_service_default,
+  $admin_mode             = $facts['os_service_default'],
+  $unreliable             = $facts['os_service_default'],
+  $pooling                = $facts['os_service_default'],
+  $queue_pipeline         = $facts['os_service_default'],
+  $message_pipeline       = $facts['os_service_default'],
+  $claim_pipeline         = $facts['os_service_default'],
+  $subscription_pipeline  = $facts['os_service_default'],
+  $topic_pipeline         = $facts['os_service_default'],
+  $max_messages_post_size = $facts['os_service_default'],
   $message_store          = 'mongodb',
   $management_store       = 'mongodb',
   $package_name           = $::zaqar::params::package_name,

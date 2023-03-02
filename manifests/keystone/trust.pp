@@ -10,7 +10,7 @@
 #
 # [*password*]
 #   (Optional) Password to create for the trust user
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*auth_url*]
 #   (Optional) The URL to use for authentication.
@@ -22,7 +22,7 @@
 #
 # [*auth_section*]
 #   (Optional) Config Section from which to load plugin specific options
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*auth_type*]
 #   (Optional) Authentication type to load
@@ -30,10 +30,10 @@
 #
 class zaqar::keystone::trust(
   $username                       = 'zaqar',
-  $password                       = $::os_service_default,
+  $password                       = $facts['os_service_default'],
   $auth_url                       = 'http://localhost:5000',
   $user_domain_name               = 'Default',
-  $auth_section                   = $::os_service_default,
+  $auth_section                   = $facts['os_service_default'],
   $auth_type                      = 'password',
 ) {
 

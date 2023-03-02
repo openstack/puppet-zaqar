@@ -6,17 +6,17 @@
 # [*max_reconnect_attempts*]
 #   Maximum number of times to retry an operation that failed due to a redis
 #   node failover.
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 # [*reconnect_sleep*]
 #   Base sleep interval between attempts to reconnect after a redis node
 #   failover.
-#   Defaults to $::os_service_default
+#   Defaults to $facts['os_service_default']
 #
 class zaqar::management::redis(
   $uri,
-  $max_reconnect_attempts = $::os_service_default,
-  $reconnect_sleep        = $::os_service_default,
+  $max_reconnect_attempts = $facts['os_service_default'],
+  $reconnect_sleep        = $facts['os_service_default'],
 ) {
 
   include zaqar::deps

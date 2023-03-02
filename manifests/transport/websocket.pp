@@ -2,30 +2,30 @@
 #
 # [*bind*]
 #   Address on which the self-hosting server will listen.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*port*]
 #   Port on which the self-hosting server will listen.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*external_port*]
 #   Port on which the service is provided to the user.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*notification_bind*]
 #   Address on which the notification server will listen.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*notification_port*]
 #   Port on which the notification server will listen.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 class zaqar::transport::websocket(
-  $bind               = $::os_service_default,
-  $port               = $::os_service_default,
-  $external_port      = $::os_service_default,
-  $notification_bind  = $::os_service_default,
-  $notification_port  = $::os_service_default,
+  $bind               = $facts['os_service_default'],
+  $port               = $facts['os_service_default'],
+  $external_port      = $facts['os_service_default'],
+  $notification_bind  = $facts['os_service_default'],
+  $notification_port  = $facts['os_service_default'],
 ) {
 
   include zaqar::deps

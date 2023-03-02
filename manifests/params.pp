@@ -11,7 +11,7 @@ class zaqar::params {
   $user                = 'zaqar'
   $group               = 'zaqar'
 
-  case $::osfamily {
+  case $facts['os']['family'] {
     'RedHat': {
       $package_name             = 'openstack-zaqar'
       $service_name             = 'openstack-zaqar'
@@ -25,9 +25,7 @@ class zaqar::params {
       $zaqar_wsgi_script_path   = '/usr/lib/cgi-bin/zaqar'
     }
     default: {
-      fail("Unsupported osfamily: ${::osfamily} operatingsystem: \
-      ${::operatingsystem}, module ${module_name} only support osfamily \
-      RedHat and Debian")
+      fail("Unsupported osfamily: ${facts['os']['family']}")
     }
   }
 }

@@ -2,15 +2,15 @@
 #
 # [*bind*]
 #   Address on which the self-hosting server will listen.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 # [*port*]
 #   Port on which the self-hosting server will listen.
-#   Defaults to $::os_service_default.
+#   Defaults to $facts['os_service_default'].
 #
 class zaqar::transport::wsgi(
-  $bind = $::os_service_default,
-  $port = $::os_service_default,
+  $bind = $facts['os_service_default'],
+  $port = $facts['os_service_default'],
 ) {
 
   include zaqar::deps

@@ -24,6 +24,8 @@ define zaqar::server_instance(
   include zaqar::deps
   include zaqar::params
 
+  validate_legacy(Boolean, 'validate_bool', $enabled)
+
   if $enabled {
     $service_ensure = 'running'
   } else {

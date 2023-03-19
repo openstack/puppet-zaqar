@@ -31,6 +31,9 @@ class zaqar::server(
   include zaqar::params
   include zaqar::policy
 
+  validate_legacy(Boolean, 'validate_bool', $manage_service)
+  validate_legacy(Boolean, 'validate_bool', $enabled)
+
   if $manage_service {
     if $enabled {
       $ensure = 'running'

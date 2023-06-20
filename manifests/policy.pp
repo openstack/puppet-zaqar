@@ -48,7 +48,7 @@
 class zaqar::policy (
   $enforce_scope        = $facts['os_service_default'],
   $enforce_new_defaults = $facts['os_service_default'],
-  $policies             = {},
+  Hash $policies        = {},
   $policy_path          = '/etc/zaqar/policy.yaml',
   $policy_default_rule  = $facts['os_service_default'],
   $policy_dirs          = $facts['os_service_default'],
@@ -57,8 +57,6 @@ class zaqar::policy (
 
   include zaqar::deps
   include zaqar::params
-
-  validate_legacy(Hash, 'validate_hash', $policies)
 
   $policy_parameters = {
     policies     => $policies,

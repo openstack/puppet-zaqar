@@ -13,7 +13,7 @@
 #
 define zaqar::server_instance(
   $transport,
-  $enabled = true,
+  Boolean $enabled = true,
 ) {
 
   if $name == 'zaqar' {
@@ -23,8 +23,6 @@ define zaqar::server_instance(
   include zaqar
   include zaqar::deps
   include zaqar::params
-
-  validate_legacy(Boolean, 'validate_bool', $enabled)
 
   if $enabled {
     $service_ensure = 'running'

@@ -21,12 +21,10 @@
 #   or Puppet catalog compilation will fail with duplicate resources.
 #
 class zaqar::config (
-  $zaqar_config = {},
+  Hash $zaqar_config = {},
 ) {
 
   include zaqar::deps
-
-  validate_legacy(Hash, 'validate_hash', $zaqar_config)
 
   create_resources('zaqar_config', $zaqar_config)
 }

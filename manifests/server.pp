@@ -21,18 +21,15 @@
 
 #
 class zaqar::server(
-  $manage_service = true,
-  $enabled        = true,
-  $service_name   = $::zaqar::params::service_name,
+  Boolean $manage_service = true,
+  Boolean $enabled        = true,
+  $service_name           = $::zaqar::params::service_name,
 ) inherits zaqar::params {
 
   include zaqar
   include zaqar::deps
   include zaqar::params
   include zaqar::policy
-
-  validate_legacy(Boolean, 'validate_bool', $manage_service)
-  validate_legacy(Boolean, 'validate_bool', $enabled)
 
   if $manage_service {
     if $enabled {

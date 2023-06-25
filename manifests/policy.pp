@@ -65,6 +65,7 @@ class zaqar::policy (
     file_group   => $::zaqar::params::group,
     file_format  => 'yaml',
     purge_config => $purge_config,
+    tag          => 'zaqar',
   }
 
   create_resources('openstacklib::policy', { $policy_path => $policy_parameters })

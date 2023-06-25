@@ -32,6 +32,7 @@ describe 'zaqar::policy' do
           :file_group   => 'zaqar',
           :file_format  => 'yaml',
           :purge_config => false,
+          :tag          => 'zaqar',
         )
         is_expected.to contain_oslo__policy('zaqar_config').with(
           :enforce_scope        => false,
@@ -61,6 +62,7 @@ describe 'zaqar::policy' do
           :file_group   => 'zaqar',
           :file_format  => 'yaml',
           :purge_config => true,
+          :tag          => 'zaqar',
         )
         is_expected.to contain_oslo__policy('zaqar_config').with(
           :enforce_scope        => false,

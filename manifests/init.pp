@@ -91,7 +91,7 @@ class zaqar(
   $management_store       = 'mongodb',
   $package_name           = $::zaqar::params::package_name,
   $package_ensure         = 'present',
-  $purge_config           = false,
+  Boolean $purge_config   = false,
 ) inherits zaqar::params {
 
   include zaqar::deps

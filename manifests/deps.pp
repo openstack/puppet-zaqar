@@ -35,7 +35,7 @@ class zaqar::deps {
   # policy config should occur in the config block also.
   Anchor['zaqar::config::begin']
   -> Openstacklib::Policy<| tag == 'zaqar' |>
-  ~> Anchor['zaqar::config::end']
+  -> Anchor['zaqar::config::end']
 
   # Installation or config changes will always restart services.
   Anchor['zaqar::install::end'] ~> Anchor['zaqar::service::begin']

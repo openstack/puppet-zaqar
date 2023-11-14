@@ -1,0 +1,6 @@
+---
+features:
+  - |
+    The ``zaqar::management::sqlalchemy`` class now ensures the dependent
+    library packages such as PyMySQL is installed. The package's state can be
+    customized using the new ``package_ensure`` parameter.

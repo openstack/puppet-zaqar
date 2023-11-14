@@ -30,6 +30,10 @@ describe 'zaqar::management::sqlalchemy' do
         is_expected.to contain_zaqar_config('drivers:management_store:sqlalchemy/uri').with(
          :value => 'mysql://user:pass@127.0.0.1/zaqar',
         )
+        is_expected.to contain_oslo__db('zaqar_config').with(
+          :connection             => 'mysql://user:pass@127.0.0.1/zaqar',
+          :backend_package_ensure => 'present'
+        )
       end
 
     end

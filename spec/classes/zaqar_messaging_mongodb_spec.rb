@@ -8,6 +8,7 @@ describe 'zaqar::messaging::mongodb' do
          password =>'foo',
        }
        class { 'zaqar':
+         message_store => 'mongodb'
        }"
 
     end

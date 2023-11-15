@@ -39,6 +39,8 @@ describe 'zaqar' do
         is_expected.to contain_zaqar_config('storage/claim_pipeline').with_value('<SERVICE DEFAULT>')
         is_expected.to contain_zaqar_config('storage/subscription_pipeline').with_value('<SERVICE DEFAULT>')
         is_expected.to contain_zaqar_config('storage/topic_pipeline').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('drivers/message_store').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('drivers/management_store').with_value('<SERVICE DEFAULT>')
       end
 
     end

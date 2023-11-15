@@ -8,6 +8,7 @@ describe 'zaqar::management::mongodb' do
          password =>'foo',
        }
        class { 'zaqar':
+         management_store => 'mongodb',
        }"
 
     end

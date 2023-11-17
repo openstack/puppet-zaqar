@@ -3,8 +3,13 @@
 # [*uri*]
 #   SQLAlchemy Connection URI. Required.
 #
+# [*package_ensure*]
+#   (Optional) Ensure state for package.
+#   Defaults to present.
+#
 class zaqar::management::sqlalchemy(
   $uri,
+  $package_ensure = 'present',
 ) {
 
   include zaqar::deps
@@ -13,4 +18,9 @@ class zaqar::management::sqlalchemy(
     'drivers:management_store:sqlalchemy/uri': value => $uri, secret => true;
   }
 
+  oslo::db { 'zaqar_config':
+    connection             => $uri,
+    backend_package_ensure => $package_ensure,
+    manage_config          => false,
+  }
 }

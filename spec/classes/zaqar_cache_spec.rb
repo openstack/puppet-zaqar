@@ -28,6 +28,7 @@ describe 'zaqar::cache' do
           :memcache_pool_maxsize                => '<SERVICE DEFAULT>',
           :memcache_pool_unused_timeout         => '<SERVICE DEFAULT>',
           :memcache_pool_connection_get_timeout => '<SERVICE DEFAULT>',
+          :memcache_pool_flush_on_reconnect     => '<SERVICE DEFAULT>',
           :tls_enabled                          => '<SERVICE DEFAULT>',
           :tls_cafile                           => '<SERVICE DEFAULT>',
           :tls_certfile                         => '<SERVICE DEFAULT>',
@@ -57,6 +58,7 @@ describe 'zaqar::cache' do
           :memcache_pool_maxsize                => '10',
           :memcache_pool_unused_timeout         => '120',
           :memcache_pool_connection_get_timeout => '360',
+          :memcache_pool_flush_on_reconnect     => false,
           :tls_enabled                          => false,
           :manage_backend_package               => false,
         }
@@ -81,6 +83,7 @@ describe 'zaqar::cache' do
           :memcache_pool_maxsize                => '10',
           :memcache_pool_unused_timeout         => '120',
           :memcache_pool_connection_get_timeout => '360',
+          :memcache_pool_flush_on_reconnect     => false,
           :tls_enabled                          => false,
           :tls_cafile                           => '<SERVICE DEFAULT>',
           :tls_certfile                         => '<SERVICE DEFAULT>',

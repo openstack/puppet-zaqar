@@ -9,9 +9,12 @@ describe 'zaqar::server_instance' do
 
       let :pre_condition do
         "class { 'zaqar::keystone::authtoken':
-           password =>'foo',
+           password => 'foo',
          }
-         class {'::zaqar': }"
+         class { 'zaqar::keystone::trust':
+           password => 'foo',
+         }
+         class { 'zaqar': }"
       end
 
       let :params do

@@ -5,7 +5,10 @@ describe 'zaqar::messaging::mongodb' do
   shared_examples_for 'zaqar::messaging::mongodb' do
     let :pre_condition do
       "class { 'zaqar::keystone::authtoken':
-         password =>'foo',
+         password => 'foo',
+       }
+       class { 'zaqar::keystone::trust':
+         password => 'foo',
        }
        class { 'zaqar':
          message_store => 'mongodb'

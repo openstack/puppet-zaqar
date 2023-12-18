@@ -4,13 +4,12 @@
 #
 # === Parameters
 #
+# [*password*]
+#   (Required) Password of the trust user
+#
 # [*username*]
 #   (Optional) The name of the trust user
 #   Defaults to 'zaqar'
-#
-# [*password*]
-#   (Optional) Password to create for the trust user
-#   Defaults to $facts['os_service_default']
 #
 # [*auth_url*]
 #   (Optional) The URL to use for authentication.
@@ -29,12 +28,12 @@
 #   Defaults to 'password'
 #
 class zaqar::keystone::trust(
-  $username                       = 'zaqar',
-  $password                       = $facts['os_service_default'],
-  $auth_url                       = 'http://localhost:5000',
-  $user_domain_name               = 'Default',
-  $auth_section                   = $facts['os_service_default'],
-  $auth_type                      = 'password',
+  $password,
+  $username         = 'zaqar',
+  $auth_url         = 'http://localhost:5000',
+  $user_domain_name = 'Default',
+  $auth_section     = $facts['os_service_default'],
+  $auth_type        = 'password',
 ) {
 
   include zaqar::deps

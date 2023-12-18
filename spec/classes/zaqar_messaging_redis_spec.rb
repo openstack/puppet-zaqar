@@ -5,13 +5,16 @@ describe 'zaqar::messaging::redis' do
   shared_examples_for 'zaqar::messaging::redis' do
     let :pre_condition do
       "class { 'zaqar::keystone::authtoken':
-         password =>'foo',
+         password => 'foo',
+       }
+       class { 'zaqar::keystone::trust':
+         password => 'foo',
        }
        class { 'zaqar':
          message_store =>'redis',
        }"
-
     end
+
     let :req_params do
       {
         :uri   => 'redis://127.0.0.1:6379',

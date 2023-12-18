@@ -3,7 +3,10 @@ describe 'zaqar' do
   shared_examples 'zaqar' do
     let :pre_condition do
       "class { 'zaqar::keystone::authtoken':
-         password =>'password',
+         password => 'password',
+       }
+       class { 'zaqar::keystone::trust':
+         password => 'password',
        }"
     end
     let :req_params do

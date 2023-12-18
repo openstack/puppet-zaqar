@@ -5,7 +5,10 @@ describe 'zaqar::management::mongodb' do
   shared_examples_for 'zaqar::management::mongodb' do
     let :pre_condition do
       "class { 'zaqar::keystone::authtoken':
-         password =>'foo',
+         password => 'foo',
+       }
+       class { 'zaqar::keystone::trust':
+         password => 'foo',
        }
        class { 'zaqar':
          management_store => 'mongodb',

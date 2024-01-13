@@ -16,7 +16,7 @@ describe 'zaqar::messaging::swift' do
     end
     let :req_params do
       {
-        :uri   => 'swift://user:pass@/zaqar',
+        :uri => 'swift://user:pass@/zaqar',
       }
     end
 
@@ -26,12 +26,15 @@ describe 'zaqar::messaging::swift' do
       end
 
       it 'should config swift messaging driver' do
-        is_expected.to contain_zaqar_config('drivers/message_store').with(
-         :value => 'swift'
-        )
-        is_expected.to contain_zaqar_config('drivers:message_store:swift/uri').with(
-         :value => 'swift://user:pass@/zaqar',
-        )
+        is_expected.to contain_zaqar_config('drivers/message_store').with_value('swift')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/uri').with_value(
+          'swift://user:pass@/zaqar',
+        ).with_secret(true)
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/auth_url').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/project_domain_name').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/user_domain_name').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/region_name').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/interface').with_value('<SERVICE DEFAULT>')
       end
 
     end
@@ -39,12 +42,20 @@ describe 'zaqar::messaging::swift' do
     describe 'with custom values' do
       let :params do
         req_params.merge!({
-          :auth_url  => 'http://foo',
+          :auth_url            => 'http://foo',
+          :project_domain_name => 'Domain1',
+          :user_domain_name    => 'Domain2',
+          :region_name         => 'regionOne',
+          :interface           => 'publicURL',
         })
       end
 
       it 'configures custom values' do
         is_expected.to contain_zaqar_config('drivers:message_store:swift/auth_url').with_value('http://foo')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/project_domain_name').with_value('Domain1')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/user_domain_name').with_value('Domain2')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/region_name').with_value('regionOne')
+        is_expected.to contain_zaqar_config('drivers:message_store:swift/interface').with_value('publicURL')
       end
     end
   end

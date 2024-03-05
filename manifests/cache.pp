@@ -145,6 +145,21 @@
 #   be available.
 #   Default to $facts['os_service_default']
 #
+# [*enable_retry_client*]
+#   (Optional) Enable retry client mechanisms to handle failure.
+#   Those mechanisms can be used to wrap all kind of pymemcache
+#   clients. The wrapper allows you to define how many attempts
+#   to make and how long to wait between attempts.
+#   Default to $facts['os_service_default']
+#
+# [*retry_attempts*]
+#   (Optional) Number of times to attempt an action before failing.
+#   Default to $facts['os_service_default']
+#
+# [*retry_delay*]
+#   (Optional) Number of seconds to sleep between each attempt.
+#   Default to $facts['os_service_default']
+#
 class zaqar::cache (
   $config_prefix                        = $facts['os_service_default'],
   $expiration_time                      = $facts['os_service_default'],
@@ -170,6 +185,9 @@ class zaqar::cache (
   $tls_certfile                         = $facts['os_service_default'],
   $tls_keyfile                          = $facts['os_service_default'],
   $tls_allowed_ciphers                  = $facts['os_service_default'],
+  $enable_retry_client                  = $facts['os_service_default'],
+  $retry_attempts                       = $facts['os_service_default'],
+  $retry_delay                          = $facts['os_service_default'],
 ) {
 
   include zaqar::deps
@@ -199,5 +217,8 @@ class zaqar::cache (
     tls_certfile                         => $tls_certfile,
     tls_keyfile                          => $tls_keyfile,
     tls_allowed_ciphers                  => $tls_allowed_ciphers,
+    enable_retry_client                  => $enable_retry_client,
+    retry_attempts                       => $retry_attempts,
+    retry_delay                          => $retry_delay,
   }
 }

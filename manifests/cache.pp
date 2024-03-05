@@ -160,6 +160,22 @@
 #   (Optional) Number of seconds to sleep between each attempt.
 #   Default to $facts['os_service_default']
 #
+# [*hashclient_retry_attempts*]
+#   (Optional) Amount of times a client should be tried
+#   before it is marked dead and removed from the pool in
+#   the HashClient's internal mechanisms.
+#   Default to $facts['os_service_default']
+#
+# [*hashclient_retry_delay*]
+#   (Optional) Time in seconds that should pass between
+#   retry attempts in the HashClient's internal mechanisms.
+#   Default to $facts['os_service_default']
+#
+# [*dead_timeout*]
+#   (Optional) Time in seconds before attempting to add a node
+#   back in the pool in the HashClient's internal mechanisms.
+#   Default to $facts['os_service_default']
+#
 class zaqar::cache (
   $config_prefix                        = $facts['os_service_default'],
   $expiration_time                      = $facts['os_service_default'],
@@ -188,6 +204,9 @@ class zaqar::cache (
   $enable_retry_client                  = $facts['os_service_default'],
   $retry_attempts                       = $facts['os_service_default'],
   $retry_delay                          = $facts['os_service_default'],
+  $hashclient_retry_attempts            = $facts['os_service_default'],
+  $hashclient_retry_delay               = $facts['os_service_default'],
+  $dead_timeout                         = $facts['os_service_default'],
 ) {
 
   include zaqar::deps
@@ -220,5 +239,8 @@ class zaqar::cache (
     enable_retry_client                  => $enable_retry_client,
     retry_attempts                       => $retry_attempts,
     retry_delay                          => $retry_delay,
+    hashclient_retry_attempts            => $hashclient_retry_attempts,
+    hashclient_retry_delay               => $hashclient_retry_delay,
+    dead_timeout                         => $dead_timeout,
   }
 }

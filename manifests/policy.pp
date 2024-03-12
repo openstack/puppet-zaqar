@@ -70,6 +70,11 @@ class zaqar::policy (
 
   create_resources('openstacklib::policy', { $policy_path => $policy_parameters })
 
+  # policy config should occur in the config block also.
+  Anchor['zaqar::config::begin']
+  -> Openstacklib::Policy[$policy_path]
+  -> Anchor['zaqar::config::end']
+
   oslo::policy { 'zaqar_config':
     enforce_scope        => $enforce_scope,
     enforce_new_defaults => $enforce_new_defaults,

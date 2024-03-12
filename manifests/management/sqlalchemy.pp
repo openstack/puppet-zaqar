@@ -23,4 +23,8 @@ class zaqar::management::sqlalchemy(
     backend_package_ensure => $package_ensure,
     manage_config          => false,
   }
+
+  # all db settings should be applied and all packages should be installed
+  # before dbsync starts
+  Oslo::Db['zaqar_config'] -> Anchor['zaqar::dbsync::begin']
 }

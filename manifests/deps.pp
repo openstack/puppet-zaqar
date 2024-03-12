@@ -24,19 +24,6 @@ class zaqar::deps {
   ~> Service<| tag == 'zaqar-service' |>
   ~> anchor { 'zaqar::service::end': }
 
-  # all cache settings should be applied and all packages should be installed
-  # before service startup
-  Oslo::Cache<||> -> Anchor['zaqar::service::begin']
-
-  # all db settings should be applied and all packages should be installed
-  # before dbsync starts
-  Oslo::Db<||> -> Anchor['zaqar::dbsync::begin']
-
-  # policy config should occur in the config block also.
-  Anchor['zaqar::config::begin']
-  -> Openstacklib::Policy<| tag == 'zaqar' |>
-  -> Anchor['zaqar::config::end']
-
   # Installation or config changes will always restart services.
   Anchor['zaqar::install::end'] ~> Anchor['zaqar::service::begin']
   Anchor['zaqar::config::end']  ~> Anchor['zaqar::service::begin']

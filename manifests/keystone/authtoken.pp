@@ -279,4 +279,6 @@ class zaqar::keystone::authtoken(
       service_type                   => $service_type,
       interface                      => $interface;
   }
+
+  Keystone::Resource::Authtoken['zaqar_config'] -> Anchor['zaqar::config::end']
 }

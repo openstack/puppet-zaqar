@@ -31,6 +31,11 @@ describe 'zaqar::management::redis' do
         is_expected.to contain_zaqar_config('drivers:management_store:redis/uri').with_value('redis://127.0.0.1:6379')
         is_expected.to contain_zaqar_config('drivers:management_store:redis/max_reconnect_attempts').with_value('<SERVICE DEFAULT>')
         is_expected.to contain_zaqar_config('drivers:management_store:redis/reconnect_sleep').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_package('python-redis').with(
+          :ensure => 'installed',
+          :name   => platform_params[:python_redis_package_name],
+          :tag    => ['openstack'],
+        )
       end
 
     end
@@ -56,6 +61,19 @@ describe 'zaqar::management::redis' do
     context "on #{os}" do
       let (:facts) do
         facts.merge!(OSDefaults.get_facts())
+      end
+
+      let(:platform_params) do
+        case facts[:os]['family']
+        when 'Debian'
+          {
+            :python_redis_package_name => 'python3-redis',
+          }
+        when 'RedHat'
+          {
+            :python_redis_package_name => 'python3-redis',
+          }
+        end
       end
 
       it_configures 'zaqar::management::redis'

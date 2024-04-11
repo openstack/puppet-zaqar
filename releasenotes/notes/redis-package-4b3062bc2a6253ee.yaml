@@ -1,0 +1,8 @@
+---
+features:
+  - |
+    The ``zaqar::messaging::redis`` class and the ``zaqar::management::redis``
+    class now ensures that the python3-redis package is installed.
+    The new ``package_ensure`` parameter can be used to customize state of
+    the package. To disable the package management, use the ``manage_package``
+    parameter.

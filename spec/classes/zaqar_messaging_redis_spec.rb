@@ -27,11 +27,13 @@ describe 'zaqar::messaging::redis' do
       end
 
       it 'should config redis messaging driver' do
-        is_expected.to contain_zaqar_config('drivers/message_store').with(
-         :value => 'redis'
-        )
-        is_expected.to contain_zaqar_config('drivers:message_store:redis/uri').with(
-         :value => 'redis://127.0.0.1:6379'
+        is_expected.to contain_zaqar_config('drivers/message_store').with_value('redis')
+        is_expected.to contain_zaqar_config('drivers:message_store:redis/uri').with_value('redis://127.0.0.1:6379')
+        is_expected.to contain_zaqar_config('drivers:message_store:redis/reconnect_sleep').with_value('<SERVICE DEFAULT>')
+        is_expected.to contain_package('python-redis').with(
+          :ensure => 'installed',
+          :name   => platform_params[:python_redis_package_name],
+          :tag    => ['openstack'],
         )
       end
 
@@ -58,6 +60,19 @@ describe 'zaqar::messaging::redis' do
     context "on #{os}" do
       let (:facts) do
         facts.merge!(OSDefaults.get_facts())
+      end
+
+      let(:platform_params) do
+        case facts[:os]['family']
+        when 'Debian'
+          {
+            :python_redis_package_name => 'python3-redis',
+          }
+        when 'RedHat'
+          {
+            :python_redis_package_name => 'python3-redis',
+          }
+        end
       end
 
       it_configures 'zaqar::messaging::redis'

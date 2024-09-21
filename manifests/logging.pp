@@ -37,10 +37,6 @@
 #   (Optional) File where logs should be stored.
 #   Defaults to $facts['os_service_default']
 #
-# [*watch_log_file*]
-#   (Optional) Uses logging handler designed to watch file system (boolean value).
-#   Defaults to $facts['os_service_default']
-#
 # [*logging_context_format_string*]
 #   (Optional) Format string to use for log messages with context.
 #   Defaults to $facts['os_service_default'].
@@ -99,11 +95,17 @@
 #              it like this (string value).
 #   Defaults to $facts['os_service_default'].
 #   Example: instance_uuid_format='[instance: %(uuid)s] '
-
+#
 # [*log_date_format*]
 #   (Optional) Format string for %%(asctime)s in log records.
 #   Defaults to $facts['os_service_default'].
 #   Example: 'Y-%m-%d %H:%M:%S'
+#
+# DEPRECATED PARAMETERS
+#
+# [*watch_log_file*]
+#   (Optional) Uses logging handler designed to watch file system (boolean value).
+#   Defaults to $facts['os_service_default']
 #
 class zaqar::logging(
   $use_syslog                    = $facts['os_service_default'],
@@ -113,7 +115,6 @@ class zaqar::logging(
   $log_facility                  = $facts['os_service_default'],
   $log_dir                       = '/var/log/zaqar',
   $log_file                      = $facts['os_service_default'],
-  $watch_log_file                = $facts['os_service_default'],
   $debug                         = $facts['os_service_default'],
   $logging_context_format_string = $facts['os_service_default'],
   $logging_default_format_string = $facts['os_service_default'],
@@ -126,6 +127,8 @@ class zaqar::logging(
   $instance_format               = $facts['os_service_default'],
   $instance_uuid_format          = $facts['os_service_default'],
   $log_date_format               = $facts['os_service_default'],
+  # DEPRECATED PARAMETERS
+  $watch_log_file                = undef,
 ) {
 
   include zaqar::deps

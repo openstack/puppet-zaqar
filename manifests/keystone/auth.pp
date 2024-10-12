@@ -90,9 +90,9 @@ class zaqar::keystone::auth(
   $system_scope           = 'all',
   $system_roles           = [],
   $configure_endpoint     = true,
-  $configure_service      = true,
   $configure_user         = true,
   $configure_user_role    = true,
+  $configure_service      = true,
   $service_description    = 'OpenStack Messaging Service',
 ) {
 
@@ -104,6 +104,7 @@ class zaqar::keystone::auth(
     configure_user      => $configure_user,
     configure_user_role => $configure_user_role,
     configure_endpoint  => $configure_endpoint,
+    configure_service   => $configure_service,
     service_type        => $service_type,
     service_description => $service_description,
     service_name        => $service_name,

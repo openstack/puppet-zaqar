@@ -1,6 +1,7 @@
 # == Class: zaqar
 #
-# Full description of class zaqar here.
+# This class installs the base zaqar package and configure the configuration
+# parameters common accross all zaqar services.
 #
 # === Parameters
 #

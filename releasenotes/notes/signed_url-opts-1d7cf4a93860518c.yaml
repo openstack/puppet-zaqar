@@ -1,0 +1,4 @@
+---
+features:
+  - |
+    The new ``zaqar::signed_url`` class has been added.

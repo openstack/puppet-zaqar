@@ -46,7 +46,7 @@ class zaqar::messaging::redis(
     })
 
     Anchor['zaqar::install::begin']
-    -> Package<| name == $::oslo::params::python_redis_package_name |>
+    -> Package<| name == $::zaqar::params::python_redis_package_name |>
     -> Anchor['zaqar::install::end']
   }
 }

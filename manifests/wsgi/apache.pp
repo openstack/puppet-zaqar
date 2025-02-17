@@ -156,7 +156,7 @@ class zaqar::wsgi::apache (
 
   Anchor['zaqar::install::end'] -> Class['apache']
 
-  ::openstacklib::wsgi::apache { 'zaqar_wsgi':
+  openstacklib::wsgi::apache { 'zaqar_wsgi':
     bind_host                   => $bind_host,
     bind_port                   => $port,
     group                       => $::zaqar::params::group,

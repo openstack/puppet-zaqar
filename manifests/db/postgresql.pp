@@ -34,7 +34,7 @@ class zaqar::db::postgresql(
 
   include zaqar::deps
 
-  ::openstacklib::db::postgresql { 'zaqar':
+  openstacklib::db::postgresql { 'zaqar':
     password   => $password,
     dbname     => $dbname,
     user       => $user,

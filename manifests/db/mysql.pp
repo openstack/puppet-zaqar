@@ -45,7 +45,7 @@ class zaqar::db::mysql(
 
   include zaqar::deps
 
-  ::openstacklib::db::mysql { 'zaqar':
+  openstacklib::db::mysql { 'zaqar':
     user          => $user,
     password      => $password,
     dbname        => $dbname,

@@ -98,7 +98,7 @@ class zaqar(
   include zaqar::deps
 
   resources { 'zaqar_config':
-    purge  => $purge_config,
+    purge => $purge_config,
   }
 
   if $auth_strategy == 'keystone' {
@@ -113,18 +113,18 @@ class zaqar(
   }
 
   zaqar_config {
-    'DEFAULT/auth_strategy':            value  => $auth_strategy;
-    'DEFAULT/admin_mode':               value  => $admin_mode;
-    'DEFAULT/unreliable':               value  => $unreliable;
-    'DEFAULT/pooling':                  value  => $pooling;
-    'storage/queue_pipeline':           value  => join(any2array($queue_pipeline), ',');
-    'storage/message_pipeline':         value  => join(any2array($message_pipeline), ',');
-    'storage/claim_pipeline':           value  => join(any2array($claim_pipeline), ',');
-    'storage/subscription_pipeline':    value  => join(any2array($subscription_pipeline), ',');
-    'storage/topic_pipeline':           value  => join(any2array($topic_pipeline), ',');
-    'transport/max_messages_post_size': value  => $max_messages_post_size;
-    'drivers/message_store':            value  => $message_store;
-    'drivers/management_store':         value  => $management_store;
+    'DEFAULT/auth_strategy':            value => $auth_strategy;
+    'DEFAULT/admin_mode':               value => $admin_mode;
+    'DEFAULT/unreliable':               value => $unreliable;
+    'DEFAULT/pooling':                  value => $pooling;
+    'storage/queue_pipeline':           value => join(any2array($queue_pipeline), ',');
+    'storage/message_pipeline':         value => join(any2array($message_pipeline), ',');
+    'storage/claim_pipeline':           value => join(any2array($claim_pipeline), ',');
+    'storage/subscription_pipeline':    value => join(any2array($subscription_pipeline), ',');
+    'storage/topic_pipeline':           value => join(any2array($topic_pipeline), ',');
+    'transport/max_messages_post_size': value => $max_messages_post_size;
+    'drivers/message_store':            value => $message_store;
+    'drivers/management_store':         value => $management_store;
   }
 
 }

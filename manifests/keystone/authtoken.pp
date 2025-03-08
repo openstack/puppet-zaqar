@@ -239,7 +239,7 @@ class zaqar::keystone::authtoken(
 
   keystone::resource::authtoken {
     'zaqar_config':
-      *                              => $params;
+      * => $params;
     default:
       username                       => $username,
       password                       => $password,

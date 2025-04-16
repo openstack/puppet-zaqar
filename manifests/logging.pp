@@ -101,12 +101,6 @@
 #   Defaults to $facts['os_service_default'].
 #   Example: 'Y-%m-%d %H:%M:%S'
 #
-# DEPRECATED PARAMETERS
-#
-# [*watch_log_file*]
-#   (Optional) Uses logging handler designed to watch file system (boolean value).
-#   Defaults to $facts['os_service_default']
-#
 class zaqar::logging(
   $use_syslog                    = $facts['os_service_default'],
   $use_json                      = $facts['os_service_default'],
@@ -127,8 +121,6 @@ class zaqar::logging(
   $instance_format               = $facts['os_service_default'],
   $instance_uuid_format          = $facts['os_service_default'],
   $log_date_format               = $facts['os_service_default'],
-  # DEPRECATED PARAMETERS
-  $watch_log_file                = undef,
 ) {
 
   include zaqar::deps
@@ -152,7 +144,6 @@ class zaqar::logging(
     syslog_log_facility           => $log_facility,
     log_dir                       => $log_dir,
     log_file                      => $log_file,
-    watch_log_file                => $watch_log_file,
     debug                         => $debug,
   }
 

@@ -39,7 +39,7 @@ class zaqar::messaging::redis(
   }
 
   if $manage_package {
-    ensure_packages('python-redis', {
+    stdlib::ensure_packages('python-redis', {
       name   => $::zaqar::params::python_redis_package_name,
       ensure => $package_ensure,
       tag    => ['openstack'],

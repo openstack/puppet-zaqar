@@ -17,13 +17,13 @@
 #   service, and you must use another class to configure that
 #   web service. For example, use class { 'zaqar::wsgi::apache'...}
 #   to make zaqar-server be a web app using apache mod_wsgi.
-#   Defaults to '$::zaqar::params::service_name'
+#   Defaults to '$zaqar::params::service_name'
 
 #
 class zaqar::server(
   Boolean $manage_service = true,
   Boolean $enabled        = true,
-  $service_name           = $::zaqar::params::service_name,
+  $service_name           = $zaqar::params::service_name,
 ) inherits zaqar::params {
 
   include zaqar
@@ -38,25 +38,25 @@ class zaqar::server(
       $ensure = 'stopped'
     }
 
-    if $service_name == $::zaqar::params::service_name {
-      service { $::zaqar::params::service_name:
+    if $service_name == $zaqar::params::service_name {
+      service { $zaqar::params::service_name:
         ensure    => $ensure,
-        name      => $::zaqar::params::service_name,
+        name      => $zaqar::params::service_name,
         enable    => $enabled,
         hasstatus => true,
         tag       => 'zaqar-service',
       }
 
     } elsif $service_name == 'httpd' {
-      service { $::zaqar::params::service_name:
+      service { $zaqar::params::service_name:
         ensure => 'stopped',
-        name   => $::zaqar::params::service_name,
+        name   => $zaqar::params::service_name,
         enable => false,
         tag    => ['zaqar-service'],
       }
 
       # we need to make sure zaqar-server is stopped before trying to start apache
-      Service[$::zaqar::params::service_name] -> Service[$service_name]
+      Service[$zaqar::params::service_name] -> Service[$service_name]
       Service <| title == 'httpd' |> { tag +> 'zaqar-service' }
     } else {
       fail("Invalid service_name. Either zaqar-server/openstack-zaqar for \

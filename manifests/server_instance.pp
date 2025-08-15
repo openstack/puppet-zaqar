@@ -35,13 +35,13 @@ define zaqar::server_instance(
     content => template('zaqar/zaqar.conf.erb'),
   }
 
-  service { "${::zaqar::params::service_name}@${name}":
+  service { "${zaqar::params::service_name}@${name}":
     ensure => $service_ensure,
     enable => $enabled,
-    tag    => 'zaqar-service'
+    tag    => 'zaqar-service',
   }
 
   Package['zaqar-common'] ~> File["/etc/zaqar/${name}.conf"]
-  File["/etc/zaqar/${name}.conf"] ~> Service["${::zaqar::params::service_name}@${name}"]
+  File["/etc/zaqar/${name}.conf"] ~> Service["${zaqar::params::service_name}@${name}"]
 
 }

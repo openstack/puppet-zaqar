@@ -17,7 +17,7 @@ class zaqar::db::sync(
   exec { 'zaqar-db-sync':
     command     => 'zaqar-sql-db-manage upgrade head',
     path        => '/usr/bin',
-    user        => $::zaqar::params::user,
+    user        => $zaqar::params::user,
     refreshonly => true,
     try_sleep   => 5,
     tries       => 10,

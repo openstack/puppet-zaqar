@@ -17,7 +17,7 @@ class zaqar::client (
 
   package { 'python-zaqarclient':
     ensure => $ensure,
-    name   => $::zaqar::params::client_package_name,
+    name   => $zaqar::params::client_package_name,
     tag    => 'openstack',
   }
 

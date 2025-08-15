@@ -66,7 +66,7 @@
 #
 # [*package_name*]
 #   (Optional) Package name to install for zaqar.
-#   Defaults to $::zaqar::params::package_name
+#   Defaults to $zaqar::params::package_name
 #
 # [*package_ensure*]
 #   (Optional) Ensure state for package.
@@ -90,7 +90,7 @@ class zaqar(
   $max_messages_post_size = $facts['os_service_default'],
   $message_store          = $facts['os_service_default'],
   $management_store       = $facts['os_service_default'],
-  $package_name           = $::zaqar::params::package_name,
+  $package_name           = $zaqar::params::package_name,
   $package_ensure         = 'present',
   Boolean $purge_config   = false,
 ) inherits zaqar::params {

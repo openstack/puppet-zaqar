@@ -40,13 +40,13 @@ class zaqar::management::redis(
 
   if $manage_package {
     stdlib::ensure_packages('python-redis', {
-      name   => $::zaqar::params::python_redis_package_name,
+      name   => $zaqar::params::python_redis_package_name,
       ensure => $package_ensure,
       tag    => ['openstack'],
     })
 
     Anchor['zaqar::install::begin']
-    -> Package<| name == $::zaqar::params::python_redis_package_name |>
+    -> Package<| name == $zaqar::params::python_redis_package_name |>
     -> Anchor['zaqar::install::end']
   }
 }

@@ -7,11 +7,10 @@
 #   (Optional) Ensure state for package.
 #   Defaults to present.
 #
-class zaqar::management::sqlalchemy(
+class zaqar::management::sqlalchemy (
   $uri,
   $package_ensure = 'present',
 ) {
-
   include zaqar::deps
 
   zaqar_config {

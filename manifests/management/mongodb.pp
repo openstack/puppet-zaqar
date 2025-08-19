@@ -57,7 +57,7 @@
 #   of 2) each time the operation is retried. (floating point value)
 #   Defaults to $facts['os_service_default'].
 #
-class zaqar::management::mongodb(
+class zaqar::management::mongodb (
   $uri,
   $ssl_keyfile            = $facts['os_service_default'],
   $ssl_certfile           = $facts['os_service_default'],
@@ -70,7 +70,6 @@ class zaqar::management::mongodb(
   $max_reconnect_attempts = $facts['os_service_default'],
   $reconnect_sleep        = $facts['os_service_default'],
 ) {
-
   include zaqar::deps
 
   zaqar_config {
@@ -86,5 +85,4 @@ class zaqar::management::mongodb(
     'drivers:management_store:mongodb/max_reconnect_attempts': value => $max_reconnect_attempts;
     'drivers:management_store:mongodb/reconnect_sleep':        value => $reconnect_sleep;
   }
-
 }

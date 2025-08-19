@@ -21,14 +21,13 @@
 #   (Optional) Manage pyhton-redis package.
 #   Defaults to true
 #
-class zaqar::management::redis(
+class zaqar::management::redis (
   $uri,
   $max_reconnect_attempts = $facts['os_service_default'],
   $reconnect_sleep        = $facts['os_service_default'],
   $package_ensure         = 'present',
   Boolean $manage_package = true,
 ) {
-
   include zaqar::deps
   include zaqar::params
 

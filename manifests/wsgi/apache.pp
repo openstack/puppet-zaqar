@@ -150,7 +150,6 @@ class zaqar::wsgi::apache (
   $headers                     = undef,
   $request_headers             = undef,
 ) {
-
   include zaqar::deps
   include zaqar::params
 

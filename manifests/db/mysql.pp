@@ -33,7 +33,7 @@
 #   Only used with mysql modules >= 2.2.
 #   Defaults to 'utf8_general_ci'
 #
-class zaqar::db::mysql(
+class zaqar::db::mysql (
   String[1] $password,
   $dbname        = 'zaqar',
   $user          = 'zaqar',
@@ -42,7 +42,6 @@ class zaqar::db::mysql(
   $collate       = 'utf8_general_ci',
   $allowed_hosts = undef
 ) {
-
   include zaqar::deps
 
   openstacklib::db::mysql { 'zaqar':
@@ -58,5 +57,4 @@ class zaqar::db::mysql(
   Anchor['zaqar::db::begin']
   ~> Class['zaqar::db::mysql']
   ~> Anchor['zaqar::db::end']
-
 }

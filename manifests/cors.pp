@@ -44,7 +44,6 @@ class zaqar::cors (
   $allow_methods     = $facts['os_service_default'],
   $allow_headers     = $facts['os_service_default'],
 ) {
-
   include zaqar::deps
 
   oslo::cors { 'zaqar_config':

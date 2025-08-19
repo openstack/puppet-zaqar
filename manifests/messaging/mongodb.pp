@@ -63,7 +63,7 @@
 #   deployment. It MUST remain static.
 #   Defaults to $facts['os_service_default'].
 #
-class zaqar::messaging::mongodb(
+class zaqar::messaging::mongodb (
   $uri,
   $ssl_keyfile            = $facts['os_service_default'],
   $ssl_certfile           = $facts['os_service_default'],
@@ -77,7 +77,6 @@ class zaqar::messaging::mongodb(
   $reconnect_sleep        = $facts['os_service_default'],
   $partitions             = $facts['os_service_default'],
 ) {
-
   include zaqar::deps
 
   zaqar_config {
@@ -94,5 +93,4 @@ class zaqar::messaging::mongodb(
     'drivers:message_store:mongodb/reconnect_sleep':        value => $reconnect_sleep;
     'drivers:message_store:mongodb/partitions':             value => $partitions;
   }
-
 }

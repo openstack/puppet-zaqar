@@ -24,14 +24,13 @@
 #    (Optional) Privileges given to the database user.
 #    Default to 'ALL'
 #
-class zaqar::db::postgresql(
+class zaqar::db::postgresql (
   $password,
   $dbname     = 'zaqar',
   $user       = 'zaqar',
   $encoding   = undef,
   $privileges = 'ALL',
 ) {
-
   include zaqar::deps
 
   openstacklib::db::postgresql { 'zaqar':
@@ -45,5 +44,4 @@ class zaqar::db::postgresql(
   Anchor['zaqar::db::begin']
   ~> Class['zaqar::db::postgresql']
   ~> Anchor['zaqar::db::end']
-
 }

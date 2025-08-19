@@ -20,14 +20,13 @@
 #   Port on which the notification server will listen.
 #   Defaults to $facts['os_service_default'].
 #
-class zaqar::transport::websocket(
+class zaqar::transport::websocket (
   $bind               = $facts['os_service_default'],
   $port               = $facts['os_service_default'],
   $external_port      = $facts['os_service_default'],
   $notification_bind  = $facts['os_service_default'],
   $notification_port  = $facts['os_service_default'],
 ) {
-
   include zaqar::deps
 
   zaqar_config {
@@ -37,5 +36,4 @@ class zaqar::transport::websocket(
     'drivers:transport:websocket/notification_bind': value => $notification_bind;
     'drivers:transport:websocket/notification_port': value => $notification_port;
   }
-
 }

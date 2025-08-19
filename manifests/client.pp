@@ -11,7 +11,6 @@
 class zaqar::client (
   $ensure = 'present'
 ) {
-
   include zaqar::deps
   include zaqar::params
 
@@ -22,5 +21,4 @@ class zaqar::client (
   }
 
   include openstacklib::openstackclient
-
 }

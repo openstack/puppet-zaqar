@@ -11,11 +11,10 @@
 #   (Optional) Service enable state for zaqar-server.
 #   Defaults to true
 #
-define zaqar::server_instance(
+define zaqar::server_instance (
   $transport,
   Boolean $enabled = true,
 ) {
-
   if $name == 'zaqar' {
     fail('The name should not be \'zaqar\'. Please use a different name')
   }
@@ -43,5 +42,4 @@ define zaqar::server_instance(
 
   Package['zaqar-common'] ~> File["/etc/zaqar/${name}.conf"]
   File["/etc/zaqar/${name}.conf"] ~> Service["${zaqar::params::service_name}@${name}"]
-
 }

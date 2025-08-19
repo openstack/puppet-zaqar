@@ -77,7 +77,7 @@
 #   in the zaqar config.
 #   Defaults to false.
 #
-class zaqar(
+class zaqar (
   $auth_strategy          = 'keystone',
   $admin_mode             = $facts['os_service_default'],
   $unreliable             = $facts['os_service_default'],
@@ -94,7 +94,6 @@ class zaqar(
   $package_ensure         = 'present',
   Boolean $purge_config   = false,
 ) inherits zaqar::params {
-
   include zaqar::deps
 
   resources { 'zaqar_config':
@@ -126,5 +125,4 @@ class zaqar(
     'drivers/message_store':            value => $message_store;
     'drivers/management_store':         value => $management_store;
   }
-
 }

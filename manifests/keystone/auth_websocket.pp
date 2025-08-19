@@ -40,7 +40,7 @@
 #   (Optional) Description for keystone service.
 #   Defaults to 'OpenStack Messaging Websocket Service'.
 #
-class zaqar::keystone::auth_websocket(
+class zaqar::keystone::auth_websocket (
   $service_name        = 'zaqar-websocket',
   $service_type        = 'messaging-websocket',
   $public_url          = 'ws://127.0.0.1:9000',
@@ -51,7 +51,6 @@ class zaqar::keystone::auth_websocket(
   $configure_service   = true,
   $service_description = 'OpenStack Messaging Websocket Service',
 ) {
-
   include zaqar::deps
 
   Keystone::Resource::Service_identity['zaqar-websocket'] -> Anchor['zaqar::service::end']

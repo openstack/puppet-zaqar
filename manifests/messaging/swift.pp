@@ -23,7 +23,7 @@
 #   (Optional) The default interface for endpoint URL discovery.
 #   Default $facts['os_service_default']
 #
-class zaqar::messaging::swift(
+class zaqar::messaging::swift (
   $uri,
   $auth_url            = $facts['os_service_default'],
   $project_domain_name = $facts['os_service_default'],
@@ -31,7 +31,6 @@ class zaqar::messaging::swift(
   $region_name         = $facts['os_service_default'],
   $interface           = $facts['os_service_default'],
 ) {
-
   include zaqar::deps
 
   zaqar_config {
@@ -42,5 +41,4 @@ class zaqar::messaging::swift(
     'drivers:message_store:swift/region_name':         value => $region_name;
     'drivers:message_store:swift/interface':           value => $interface;
   }
-
 }

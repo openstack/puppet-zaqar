@@ -75,7 +75,7 @@
 #   (Optional) Whether to configure the admin role for the service user.
 #   Defaults to true
 #
-class zaqar::keystone::auth(
+class zaqar::keystone::auth (
   String[1] $password,
   $email                  = 'zaqar@localhost',
   $auth_name              = 'zaqar',
@@ -95,7 +95,6 @@ class zaqar::keystone::auth(
   $configure_service      = true,
   $service_description    = 'OpenStack Messaging Service',
 ) {
-
   include zaqar::deps
 
   Keystone::Resource::Service_identity['zaqar'] -> Anchor['zaqar::service::end']

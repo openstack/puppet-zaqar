@@ -20,15 +20,13 @@
 #   Defaults to '$zaqar::params::service_name'
 
 #
-class zaqar::server(
+class zaqar::server (
   Boolean $manage_service = true,
   Boolean $enabled        = true,
   $service_name           = $zaqar::params::service_name,
 ) inherits zaqar::params {
-
   include zaqar
   include zaqar::deps
-  include zaqar::params
   include zaqar::policy
 
   if $manage_service {
@@ -46,7 +44,6 @@ class zaqar::server(
         hasstatus => true,
         tag       => 'zaqar-service',
       }
-
     } elsif $service_name == 'httpd' {
       service { $zaqar::params::service_name:
         ensure => 'stopped',

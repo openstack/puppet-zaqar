@@ -27,7 +27,7 @@
 #   (Optional) Authentication type to load
 #   Defaults to 'password'
 #
-class zaqar::keystone::trust(
+class zaqar::keystone::trust (
   $password,
   $username         = 'zaqar',
   $auth_url         = 'http://localhost:5000',
@@ -35,16 +35,14 @@ class zaqar::keystone::trust(
   $auth_section     = $facts['os_service_default'],
   $auth_type        = 'password',
 ) {
-
   include zaqar::deps
 
   zaqar_config {
     'trustee/username':         value => $username;
-    'trustee/password':         value => $password, secret =>true;
+    'trustee/password':         value => $password, secret => true;
     'trustee/user_domain_name': value => $user_domain_name;
     'trustee/auth_url':         value => $auth_url;
     'trustee/auth_section':     value => $auth_section;
     'trustee/auth_type':        value => $auth_type;
   }
-
 }

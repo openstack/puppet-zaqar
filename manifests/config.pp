@@ -23,7 +23,6 @@
 class zaqar::config (
   Hash $zaqar_config = {},
 ) {
-
   include zaqar::deps
 
   create_resources('zaqar_config', $zaqar_config)

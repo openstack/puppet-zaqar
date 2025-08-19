@@ -101,7 +101,7 @@
 #   Defaults to $facts['os_service_default'].
 #   Example: 'Y-%m-%d %H:%M:%S'
 #
-class zaqar::logging(
+class zaqar::logging (
   $use_syslog                    = $facts['os_service_default'],
   $use_json                      = $facts['os_service_default'],
   $use_journal                   = $facts['os_service_default'],
@@ -122,7 +122,6 @@ class zaqar::logging(
   $instance_uuid_format          = $facts['os_service_default'],
   $log_date_format               = $facts['os_service_default'],
 ) {
-
   include zaqar::deps
 
   oslo::log { 'zaqar_config':
@@ -146,5 +145,4 @@ class zaqar::logging(
     log_file                      => $log_file,
     debug                         => $debug,
   }
-
 }

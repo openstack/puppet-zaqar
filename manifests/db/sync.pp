@@ -7,10 +7,9 @@
 #   (Optional) Timeout for the execution of the db_sync
 #   Defaults to 300
 #
-class zaqar::db::sync(
+class zaqar::db::sync (
   $db_sync_timeout = 300,
 ) {
-
   include zaqar::deps
   include zaqar::params
 
@@ -31,5 +30,4 @@ class zaqar::db::sync(
     notify      => Anchor['zaqar::dbsync::end'],
     tag         => 'openstack-db',
   }
-
 }

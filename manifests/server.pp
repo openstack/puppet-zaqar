@@ -37,7 +37,7 @@ class zaqar::server (
     }
 
     if $service_name == $zaqar::params::service_name {
-      service { $zaqar::params::service_name:
+      service { 'zaqar-server':
         ensure    => $ensure,
         name      => $zaqar::params::service_name,
         enable    => $enabled,
@@ -45,7 +45,7 @@ class zaqar::server (
         tag       => 'zaqar-service',
       }
     } elsif $service_name == 'httpd' {
-      service { $zaqar::params::service_name:
+      service { 'zaqar-server':
         ensure => 'stopped',
         name   => $zaqar::params::service_name,
         enable => false,
@@ -53,7 +53,7 @@ class zaqar::server (
       }
 
       # we need to make sure zaqar-server is stopped before trying to start apache
-      Service[$zaqar::params::service_name] -> Service[$service_name]
+      Service['zaqar-server'] -> Service[$service_name]
       Service <| title == 'httpd' |> { tag +> 'zaqar-service' }
     } else {
       fail("Invalid service_name. Either zaqar-server/openstack-zaqar for \

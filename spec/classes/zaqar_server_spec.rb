@@ -2,23 +2,46 @@ require 'spec_helper'
 describe 'zaqar::server' do
 
   shared_examples_for 'zaqar::server' do
-    describe 'with a zaqar server enabled' do
-      let :pre_condition do
-        "class { 'zaqar::keystone::authtoken':
-           password => 'foo',
-         }
-        class { 'zaqar::keystone::trust':
-           password => 'foo',
-         }
-         class { 'zaqar': }"
-      end
+    let :pre_condition do
+      "class { 'zaqar::keystone::authtoken':
+         password => 'foo',
+       }
+      class { 'zaqar::keystone::trust':
+         password => 'foo',
+       }
+       class { 'zaqar': }
+       class { 'apache': }"
+    end
 
-      it { is_expected.to contain_service(platform_params[:zaqar_service_name]).with(
-          :ensure => 'running',
-          :enable => true
+    context 'with defaults' do
+      it { is_expected.to contain_service('zaqar-server').with(
+        :ensure => 'running',
+        :name   => platform_params[:zaqar_service_name],
+        :enable => true,
+        :tag    => ['zaqar-service'],
       )}
       it { is_expected.to contain_class('zaqar::policy') }
+    end
 
+    context 'when running zaqar-server in wsgi' do
+      let :params do
+        { :service_name => 'httpd' }
+      end
+
+      it { is_expected.to contain_service('zaqar-server').with(
+        :ensure => 'stopped',
+        :name   => platform_params[:zaqar_service_name],
+        :enable => false,
+        :tag    => ['zaqar-service'],
+      )}
+    end
+
+    context 'with service management disabled' do
+      let :params do
+        { :manage_service => false }
+      end
+
+      it { is_expected.to_not contain_service('zaqar-server') }
     end
   end
 

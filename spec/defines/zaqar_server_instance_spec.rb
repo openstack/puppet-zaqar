@@ -24,9 +24,11 @@ describe 'zaqar::server_instance' do
       end
 
       context 'with a websocket server instance 1' do
-        it { is_expected.to contain_service("#{platform_params[:zaqar_service_name]}@1").with(
-            :ensure => 'running',
-            :enable => true
+        it { is_expected.to contain_service('zaqar-server@1').with(
+          :ensure => 'running',
+          :name   => "#{platform_params[:zaqar_service_name]}@1",
+          :enable => true,
+          :tag    => ['zaqar-service'],
         )}
         it { is_expected.to contain_file('/etc/zaqar/1.conf') }
       end

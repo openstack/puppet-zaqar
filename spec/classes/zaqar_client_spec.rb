@@ -11,7 +11,7 @@ describe 'zaqar::client' do
       is_expected.to contain_package('python-zaqarclient').with(
         :ensure => 'present',
         :name   => platform_params[:client_package_name],
-        :tag    => 'openstack',
+        :tag    => ['openstack', 'openstackclient'],
       )
     end
 

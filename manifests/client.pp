@@ -9,7 +9,7 @@
 #   Defaults to 'present'.
 #
 class zaqar::client (
-  $ensure = 'present'
+  Stdlib::Ensure::Package $ensure = 'present',
 ) {
   include zaqar::deps
   include zaqar::params

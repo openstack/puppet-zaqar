@@ -78,21 +78,21 @@
 #   Defaults to false.
 #
 class zaqar (
-  $auth_strategy          = 'keystone',
-  $admin_mode             = $facts['os_service_default'],
-  $unreliable             = $facts['os_service_default'],
-  $pooling                = $facts['os_service_default'],
-  $queue_pipeline         = $facts['os_service_default'],
-  $message_pipeline       = $facts['os_service_default'],
-  $claim_pipeline         = $facts['os_service_default'],
-  $subscription_pipeline  = $facts['os_service_default'],
-  $topic_pipeline         = $facts['os_service_default'],
-  $max_messages_post_size = $facts['os_service_default'],
-  $message_store          = $facts['os_service_default'],
-  $management_store       = $facts['os_service_default'],
-  $package_name           = $zaqar::params::package_name,
-  $package_ensure         = 'present',
-  Boolean $purge_config   = false,
+  $auth_strategy                          = 'keystone',
+  $admin_mode                             = $facts['os_service_default'],
+  $unreliable                             = $facts['os_service_default'],
+  $pooling                                = $facts['os_service_default'],
+  $queue_pipeline                         = $facts['os_service_default'],
+  $message_pipeline                       = $facts['os_service_default'],
+  $claim_pipeline                         = $facts['os_service_default'],
+  $subscription_pipeline                  = $facts['os_service_default'],
+  $topic_pipeline                         = $facts['os_service_default'],
+  $max_messages_post_size                 = $facts['os_service_default'],
+  $message_store                          = $facts['os_service_default'],
+  $management_store                       = $facts['os_service_default'],
+  $package_name                           = $zaqar::params::package_name,
+  Stdlib::Ensure::Package $package_ensure = 'present',
+  Boolean $purge_config                   = false,
 ) inherits zaqar::params {
   include zaqar::deps
 

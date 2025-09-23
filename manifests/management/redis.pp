@@ -23,10 +23,10 @@
 #
 class zaqar::management::redis (
   $uri,
-  $max_reconnect_attempts = $facts['os_service_default'],
-  $reconnect_sleep        = $facts['os_service_default'],
-  $package_ensure         = 'present',
-  Boolean $manage_package = true,
+  $max_reconnect_attempts                 = $facts['os_service_default'],
+  $reconnect_sleep                        = $facts['os_service_default'],
+  Stdlib::Ensure::Package $package_ensure = 'present',
+  Boolean $manage_package                 = true,
 ) {
   include zaqar::deps
   include zaqar::params

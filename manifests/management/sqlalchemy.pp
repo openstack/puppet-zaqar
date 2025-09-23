@@ -9,7 +9,7 @@
 #
 class zaqar::management::sqlalchemy (
   $uri,
-  $package_ensure = 'present',
+  Stdlib::Ensure::Package $package_ensure = 'present',
 ) {
   include zaqar::deps
 

@@ -18,46 +18,45 @@
 #   web service. For example, use class { 'zaqar::wsgi::apache'...}
 #   to make zaqar-server be a web app using apache mod_wsgi.
 #   Defaults to '$zaqar::params::service_name'
-
 #
 class zaqar::server (
   Boolean $manage_service = true,
   Boolean $enabled        = true,
-  $service_name           = $zaqar::params::service_name,
+  String[1] $service_name = $zaqar::params::service_name,
 ) inherits zaqar::params {
   include zaqar
   include zaqar::deps
   include zaqar::policy
 
   if $manage_service {
-    if $enabled {
-      $ensure = 'running'
-    } else {
-      $ensure = 'stopped'
-    }
+    case $service_name {
+      'httpd': {
+        Service <| title == 'httpd' |> { tag +> 'zaqar-service' }
 
-    if $service_name == $zaqar::params::service_name {
-      service { 'zaqar-server':
-        ensure    => $ensure,
-        name      => $zaqar::params::service_name,
-        enable    => $enabled,
-        hasstatus => true,
-        tag       => 'zaqar-service',
-      }
-    } elsif $service_name == 'httpd' {
-      service { 'zaqar-server':
-        ensure => 'stopped',
-        name   => $zaqar::params::service_name,
-        enable => false,
-        tag    => ['zaqar-service'],
-      }
+        service { 'zaqar-server':
+          ensure => 'stopped',
+          name   => $zaqar::params::service_name,
+          enable => false,
+          tag    => ['zaqar-service'],
+        }
 
-      # we need to make sure zaqar-server is stopped before trying to start apache
-      Service['zaqar-server'] -> Service[$service_name]
-      Service <| title == 'httpd' |> { tag +> 'zaqar-service' }
-    } else {
-      fail("Invalid service_name. Either zaqar-server/openstack-zaqar for \
-running as a standalone service, or httpd for being run by a httpd server")
+        # we need to make sure zaqar-server is stopped before trying to start apache
+        Service['zaqar-server'] -> Service['httpd']
+      }
+      default: {
+        $service_ensure = $enabled ? {
+          true    => 'running',
+          default => 'stopped',
+        }
+
+        service { 'zaqar-server':
+          ensure    => $service_ensure,
+          name      => $service_name,
+          enable    => $enabled,
+          hasstatus => true,
+          tag       => 'zaqar-service',
+        }
+      }
     }
   }
 }

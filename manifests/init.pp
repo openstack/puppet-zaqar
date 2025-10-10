@@ -78,7 +78,7 @@
 #   Defaults to false.
 #
 class zaqar (
-  $auth_strategy                          = 'keystone',
+  Enum['', 'keystone'] $auth_strategy     = 'keystone',
   $admin_mode                             = $facts['os_service_default'],
   $unreliable                             = $facts['os_service_default'],
   $pooling                                = $facts['os_service_default'],

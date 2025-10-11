@@ -21,7 +21,7 @@
 #
 # [*roles*]
 #   (Optional) List of roles assigned to neutron user.
-#   Defaults to ['admin']
+#   Defaults to ['admin', 'service']
 #
 # [*system_scope*]
 #   (Optional) Scope for system operations.
@@ -86,7 +86,7 @@ class zaqar::keystone::auth (
   $internal_url           = 'http://127.0.0.1:8888',
   $region                 = 'RegionOne',
   $tenant                 = 'services',
-  $roles                  = ['admin'],
+  $roles                  = ['admin', 'service'],
   $system_scope           = 'all',
   $system_roles           = [],
   $configure_endpoint     = true,

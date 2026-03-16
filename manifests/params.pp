@@ -5,7 +5,7 @@
 class zaqar::params {
   include openstacklib::defaults
 
-  $pyver3 = $openstacklib::defaults::pyver3
+  $pybasedir = $openstacklib::defaults::pybasedir
 
   $client_package_name = 'python3-zaqarclient'
   $user                = 'zaqar'
@@ -15,14 +15,14 @@ class zaqar::params {
     'RedHat': {
       $package_name              = 'openstack-zaqar'
       $service_name              = 'openstack-zaqar'
-      $zaqar_wsgi_script_source  = "/usr/lib/python${pyver3}/site-packages/zaqar/transport/wsgi/app.py"
+      $zaqar_wsgi_script_source  = "${pybasedir}/zaqar/transport/wsgi/app.py"
       $zaqar_wsgi_script_path    = '/var/www/cgi-bin/zaqar'
       $python_redis_package_name = 'python3-redis'
     }
     'Debian': {
       $package_name              = 'zaqar-server'
       $service_name              = 'zaqar-server'
-      $zaqar_wsgi_script_source  = '/usr/lib/python3/dist-packages/zaqar/transport/wsgi/app.py'
+      $zaqar_wsgi_script_source  = "${pybasedir}/zaqar/transport/wsgi/app.py"
       $zaqar_wsgi_script_path    = '/usr/lib/cgi-bin/zaqar'
       $python_redis_package_name = 'python3-redis'
     }

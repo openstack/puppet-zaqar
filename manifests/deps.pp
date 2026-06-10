@@ -24,6 +24,10 @@ class zaqar::deps {
   ~> Service<| tag == 'zaqar-service' |>
   ~> anchor { 'zaqar::service::end': }
 
+  Anchor['zaqar::config::begin']
+  -> Zaqar_api_uwsgi_config<||>
+  -> Anchor['zaqar::config::end']
+
   # Installation or config changes will always restart services.
   Anchor['zaqar::install::end'] ~> Anchor['zaqar::service::begin']
   Anchor['zaqar::config::end']  ~> Anchor['zaqar::service::begin']

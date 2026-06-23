@@ -56,6 +56,8 @@ class zaqar::server (
           hasstatus => true,
           tag       => 'zaqar-service',
         }
+        # On any uwsgi config change, we must restart zaqar-server.
+        Zaqar_api_uwsgi_config<||> ~> Service['zaqar-server']
       }
     }
   }
